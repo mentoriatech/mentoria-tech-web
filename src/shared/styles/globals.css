@@ -1,0 +1,51 @@
+:root {
+  --text-color: #000;
+  --link-color: #42a5f5;
+  --hover-link-color: #1e88e5;
+  --active-link-color: #0d47a1;
+  --brand-font-family: Anonymous Pro, monospace;
+  --default-font-family: Nunito, sans-serif;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: var(--default-font-family);
+  background: #fff;
+  color: var(--text-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--brand-font-family);
+  margin: 0 auto;
+  padding: 0;
+}
+::placeholder {
+  opacity: 0.5;
+}
+a {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--hover-link-color);
+}
+a:active {
+  color: var(--active-link-color);
+}
