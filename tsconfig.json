@@ -1,14 +1,5 @@
 {
   "compilerOptions": {
-<<<<<<< HEAD
-    "baseUrl": ".",
-    "paths": {
-      "@/modules/*": [
-        "modules/*"
-      ]
-    },
-=======
->>>>>>> 0d9dcf8190b85fcc5e6dc464773bc1eab9547f32
     "target": "es5",
     "lib": [
       "dom",
