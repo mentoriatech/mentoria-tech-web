@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { DefaultHead } from "../../../shared/components/DefaultHead";
+import Header from 'website/containers/Header'
 
 type HomeContent = {
   title: string;
@@ -15,7 +16,7 @@ export const Home: FC<HomeProps> = ({ content }) => {
     <>
       <DefaultHead title={content.title} description={content.description} />
       <main>
-        <h1>{content.title}</h1>
+        <Header />
       </main>
     </>
   );
