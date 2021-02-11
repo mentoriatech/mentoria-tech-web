@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
+import styled from 'shared/styles/styled';
 import { css } from '@emotion/react';
 
-export const ContainerStyled = styled('div')(() => css`
+export const ContainerStyled = styled('div')(({ theme }) => css`
 margin: 0 auto;
-width: 95%;
+width: 90%;
 
-@media screen and (min-width: 768px) {
-  width: 1235px;
-  }
+@media screen and (min-width: ${theme.breakpoints.mega}px) {
+  width: 85%;
+}
 `);
 
