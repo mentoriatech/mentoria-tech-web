@@ -62,27 +62,27 @@ export const borderWidth: BorderWidth = {
 export const typography = {
   headings: {
     kilo: {
-      fontSize: '17px',
+      fontSize: '18px',
       lineHeight: '24px',
     },
     mega: {
-      fontSize: '19px',
+      fontSize: '24px',
       lineHeight: '24px',
     },
     giga: {
-      fontSize: '22px',
+      fontSize: '36px',
       lineHeight: '24px',
     },
     tera: {
-      fontSize: '24px',
+      fontSize: '48px',
       lineHeight: '32px',
     },
     peta: {
-      fontSize: '28px',
+      fontSize: '56px',
       lineHeight: '32px',
     },
     exa: {
-      fontSize: '36px',
+      fontSize: '64px',
       lineHeight: '44px',
     },
     zetta: {

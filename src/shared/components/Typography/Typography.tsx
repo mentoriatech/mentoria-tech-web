@@ -1,13 +1,23 @@
 import { TitleStyled, SubstitleStyled } from './Typography.styles';
 
-export function Title({ children }) {
+interface Title {
+  children: any;
+  color: string;
+}
+
+interface Subtitle {
+  children: any;
+  color: string; 
+}
+
+export function Title(props: Title) {
   return (
-    <TitleStyled>{children}</TitleStyled>
+    <TitleStyled {...props}>{props.children}</TitleStyled>
   )
 }
 
-export function Subtitle({ children }) {
+export function Subtitle(props: Subtitle) {
   return (
-    <SubstitleStyled>{children}</SubstitleStyled>
+    <SubstitleStyled {...props}>{props.children}</SubstitleStyled>
   )
 }

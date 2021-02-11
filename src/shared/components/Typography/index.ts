@@ -1,3 +1,3 @@
-import { Title, Subtitle } from './Typography';
+import { Title, Subtitle } from './Typography'
 
-export { Title, Subtitle };
+export { Title, Subtitle }
