@@ -13,8 +13,9 @@ import {
 } from '../types';
 
 export const breakpoints: Breakpoints = {
+  byte: 320,
   untilKilo: '(max-width: 479px)',
-  kilo: 480,
+  kilo: 425,
   kiloToMega: '(min-width: 480px) and (max-width: 767px)',
   mega: 768,
   untilMega: '(max-width: 767px)',
@@ -130,12 +131,29 @@ export const fontWeight: FontWeight = {
 export const colors: Colors = {
   white: '#fff',
   black: '#000',
+  grey: {
+    light: '#f1edf4',
+    normal: '#e4deea',
+    dark: ''
+  },
+  background: {
+    light: '#616089',
+    normal: '#484662',
+  },
   brandPrimary: {
-    light: '#f62e7a',
+    light: '#ffdde7',
     normal: '#f61067',
     dark: '#dd0456'
   },
-  brandSecondary: '',
-  brandSupport: '',
+  brandSecondary: {
+    light: '#f0ddff',
+    normal: '#400578',
+    dark: ''
+  },
+  brandSupport: {
+    light: '',
+    normal: '#F5A600',
+    dark: ''
+  },
 }
 

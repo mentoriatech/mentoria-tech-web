@@ -1,0 +1,19 @@
+{
+	// Place your mentoria-tech-web workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	"Styled Component": {
+		"prefix": ["styled:"],
+		"body": ["export const Styled = styled('div')(({ theme }) => css`","`)"],
+		"description": "Create emotion styled component"
+	},
+	"Emotion file": {
+		"prefix": ["emotion:"],
+		"body": ["import { css } from '@emotion/react'", "import styled from 'shared/styles/styled'"],
+		"description": "Import emotion"
+	},
+	"Component": {
+		"prefix": ["component:"],
+		"body": ["export default function Component() {", "  return (", "  )", "}"],
+		"description": "Create component"
+	}
+}

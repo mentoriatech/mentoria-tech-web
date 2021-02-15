@@ -1,0 +1,86 @@
+.galaxy {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+}
+
+.planet {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 100px;
+    right: 850px;
+    background: rgb(2,0,36);
+background: linear-gradient(60deg, rgb(60, 2, 89) 0%,  rgb(60, 2, 89) 30%, rgb(146, 4, 139) 100%,);
+    border-radius: 50%;
+}
+
+.planet2 {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 250px;
+    right: 450px;
+    background: rgb(2,0,36);
+background: linear-gradient(60deg, rgb(60, 2, 89) 0%,  rgb(60, 2, 89) 30%, rgb(146, 66, 4) 100%,);
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    from {
+        box-shadow: 0 0 20px rgba(255,100,50,1);
+    }
+    to {
+        box-shadow: 0 0 50px rgba(255,100,50,1);
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotateY(0) rotateX(0);
+    }
+    to {
+        transform: rotateY(-360deg) rotateX(360deg);
+    }
+}
+
+.cluster {
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+    animation: rotation 240s linear infinite;
+}
+
+.star {
+    transform-style: preserve-3d;
+    
+    &,
+    &::before {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,1);
+        box-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+    }
+    
+    &::before {
+        content: "";
+        transform: rotateY(-90deg);
+    }
+   
+}
+
+@for $i from 1 through 300 {
+    $rand1: random(4000) - 2000;
+    $rand2: random(2000) - 1000;
+    $rand3: random(1000) - 500;
+    .star:nth-child(#{$i}) {
+        transform: translate3d(#{$rand1}px, #{$rand2}px, #{$rand3}px);
+    }
+}
+

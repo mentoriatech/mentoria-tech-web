@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
-import { List, Item, LinkStyled } from './Navigation.styles';
+import { LinkStyled, NavigationStyled, List, ListItem } from './Navigation.styles';
 
 interface Item {
   icon: string;
@@ -9,18 +10,31 @@ interface Item {
 }
 
 export default function Navigation({ items }) {
+  const [navState, setNavState] = useState(false)
+
+  const onNavClick = () => {
+    setNavState(!navState)
+  }
+
   return (
-    <List>
-      {items.map((item: Item) => (
-        <Item key={item.destination}>
-          <Link href={item.destination}>
-            <LinkStyled>
-              {item.icon && <Image src={item.icon} width="12" height="12" />}
-              {item.label}
-              </LinkStyled>
-          </Link>
-        </Item>
-      ))}
-    </List>
+    <>
+      <NavigationStyled>
+      <input type="checkbox" id="btnControl"/>
+      <label htmlFor="btnControl"></label>
+        <List>
+          {items.map((item: Item) => (
+            <ListItem key={item.destination}>
+              <Link href={item.destination}>
+                <LinkStyled>
+                  {item.icon && <img src={item.icon} width="12" height="12" />}
+                  {item.label}
+                  </LinkStyled>
+              </Link>
+            </ListItem>
+          ))}
+
+        </List>
+      </NavigationStyled>
+    </>
   )
 }

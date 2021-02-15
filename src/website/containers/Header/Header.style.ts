@@ -6,19 +6,21 @@ type StyledProps = {
 }
 
 export const HeaderStyled = styled('div')(({ theme }) => css`
-  background-image: url('/banner.svg');
-  height: 100vh;
+  position: relative;
+  height: 500px;
   width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  @media screen and (min-width: ${theme.breakpoints.mega}px) {
-    background-position-y: -80px;
+  margin-bottom: calc(${theme.spacings.zetta} * 3);
+  
+  @media (min-width: ${theme.breakpoints.mega}px) {
+    height: 600px;
+  }
+  
+  @media (min-width: ${theme.breakpoints.tera}px) {
+    height: 850px;
   }
 
-  @media screen and (min-width: ${theme.breakpoints.tera}px) {
-    background-size: cover;
-    background-position-y: -70px;
+  @media (min-width: ${theme.breakpoints.tera}px) and (min-height: 505px) {
+    height: 620px;
   }
 `);
 
@@ -27,6 +29,7 @@ export const HeaderContent = styled('div')(() => css`
   align-items: center;
   justify-content: center;
   height: 75%;
+  z-index: 3;
 `);
 
 export const SubtitleWrapper = styled('div')(({ theme }) => css`

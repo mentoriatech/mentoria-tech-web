@@ -40,12 +40,4 @@ h5 {
 ::placeholder {
   opacity: 0.5;
 }
-a {
-  color: var(--link-color);
-}
-a:hover {
-  color: var(--hover-link-color);
-}
-a:active {
-  color: var(--active-link-color);
-}
+

@@ -2,13 +2,15 @@ import TopBar from 'website/components/TopBar'
 import Button from 'shared/components/Button'
 import { Title, Subtitle } from 'shared/components/Typography/'
 import Container from 'shared/components/Container'
+import HeaderBackground from 'website/components/HeaderBackground'
+
 import { HeaderStyled, HeaderContent, SubtitleWrapper } from './Header.style'
 
 export default function Header() {
   return (
-    <HeaderStyled>
+    <HeaderStyled className="Header">
       <TopBar />
-      <HeaderContent>
+      <HeaderContent className="Content">
         <Container>
           <Title color="white">mentoria em<br/>tecnologia<strong>_</strong></Title>
           <SubtitleWrapper>
@@ -19,6 +21,7 @@ export default function Header() {
           </SubtitleWrapper>
         </Container>
       </HeaderContent>
+      <HeaderBackground />
     </HeaderStyled>
   )
 }

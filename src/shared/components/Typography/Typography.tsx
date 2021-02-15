@@ -1,4 +1,4 @@
-import { TitleStyled, SubstitleStyled } from './Typography.styles';
+import { TitleStyled, SubstitleStyled, SectionTitleStyled } from './Typography.styles';
 
 interface Title {
   children: any;
@@ -10,6 +10,12 @@ interface Subtitle {
   color: string; 
 }
 
+interface SectionTitle {
+  children: any;
+  color: string; 
+  prefix: string;
+}
+
 export function Title(props: Title) {
   return (
     <TitleStyled {...props}>{props.children}</TitleStyled>
@@ -19,5 +25,14 @@ export function Title(props: Title) {
 export function Subtitle(props: Subtitle) {
   return (
     <SubstitleStyled {...props}>{props.children}</SubstitleStyled>
+  )
+}
+
+export function SectionTitle(props: SectionTitle) {
+  return (
+    <SectionTitleStyled {...props}>
+      <strong>{props.prefix}</strong>
+      {props.children}
+    </SectionTitleStyled>
   )
 }
