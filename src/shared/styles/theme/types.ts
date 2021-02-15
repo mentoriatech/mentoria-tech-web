@@ -1,13 +1,30 @@
 export type Colors = {
   white: string;
   black: string;
+  grey: { 
+    light: string,
+    normal: string,
+    dark: string,
+  };
+  background: {
+    light: string;
+    normal: string;
+  }
   brandPrimary: { 
     light: string,
     normal: string,
     dark: string,
   };
-  brandSecondary: string;
-  brandSupport: string;
+  brandSecondary: { 
+    light: string,
+    normal: string,
+    dark: string,
+  };
+  brandSupport: { 
+    light: string,
+    normal: string,
+    dark: string,
+  };
 }
 
 export type FontStack = {
@@ -54,6 +71,7 @@ export type FontWeight = {
 };
 
 export enum Breakpoint {
+  byte = 'byte',
   untilKilo = 'untilKilo',
   kilo = 'kilo',
   kiloToMega = 'kiloToMega',

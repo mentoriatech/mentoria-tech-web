@@ -1,9 +1,14 @@
 import { LogoWrapper } from './Logo.style';
 
-export default function Logo() {
+interface Logo {
+  size: string;
+}
+
+export default function Logo({ size }: Logo) {
+  console.log('🚀 ~ file: Logo.tsx ~ line 8 ~ Logo ~ size', size);
   return (
-    <LogoWrapper>
-      <img src="/logo.svg" />
+    <LogoWrapper size={size}>
+      <img src="/logo_negativo.svg" />
     </LogoWrapper>
   )
 }
