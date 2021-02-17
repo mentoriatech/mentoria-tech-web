@@ -3,14 +3,24 @@ import styled from 'shared/styles/styled'
 
 export const CardQuoteWrapper = styled('div')(({ theme }) => css`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  margin: 0 0 ${theme.spacings.zetta};
+  
+  @media (min-width: ${theme.breakpoints.mega}px) {
+    margin: 0 0 ${theme.spacings.zetta};
+    flex-direction: row;
+  }
 `);
 
 export const CardQuoteItem = styled('div')(({ theme }) => css`
-
+  display: flex;
+  flex-direction: column;
+  margin-bottom: ${theme.spacings.exa};
+  
+  @media (min-width: ${theme.breakpoints.mega}px) {
+    margin-bottom: 0;
+  }
 `);
 
 export const CardQuoteImage = styled('img')(({ theme }) => css`
@@ -32,7 +42,7 @@ export const CardQuoteSubtitle = styled('div')(({ theme }) => css`
   `);
   
 export const CardBlockQuote = styled('div')(({ theme }) => css`
-  margin: ${theme.spacings.giga} 0 0;
+  margin: ${theme.spacings.kilo} auto 0 auto;
   text-align: center;
   background-color: ${theme.colors.brandPrimary.light};
   border-radius: 12px;
@@ -41,13 +51,14 @@ export const CardBlockQuote = styled('div')(({ theme }) => css`
   align-items: center;
   justify-content: center;
   position: relative;
+  width: calc(100% - ${theme.spacings.mega});
 
   &:before {
     content: '';
     width: 0; 
     height: 0; 
-    border-top: 15px solid transparent;
-    border-bottom: 0px solid transparent; 
+    border-top: 0px solid transparent;
+    border-bottom: 15px solid transparent; 
     border-right: 15px solid ${theme.colors.brandPrimary.light};
     position: absolute;
     left: -15px;

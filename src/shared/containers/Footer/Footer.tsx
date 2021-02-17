@@ -4,7 +4,8 @@ import {
   FooterDescription, 
   FooterNavigation,
   FooterContainer,
-  FooterText
+  FooterText,
+  FooterLink
 } from './Footer.styles'
 import Link from 'next/link'
 import Logo from 'shared/components/Logo'
@@ -28,22 +29,50 @@ const footerNavigation = [
   }
 ]
 
+const footerSocialMedia = [
+  {
+    image: '/slack-logo.svg',
+    destination: '/'
+  },
+  {
+    image: '/twitter-logo.svg',
+    destination: '/'
+  },
+  {
+    image: '/instagram-logo.svg',
+    destination: '/'
+  },
+  {
+    image: '/facebook-logo.svg',
+    destination: '/'
+  }
+]
+
 export default function Footer() {
   return (
     <>
-      <FooterContent>
-        <FooterContainer>
-          <FooterDescription>
+      <FooterContent className="FooterContent">
+        <FooterContainer className="Container">
+          <FooterDescription className="FooterDescription">
             <Logo size="small" />
-            <FooterText>
+            <FooterText className="FooterTex">
             Lorem ipsum dolor sit amet, consectetur adipiscing
             </FooterText>
           </FooterDescription>
-          <FooterNavigation>
+          <FooterNavigation className="FooterNavigation" changeDirection={true}>
             {footerNavigation.map((item) => (
               <li>
                 <Link href={item.destination}>
-                  <a>{item.label}</a>
+                  <FooterLink>{item.label}</FooterLink>
+                </Link>
+              </li>
+            ))}
+          </FooterNavigation>
+          <FooterNavigation className="FooterNavigation">
+            {footerSocialMedia.map((item) => (
+              <li>
+                <Link href={item.destination}>
+                  <img src={item.image} />
                 </Link>
               </li>
             ))}
@@ -51,9 +80,11 @@ export default function Footer() {
         </FooterContainer>
       </FooterContent>
       <FooterBottom>
-        <FooterDescription>
-            @mentoria.tech 2021
-        </FooterDescription>
+        <FooterContainer>
+          <FooterText>
+            © mentoria.tech 2021
+          </FooterText>
+        </FooterContainer>
       </FooterBottom>
     </>
   )

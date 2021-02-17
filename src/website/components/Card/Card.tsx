@@ -1,43 +1,39 @@
-import { 
+import {
   CardStyled, 
   CardContent,
   CardTitle, 
-  CardSubtitle, 
-  CardQuote, 
+  CardSubtitle,
   CardText, 
   CardImage,
  } from './Card.styles'
 
-interface Card {
+interface CardProps {
   title: string;
   subtitle?: string;
   text: string;
   image?: string;
-  alignEnd: boolean;
-  direction: string;
+  order: number;
   quote?: string;
+  alignEnd?: boolean;
 }
-export default function Card(props : Card) {
-  const { 
-    title, 
-    subtitle,
-    text, 
-    image, 
-    alignEnd,
-    direction, 
-    quote 
-  } = props;
 
+interface CardsProps {
+  data: Array<CardProps>;
+  direction: string;
+}
+export default function Card(props : CardsProps) {
   return (
-    <CardStyled className="Card" direction={direction} align={alignEnd ? 'end' : 'start'}>
-      {!alignEnd && image && <CardImage src={image} />}
-      <CardContent>
-        <CardTitle>{title}</CardTitle>
-        <CardSubtitle>{subtitle}</CardSubtitle>
-        {quote && <CardQuote>{quote}</CardQuote>}
-        {text && <CardText>{text}</CardText>}
-      </CardContent>
-      {alignEnd && image && <CardImage src={image} />}
-    </CardStyled>
+    <>
+    {props.data.map((card : CardProps, index : number) => (
+      <CardStyled className="Card" direction={props.direction} align={card.alignEnd ? 'end' : 'start'}>
+        <CardImage src={card.image} order={card.order}/>
+        <CardContent align={card.alignEnd ? 'end' : 'start'} className="CardContent">
+          <CardTitle>{card.title}</CardTitle>
+          <CardSubtitle>{card.subtitle}</CardSubtitle>
+          {card.text && <CardText>{card.text}</CardText>}
+        </CardContent>
+      </CardStyled>
+    ))}
+    </>
   )
 }

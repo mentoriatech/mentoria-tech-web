@@ -7,11 +7,12 @@ type StyledProps = {
 
 export const HeaderStyled = styled('div')(({ theme }) => css`
   position: relative;
-  height: 500px;
+  height: 400px;
   width: 100%;
-  margin-bottom: calc(${theme.spacings.zetta} * 3);
+  margin-bottom: ${theme.spacings.zetta};
   
   @media (min-width: ${theme.breakpoints.mega}px) {
+    margin-bottom: calc(${theme.spacings.zetta} * 3);
     height: 600px;
   }
   

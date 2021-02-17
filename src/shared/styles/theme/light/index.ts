@@ -137,7 +137,7 @@ export const colors: Colors = {
     dark: ''
   },
   background: {
-    light: '#616089',
+    light: '#514f68',
     normal: '#484662',
   },
   brandPrimary: {

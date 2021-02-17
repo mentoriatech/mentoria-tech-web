@@ -3,6 +3,7 @@ import { DefaultHead } from "../../../shared/components/DefaultHead"
 import Header from 'website/containers/Header'
 import HowItWorks from 'website/containers/HowItWorks'
 import Mentors from 'website/containers/Mentors'
+import PresentationVideo from 'website/containers/PresentationVideo'
 import Chat from 'website/containers/Chat'
 import Footer from 'shared/containers/Footer'
 
@@ -23,6 +24,7 @@ export const Home: FC<HomeProps> = ({ content }) => {
         <Header />
         <HowItWorks />
         <Mentors />
+        <PresentationVideo />
         <Chat />
         <Footer />
       </main>

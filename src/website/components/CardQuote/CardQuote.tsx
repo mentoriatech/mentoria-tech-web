@@ -19,7 +19,7 @@ export default function CardQuote({ data }) {
   return (
     <CardQuoteWrapper>
       {data.map((item : CardItem) => (
-        <CardQuoteItem key={item.index}>
+        <CardQuoteItem className="CardQuoteItem" key={item.index}>
           <CardQuoteImage src={item.image} />
           <CardQuoteTitle>{item.title}</CardQuoteTitle>
           <CardQuoteSubtitle>{item.subtitle}</CardQuoteSubtitle>

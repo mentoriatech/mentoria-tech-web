@@ -8,31 +8,36 @@ const howItWorksContent = [
     title: 'Diversos conteúdos e formatos',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem.',
     image: '/media.svg',
-    alignEnd: false
+    alignEnd: false,
+    order: 1,
   },
   {
     title: 'Diferentes mentores',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem.',
     image: '/mentors.svg',
-    alignEnd: true
+    alignEnd: true,
+    order: 3,
   },
   {
     title: 'Liberdade para escolher o que e quando estudar',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem.',
     image: '/calendar.svg',
-    alignEnd: false
+    alignEnd: false,
+    order: 1,
   },
   {
     title: 'Reconhecimento',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem.',
     image: '/reward.svg',
-    alignEnd: true
+    alignEnd: true,
+    order: 3,
   },
   {
     title: 'Curadoria de conteúdo para estudar offline',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem.',
     image: '/offline.svg',
-    alignEnd: false
+    alignEnd: false,
+    order: 1,
   }
 ]
 
@@ -42,14 +47,10 @@ export default function HowIrWorks() {
       title="como funciona"
       direction="column">
       <Container>
-        {
-          howItWorksContent.map((content) => (
-            <Card
-              direction="row"
-              {...content}
-            />
-          ))
-        }
+        <Card
+          data={howItWorksContent}
+          direction="row"
+        />
         <SectionLink href="/" label="mapa de conhecimento" />
       </Container>
     </Section>
