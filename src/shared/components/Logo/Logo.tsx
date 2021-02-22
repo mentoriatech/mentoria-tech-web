@@ -5,10 +5,9 @@ interface Logo {
 }
 
 export default function Logo({ size }: Logo) {
-  console.log('🚀 ~ file: Logo.tsx ~ line 8 ~ Logo ~ size', size);
   return (
     <LogoWrapper size={size}>
-      <img src="/logo_negativo.svg" />
+      <img src="/icons/logo_negativo.svg" />
     </LogoWrapper>
   )
 }

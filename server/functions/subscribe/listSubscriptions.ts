@@ -14,7 +14,6 @@ export default async function listSubscriptions(): Promise<Response> {
     url: `${envVars.serverUrl}/subscription`,
   }
 
-  console.log('oie')
   const { status, data, code } =  await request(options);
 
   return { status, data, code };

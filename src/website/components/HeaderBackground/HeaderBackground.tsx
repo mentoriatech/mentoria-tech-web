@@ -7,15 +7,16 @@ export default function HeaderBackground() {
     <Background className="Background">
       <Wave className="Wave" />
 
-      <Girl src="/girl.svg" className="girl" />
-      <Path src="/path.svg" className="path" />
+      <Girl src="/icons/girl.svg" className="girl" />
+
+      <Path src="/icons/path.svg" className="path" />
       {/* <div className="galaxy">
         <div className="planet"></div>
-        <div className="planet2"></div> */}
-            {/* {Array.from(Array(amountOfStars), (e, i) => (
+        <div className="planet2"></div>
+            {Array.from(Array(amountOfStars), (e, i) => (
               <div className="star"></div>
-            ))}; */}
-      {/* </div> */}
+            ))};
+      </div> */}
     </Background>
   )
 }

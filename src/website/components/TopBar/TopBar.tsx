@@ -15,7 +15,7 @@ const items = [
     destination: '/blog'
   },
   {
-    icon: '/lock.svg',
+    icon: '/icons/lock.svg',
     label: 'entrar',
     destination: '/login'
   }

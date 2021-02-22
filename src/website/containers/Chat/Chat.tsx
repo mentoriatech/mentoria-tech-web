@@ -18,7 +18,7 @@ export default function Chat() {
       <Container>
         <ContainerStyled>
           <ChatColumn>
-            <ChatIcon src="/slack.svg" />
+            <ChatIcon src="/icons/slack.svg" />
             <ChatLabel>Lorem ipsum dolor sit amet, consectetur adipiscing</ChatLabel>
             <Input 
               buttonInline={true}
@@ -26,7 +26,7 @@ export default function Chat() {
               placeholder="seu@email.com" />
           </ChatColumn>
           <ChatColumn>
-            <ChatImage src="/chat.svg" />
+            <ChatImage src="/icons/chat.svg" />
           </ChatColumn>
         </ContainerStyled>
       </Container>

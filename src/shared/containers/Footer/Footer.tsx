@@ -31,19 +31,19 @@ const footerNavigation = [
 
 const footerSocialMedia = [
   {
-    image: '/slack-logo.svg',
+    image: '/icons/slack-logo.svg',
     destination: '/'
   },
   {
-    image: '/twitter-logo.svg',
+    image: '/icons/twitter-logo.svg',
     destination: '/'
   },
   {
-    image: '/instagram-logo.svg',
+    image: '/icons/instagram-logo.svg',
     destination: '/'
   },
   {
-    image: '/facebook-logo.svg',
+    image: '/icons/facebook-logo.svg',
     destination: '/'
   }
 ]
