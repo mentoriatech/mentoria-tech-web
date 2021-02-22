@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Section, { SectionLink } from 'website/components/Section'
 import Container from 'shared/components/Container'
 import Card from 'website/components/Card'

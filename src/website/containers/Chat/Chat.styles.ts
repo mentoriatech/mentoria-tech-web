@@ -5,6 +5,7 @@ export const ChatWrapper = styled('div')(({ theme }) => css`
   width: 100%;
   background-color: ${theme.colors.grey.light};
   padding: ${theme.spacings.zetta} 0 0;
+  overflow: hidden;
   
   @media (min-width: ${theme.breakpoints.mega}px) {
     padding: calc(${theme.spacings.zetta} * 2);

@@ -5,7 +5,8 @@ import {
   VideoFrame, 
   VideoDisclaimer, 
   VideoContainer, 
-  VideoDescription 
+  VideoDescription,
+  Iframe
 } from './PresentationVideo.styles'
 
 
@@ -23,7 +24,7 @@ export default function PresentationVideo() {
           </VideoDescription>
         </VideoContainer>
       </VideoFrame>}
-      {requestVideo && <iframe width="100%" height="600px" src="https://www.youtube.com/embed/jr47YisIsz8?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}
+      {requestVideo && <Iframe src="https://www.youtube.com/embed/jr47YisIsz8?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></Iframe>}
     </VideoSectionWrapper>
   )
 }

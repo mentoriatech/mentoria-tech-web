@@ -61,7 +61,7 @@ export default function Footer() {
           </FooterDescription>
           <FooterNavigation className="FooterNavigation" changeDirection={true}>
             {footerNavigation.map((item) => (
-              <li>
+              <li key={item.label}>
                 <Link href={item.destination}>
                   <FooterLink>{item.label}</FooterLink>
                 </Link>
@@ -70,7 +70,7 @@ export default function Footer() {
           </FooterNavigation>
           <FooterNavigation className="FooterNavigation">
             {footerSocialMedia.map((item) => (
-              <li>
+              <li key={item.destination}>
                 <Link href={item.destination}>
                   <img src={item.image} />
                 </Link>

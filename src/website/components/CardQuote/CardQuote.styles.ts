@@ -7,7 +7,7 @@ export const CardQuoteWrapper = styled('div')(({ theme }) => css`
   justify-content: space-between;
   width: 100%;
   
-  @media (min-width: ${theme.breakpoints.mega}px) {
+  @media (min-width: ${theme.breakpoints.giga}px) {
     margin: 0 0 ${theme.spacings.zetta};
     flex-direction: row;
   }
@@ -18,7 +18,7 @@ export const CardQuoteItem = styled('div')(({ theme }) => css`
   flex-direction: column;
   margin-bottom: ${theme.spacings.exa};
   
-  @media (min-width: ${theme.breakpoints.mega}px) {
+  @media (min-width: ${theme.breakpoints.giga}px) {
     margin-bottom: 0;
   }
 `);

@@ -2,16 +2,16 @@ import styled from 'shared/styles/styled';
 import { css } from '@emotion/react';
 import { SectionTitle } from 'shared/components/Typography';
 
-export const SectionStyled = styled('div')(({ theme, direction }) => css`
+export const SectionStyled = styled('div')(({ theme }) => css`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: ${theme.spacings.mega};
+  margin: ${theme.spacings.mega} 0 ${theme.spacings.zetta};
 `);
 
 export const SectionTitleStyled = styled(SectionTitle)(({ theme, spaceBottom }) => css`
   font-family: ${theme.fontStack.brand};
-  font-size: ${theme.typography.headings.giga.fontSize};
+  font-size: ${theme.typography.headings.mega.fontSize};
   margin-bottom: ${spaceBottom ? theme.spacings.zetta : 0};
   text-align: center;
   
@@ -22,8 +22,7 @@ export const SectionTitleStyled = styled(SectionTitle)(({ theme, spaceBottom }) 
   
   @media (min-width: ${theme.breakpoints.tera}px) {
     text-align: center;
-    font-size: ${theme.typography.headings.tera.fontSize };
-
+    font-size: ${theme.typography.headings.giga.fontSize };
   }
 `);
 

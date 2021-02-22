@@ -19,6 +19,16 @@ export const VideoContainer = styled(Container)(({ theme }) => css`
   }
 `);
 
+export const Iframe = styled('iframe')(({ theme }) => css`
+  width: 100%;
+  height: 300px;
+
+  @media (min-width:${theme.breakpoints.mega}px) {
+    width: 100%;
+    height: 600px;
+  }
+`);
+
 export const VideoFrame = styled('div')(({ theme }) => css`
   width: 100%;
   background-image: url('/woman-small.jpg');

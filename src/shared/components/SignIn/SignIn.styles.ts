@@ -1,0 +1,23 @@
+import { css } from '@emotion/react'
+import styled from 'shared/styles/styled'
+import Button from 'shared/components/Button'
+
+export const LoginButton = styled(Button)(({ theme }) => css`
+  cursor: pointer;
+  border: none;
+  padding: ${theme.spacings.kilo};
+  margin-bottom: ${theme.spacings.kilo};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    max-width: 20px;
+    margin-right: ${theme.spacings.byte};
+  }
+`);
+
+export const LoginWrapper = styled('div')(({ theme }) => css`
+  display: flex;
+  flex-direction: column;
+`);

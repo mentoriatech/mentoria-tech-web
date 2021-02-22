@@ -134,7 +134,7 @@ export const colors: Colors = {
   grey: {
     light: '#f1edf4',
     normal: '#e4deea',
-    dark: ''
+    dark: '#7f7f7f',
   },
   background: {
     light: '#514f68',
@@ -148,7 +148,7 @@ export const colors: Colors = {
   brandSecondary: {
     light: '#f0ddff',
     normal: '#400578',
-    dark: ''
+    dark: '#606060',
   },
   brandSupport: {
     light: '',

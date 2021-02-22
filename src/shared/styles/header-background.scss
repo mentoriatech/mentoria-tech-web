@@ -46,11 +46,6 @@ background: linear-gradient(60deg, rgb(60, 2, 89) 0%,  rgb(60, 2, 89) 30%, rgb(1
     }
 }
 
-.cluster {
-    transform-origin: 50% 50%;
-    transform-style: preserve-3d;
-    animation: rotation 240s linear infinite;
-}
 
 .star {
     transform-style: preserve-3d;

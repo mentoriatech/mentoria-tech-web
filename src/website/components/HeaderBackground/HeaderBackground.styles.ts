@@ -27,6 +27,7 @@ export const Wave = styled('div')(({ theme }) => css`
   @media (min-width: ${theme.breakpoints.tera}px) and (min-height: 505px) {
     top: 610px;
   }
+  
 
   &:after {
     content: "";
@@ -99,3 +100,4 @@ export const Path = styled('img')(({ theme }) => css`
     width: 920px;
   } 
 `);
+
