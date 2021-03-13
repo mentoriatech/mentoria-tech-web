@@ -7,10 +7,11 @@ import {
   TextAreaStyled, 
   Fieldset,
   Form,
-  customStyles 
+  customStyles,
+  ActionsWrapper,
 } from './Form.styles'
 
-import Button from 'shared/components/Button'
+import { PrimaryButton } from 'shared/components/Button'
 
 type OptionsProps = {
   value: string,
@@ -36,7 +37,9 @@ type FieldProps = {
 
 interface FormProps {
   submitLabel: string;
+  cancelLabel?: string;
   onSubmit?(e: any): void;
+  onCancel?(e: any): void;
   fields: Array<FieldProps>;
 }
 
@@ -109,7 +112,12 @@ const fieldComponents = {
   select: Select,
 }
 
-export const GeneratedForm: FC<FormProps> = ({ fields, onSubmit, submitLabel }) => {
+export const GeneratedForm: FC<FormProps> = ({ 
+  fields,
+  onSubmit,
+  submitLabel,
+  cancelLabel,
+  onCancel }) => {
   return (
     <>
       <Form onSubmit={onSubmit}>
@@ -118,11 +126,16 @@ export const GeneratedForm: FC<FormProps> = ({ fields, onSubmit, submitLabel }) 
           return (
             <FieldComponent 
               {...field}
-            />
+            />                                                                       
           )
         })}
-        <Button type="submit">{submitLabel}</Button>
+        <ActionsWrapper>
+          {onCancel && <PrimaryButton variant="secondary" size="normal">{cancelLabel}</PrimaryButton>}
+          <PrimaryButton variant="primary" size="normal" type="submit">{submitLabel}</PrimaryButton>
+        </ActionsWrapper>
       </Form>
     </>
   )
 } 
+
+export { Hint }

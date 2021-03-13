@@ -2,15 +2,25 @@ import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
 import { colors, spacings, fontStack } from 'shared/styles/theme/light'
 
+export const ActionsWrapper = styled('div')(({ theme }) => css`
+  display: flex;
+  justify-content: flex-end;
+
+  button:not(:last-of-type) {
+    margin-right: ${theme.spacings.kilo};
+  }
+`);
+
 export const Form = styled('form')(() => css`
   display: flex;
   flex-direction: column;
-  align-item: flex-end;
+  width: 100%;
 `);
 
 export const InputStyled = styled('input')(({ theme, stretch }) => css`
   width: ${stretch ? '100%' : 'auto'};
   background-color: ${theme.colors.grey.light};
+  border-radius: 15px;
   padding: ${theme.spacings.kilo};
   border: none;
   font-family: ${theme.fontStack.default};
@@ -55,17 +65,18 @@ export const Label = styled('label')(({ theme }) => css`
   display: block;
 `);
 
-export const Hint = styled('label')(({ theme, stretch }) => css`
+export const Hint = styled('label')(({ theme, icon, align }) => css`
   font-size: 12px;
-  color: ${theme.colors.brandPrimary.dark};
+  color: ${theme.colors.grey.dark};
   cursor: pointer;
   transition: all .2s linear;
+  text-align: ${align || 'left'};
 
   &:after {
     content: '';
     width: 10px;
     height: 10px;
-    background-image: url('/icons/help.svg');
+    background-image: url('${icon}');
     background-size: cover;
     display: inline-block;
     margin-left: ${theme.spacings.bit};
@@ -77,11 +88,12 @@ export const Hint = styled('label')(({ theme, stretch }) => css`
   }
 `);
 
-export const TextAreaStyled = styled('textarea')(({ theme, stretch }) => css`
+export const TextAreaStyled = styled('textarea')(({ theme }) => css`
   max-width: 100%;
   width: 100%;
-  min-height: 150px;
+  min-height: 100px;
   background-color: ${theme.colors.grey.light};
+  border-radius: 15px;
   padding: ${theme.spacings.kilo};
   border: none;
   font-family: ${theme.fontStack.default};
@@ -93,13 +105,11 @@ export const customStyles = {
   control: (provided) => ({
     ...provided,
     border: 'none',
-    paddingTop: spacings.bit,
-    paddingBottom: spacings.bit,
     paddingLeft: spacings.kilo,
     fontFamily: fontStack.default,
     fontSize: '13px',
     backgroundColor: colors.grey.light,
-    borderRadius: 0
+    borderRadius: '15px',
   }),
   valueContainer: (provided) => ({
     ...provided,

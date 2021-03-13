@@ -7,9 +7,10 @@ interface Item {
   icon: string;
   destination: string;
   label: string;
+  dark?: boolean;
 }
 
-export default function Navigation({ items }) {
+export default function Navigation({ items, dark }) {
   const [navState, setNavState] = useState(false)
 
   const onNavClick = () => {
@@ -25,7 +26,7 @@ export default function Navigation({ items }) {
           {items.map((item: Item) => (
             <ListItem key={item.destination}>
               <Link href={item.destination}>
-                <LinkStyled>
+                <LinkStyled dark={dark}>
                   {item.icon && <img src={item.icon} width="12" height="12" />}
                   {item.label}
                   </LinkStyled>

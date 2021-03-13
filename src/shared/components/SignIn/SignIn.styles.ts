@@ -1,8 +1,8 @@
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
-import Button from 'shared/components/Button'
+import  { PrimaryButton } from 'shared/components/Button'
 
-export const LoginButton = styled(Button)(({ theme }) => css`
+export const LoginButton = styled(PrimaryButton)(({ theme }) => css`
   cursor: pointer;
   border: none;
   padding: ${theme.spacings.kilo};

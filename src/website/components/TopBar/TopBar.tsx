@@ -1,7 +1,7 @@
-import Logo from 'shared/components/Logo/';
-import Container from 'shared/components/Container';
-import Navigation from 'website/components/Navigation';
-import { TopBarStyled } from './TopBar.styles';
+import { FC } from 'react'
+import Logo from 'shared/components/Logo/'
+import Navigation from 'website/components/Navigation'
+import { TopBarStyled, ContainerStyled } from './TopBar.styles'
 
 const items = [
   {
@@ -15,20 +15,24 @@ const items = [
     destination: '/blog'
   },
   {
-    icon: '/icons/lock.svg',
     label: 'entrar',
-    destination: '/login'
+    destination: '/entrar'
   }
 ]
 
-function TopBar() {
+interface TopBarProps {
+  background?: boolean;
+  darkNav?: boolean;
+}
+
+const TopBar: FC<TopBarProps> = ({ background, darkNav }) => {
   return (
-      <Container>
-        <TopBarStyled>
-          <Logo />
-          <Navigation items={items} />
-        </TopBarStyled>
-      </Container>
+    <TopBarStyled background={background}>
+      <ContainerStyled>
+        <Logo size="medium" />
+        <Navigation dark={darkNav} items={items} />
+      </ContainerStyled>
+    </TopBarStyled>
   )
 }
 

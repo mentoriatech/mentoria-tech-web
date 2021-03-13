@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
-import Button from 'shared/components/Button'
+import { PrimaryButton } from 'shared/components/Button'
 
 export const InputWrapper = styled('div')(({ theme }) => css`
   display: flex;
@@ -24,6 +24,6 @@ export const InputStyled = styled('input')(({ theme }) => css`
   }
 `);
 
-export const InputButton = styled(Button)(({ theme }) => css`
+export const InputButton = styled(PrimaryButton)(({ theme }) => css`
   margin-left: -40px;
 `);

@@ -1,3 +1,3 @@
-import HeaderBackground from './HeaderBackground'
+import { HomeBackground, LoginBackground } from './HeaderBackground'
 
-export default HeaderBackground
+export { HomeBackground, LoginBackground }

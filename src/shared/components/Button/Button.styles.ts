@@ -1,20 +1,65 @@
 import styled from 'shared/styles/styled';
 import { css } from '@emotion/react';
 
-export const PrimaryButton = styled('button')(({ theme, test }) => css`
-  background-color: ${theme.colors.brandPrimary.normal};
-  color: ${theme.colors.white};
-  border-radius: ${theme.borderRadius.tera};
-  padding: ${theme.spacings.kilo} ${theme.spacings.giga};
-  border: none;
-  font-size: ${theme.typography.text.giga.fontSize};
-  font-family: ${theme.fontStack.brand};
-  font-weight: ${theme.fontWeight.bold};
-  cursor: pointer;
+const variants = (theme) => ({
+  primary: `
+    background-color: ${theme.colors.brandPrimary.normal};
+    color: ${theme.colors.white};
 
-  &:hover {
-    background-color: ${theme.colors.brandPrimary.dark};
-  }
+    &:hover {
+      background-color: ${theme.colors.brandPrimary.dark};
+    }
+  `,
+  secondary: `
+    background-color: ${theme.colors.grey.normal};
+    color: ${theme.colors.brandSecondary.dark};
+
+    &:hover {
+      background-color: ${theme.colors.grey.light};
+    }
+  `
+})
+
+const sizes = (theme) => ({
+  small: `
+    padding: ${theme.spacings.bit} ${theme.spacings.kilo};
+    font-size: ${theme.typography.text.kilo.fontSize};
+    border-radius: calc(${theme.borderRadius.giga} + 3px);
+
+  `,
+  normal: `
+    padding: ${theme.spacings.kilo} ${theme.spacings.giga};
+    font-size: ${theme.typography.text.giga.fontSize};
+    font-weight: ${theme.fontWeight.bold};
+    border-radius: ${theme.borderRadius.tera};
+
+  `,
+  big: `
+    padding: ${theme.spacings.mega} ${theme.spacings.giga};
+  `
+})
+
+
+export const PrimaryButton = styled('button')(({ theme, variant, size, icon }) => css`
+  ${variants(theme)[variant]}
+  ${sizes(theme)[size]}
+  height: fit-content;
+  border: none;
+  font-family: ${theme.fontStack.default};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${icon && `&:before {
+    content: '';
+    background-image: url(${icon});
+    background-size: contain;
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-right: ${theme.spacings.bit};
+  }`}
 
   &:focus {
     outline: 0;

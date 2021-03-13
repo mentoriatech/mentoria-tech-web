@@ -114,9 +114,9 @@ export const NavigationStyled = styled('div')(({ theme }) => css`
   }
 `);
 
-export const LinkStyled = styled('a')(({ theme }) => css`
+export const LinkStyled = styled('a')(({ theme, dark }) => css`
   text-decoration: none;
-  color: ${theme.colors.white};
+  color: ${dark ? theme.colors.brandSecondary.normal : theme.colors.white};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -127,5 +127,6 @@ export const LinkStyled = styled('a')(({ theme }) => css`
 
   &:hover {
     color: ${theme.colors.brandPrimary};
+    text-decoration: underline;
   }
 `);

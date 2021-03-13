@@ -12,7 +12,7 @@ export default function Input(props : Input) {
     <InputWrapper>
       <InputStyled {...props} />
       {props.buttonInline && (
-        <InputButton onClick={props.onButtonClick}>{props.buttonLabel}</InputButton>
+        <InputButton variant="primary" size="normal" onClick={props.onButtonClick}>{props.buttonLabel}</InputButton>
       )}
     </InputWrapper>
   )

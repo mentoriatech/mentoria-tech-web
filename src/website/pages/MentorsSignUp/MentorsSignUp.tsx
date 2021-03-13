@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 import {
   useSession
@@ -16,17 +16,23 @@ type MentorsSignUpContent = {
 
 export interface MentorsSignUpProps {
   content: MentorsSignUpContent;
-  providers: object;
+  providers: {
+    id: string;
+    name: string;
+    callbackUrl: string;
+    signinUrl: string;
+    type: string;
+  };
 }
 
-export const MentorsSignUp: NextPage<MentorsSignUpProps> = ({ content, providers }) => {
+export const MentorsSignUp: FC<MentorsSignUpProps> = ({ content, providers }) => {
   const router = useRouter()
   const [session] = useSession()
 
-  // if (session) {
-  //   router.push('/dashboard')
-  //   return <></>;
-  // }
+  if (session) {
+    router.push('/dashboard')
+    return <></>;
+  }
 
   return (
     <>

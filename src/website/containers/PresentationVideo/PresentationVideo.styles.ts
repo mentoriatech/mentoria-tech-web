@@ -55,7 +55,7 @@ export const VideoDisclaimer = styled('p')(({ theme }) => css`
 
   &:before {
     content: '';
-    background-image: url('/play.svg');
+    background-image: url('/icons/play.svg');
     background-repeat: no-repeat;
     background-size: 50px;
     width: 50px;

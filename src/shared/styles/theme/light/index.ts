@@ -114,6 +114,10 @@ export const typography = {
       fontSize: '18px',
       lineHeight: '28px',
     },
+    tera: {
+      fontSize: '20px',
+      lineHeight: '30px',
+    },
   },
 };
 
@@ -124,6 +128,7 @@ export const fontStack: FontStack = {
 };
 
 export const fontWeight: FontWeight = {
+  thin: '100',
   regular: '400',
   bold: '700',
 };

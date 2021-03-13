@@ -14,6 +14,6 @@ export const Container = styled('div')(({ theme }) => css`
   }
 
   @media (min-width: 1420px) {
-    width: 1024px;
+    width: 1224px;
   }
 `);

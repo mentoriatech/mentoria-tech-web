@@ -1,27 +1,50 @@
-import TopBar from 'website/components/TopBar'
-import Button from 'shared/components/Button'
+import { FC } from 'react'
+import { PrimaryButton } from 'shared/components/Button'
 import { Title, Subtitle } from 'shared/components/Typography/'
-import Container from 'shared/components/Container'
-import HeaderBackground from 'website/components/HeaderBackground'
+import Link from 'next/link'
 
-import { HeaderStyled, HeaderContent, SubtitleWrapper } from './Header.style'
+import { 
+  HeaderStyled,
+  HeaderContent,
+  SubtitleWrapper,
+  HeaderChildren,
+  HeaderContainer 
+} from './Header.style'
 
-export default function Header() {
+interface HeaderProps {
+  direction?: string;
+  title?: string;
+  subtitle?: string;
+  buttonLabel?: string;
+  buttonDestination?: string;
+}
+
+export const Header: FC<HeaderProps> = ({ 
+  children,
+  direction,
+  title,
+  subtitle,
+  buttonLabel,
+  buttonDestination
+}) => {
   return (
     <HeaderStyled className="Header">
-      <TopBar />
-      <HeaderContent className="Content">
-        <Container>
-          <Title color="white">mentoria em<br/>tecnologia<strong>_</strong></Title>
-          <SubtitleWrapper>
-            <Subtitle color="white">Lorem ipsum dolor sit amet, consectetur adipis
-  cing elit. Ex Jornada Front-End ex, et pellentesque
-  orci sagittis eget. Sed tristique nibh lorem.</Subtitle>
-            <Button>começar agora</Button>
-          </SubtitleWrapper>
-        </Container>
-      </HeaderContent>
-      <HeaderBackground />
+      <HeaderContainer className="HeaderContainer">
+        <HeaderContent className="Content" direction={direction}>
+          {title && <Title color="white">{title}</Title>}
+          {subtitle && <SubtitleWrapper>
+            <Subtitle color="white">{subtitle}</Subtitle>
+            {buttonLabel && buttonDestination && (
+              <Link href={buttonDestination}>
+                <PrimaryButton variant="primary" size="normal">começar agora</PrimaryButton>
+              </Link>
+            )}
+          </SubtitleWrapper>}
+        </HeaderContent>
+        <HeaderChildren>
+          {children}
+        </HeaderChildren>
+      </HeaderContainer>
     </HeaderStyled>
   )
 }

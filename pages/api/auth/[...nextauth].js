@@ -9,14 +9,26 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET
     }),
     Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
   ],
   pages: {
     error: '/auth/error', // Error code passed in query string as ?error=
-    newUser: '/new' // If set, new users will be directed here on first sign in
   },
   // A database is optional, but required to persist accounts in a database
-  database: process.env.DATABASE_URL,
+  database: {
+    type: 'postgres',
+    host: '127.0.0.1',
+    port: 5432,
+    username: 'postgres',
+    password: '1234',
+    database: 'mentoria'
+  },
+  callbacks: {
+    async singIn(user, account, profile) {
+      console.log(user, account, profile)
+      return true
+    }
+  }
 })

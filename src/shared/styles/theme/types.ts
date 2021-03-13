@@ -66,6 +66,7 @@ export type BorderWidth = {
 };
 
 export type FontWeight = {
+  thin: string;
   regular: string;
   bold: string;
 };
@@ -120,6 +121,7 @@ export interface Theme {
       kilo: Typography;
       mega: Typography;
       giga: Typography;
+      tera: Typography;
     };
   };
   fontWeight: FontWeight;

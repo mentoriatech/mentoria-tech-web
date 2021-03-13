@@ -1,22 +1,20 @@
-import { Background, Wave, Girl, Path } from './HeaderBackground.styles'
 
-export default function HeaderBackground() {
-  const amountOfStars = 300;
+import { 
+  LoginBackgroundStyled as LoginBackground,
+  Background,
+  Wave,
+  Girl,
+  Path
+} from './HeaderBackground.styles'
 
+export function HomeBackground() {
   return (
     <Background className="Background">
-      <Wave className="Wave" />
-
-      <Girl src="/icons/girl.svg" className="girl" />
-
-      <Path src="/icons/path.svg" className="path" />
-      {/* <div className="galaxy">
-        <div className="planet"></div>
-        <div className="planet2"></div>
-            {Array.from(Array(amountOfStars), (e, i) => (
-              <div className="star"></div>
-            ))};
-      </div> */}
+      
     </Background>
   )
+}
+
+export {
+  LoginBackground
 }
