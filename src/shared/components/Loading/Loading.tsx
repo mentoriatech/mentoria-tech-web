@@ -1,10 +1,17 @@
 import { FC } from 'react'
-import { CustomLoading } from './Loading.styles'
+import { Label, Spinner, Wrapper } from './Loading.styles'
 
-export const Loading = () => {
+interface LoadingProps {
+  label?: string;
+}
+
+export const Loading: FC<LoadingProps> = ({ label }) => {
   return (
-    <CustomLoading>
-      <div></div>
-    </CustomLoading>
+    <Wrapper>
+      <Spinner>
+        <div></div>
+      </Spinner>
+      <Label>{label}</Label>
+    </Wrapper>
   )
 }

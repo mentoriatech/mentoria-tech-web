@@ -11,7 +11,7 @@ export const BreadcrumbStyled = styled('div')(({ theme }) => css`
 
   a {
     text-decoration: none;
-    color: ${theme.colors.brandPrimary.dark};
+    color: ${theme.colors.text};
 
     &:hover {
       text-decoration: underline;
@@ -31,7 +31,7 @@ export const BreadcrumbStyled = styled('div')(({ theme }) => css`
     &:after {
       content: '>';
       margin-left: ${theme.spacings.byte};
-      color: ${theme.colors.brandPrimary.dark};
+      color: ${theme.colors.text};
     }
 
     &:last-child:after

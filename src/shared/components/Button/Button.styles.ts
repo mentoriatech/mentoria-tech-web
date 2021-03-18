@@ -17,6 +17,14 @@ const variants = (theme) => ({
     &:hover {
       background-color: ${theme.colors.grey.light};
     }
+  `,
+  tertiary: `
+    background-color: ${theme.colors.brandSecondary.normal};
+    color: ${theme.colors.white};
+
+    &:hover {
+      background-color: ${theme.colors.brandSecondary.dark};
+    }
   `
 })
 
@@ -28,7 +36,7 @@ const sizes = (theme) => ({
 
   `,
   normal: `
-    padding: ${theme.spacings.kilo} ${theme.spacings.giga};
+    padding: ${theme.spacings.bit} ${theme.spacings.giga};
     font-size: ${theme.typography.text.giga.fontSize};
     font-weight: ${theme.fontWeight.bold};
     border-radius: ${theme.borderRadius.tera};
@@ -63,5 +71,9 @@ export const PrimaryButton = styled('button')(({ theme, variant, size, icon }) =
 
   &:focus {
     outline: 0;
+  }
+
+  &:disabled {
+    background-color: ${theme.colors.grey.light};
   }
 `);

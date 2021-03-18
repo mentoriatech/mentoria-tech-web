@@ -6,7 +6,8 @@
       "dashboard/*": ["src/dashboard/*"],
       "website/*": ["src/website/*"],
       "theme/*": ["src/shared/styles/theme/*"],
-      "svg/*": ["public/icons/*.svg"]
+      "svg/*": ["public/icons/*.svg"],
+      "utils/*": ["src/utils/*"]
     },
     "target": "es5",
     "lib": [

@@ -6,9 +6,6 @@ export const ContentHeader = styled('div')(({ theme }) => css`
 `);
 
 export const ContentBody = styled('div')(({ theme }) => css`
-    display: grid;
-    grid-template-columns: 30% 50%;
-    grid-gap: 10px; 
     width: 100%;
     padding: ${theme.spacings.mega} 0;
   }
@@ -26,6 +23,8 @@ export const Content = styled('div')(({ theme }) => css`
   box-sizing: border-box;
   z-index: 1;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
   
   @media (min-width: ${theme.breakpoints.mega}px) {
     height: 100%;

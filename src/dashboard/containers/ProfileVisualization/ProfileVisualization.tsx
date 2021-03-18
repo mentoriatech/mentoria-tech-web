@@ -4,26 +4,33 @@ import Card from 'dashboard/components/Card'
 import UserInfo from 'dashboard/components/UserInfo'
 
 interface ProfileVisualizationProps {
-    user: {
-      image: string;
-      name: string;
-    };
+  title: string;
+  user: {
+    image: string;
+    name: string;
+    description?: string;
+    gender?: string;
+    occupation?: string;
+    email: string;
+    email_verified: boolean;
+    id: number;
+    created_at?: string;
+    updated_at?: string;
+  };
 }
 
-export const ProfileVisualization: FC<ProfileVisualizationProps> = ({ user }) => {
+export const ProfileVisualization: FC<ProfileVisualizationProps> = ({ user, title }) => {
   return (
     <>
       {user && (
-        <CustomCard>
+        <CustomCard title={title} className="CustomCard">
           <UserInfo image={user.image} />
           <UserDetails>
             <UserName>{user.name}</UserName>
-            <Subtitle>Software Developer na SumUp</Subtitle>
-            <Badge>nível 9</Badge>
+            <Subtitle>{user.occupation}</Subtitle>
           </UserDetails>
           <Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. 
-Sed tristique nibh lorem.
+            {user.description}
           </Description>
         </CustomCard>
       )}

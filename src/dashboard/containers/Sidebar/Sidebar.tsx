@@ -21,31 +21,24 @@ const items = [
     label: 'Perfil',
   },
   {
+    icon: <GuideIcon fill="white" />,
+    destination: '/dashboard/mentoria',
+    label: 'Mentoria',
+  },
+  {
     icon: <MentoredIcon fill="white" />,
-    destination: 'gerenciar',
+    destination: '/dashboard/gerenciar',
     label: 'Gerenciar',
   },
   {
-    icon: <JourneyIcon fill="white" />,
-    destination: 'front-end',
-    label: 'Jornadas',
-  },
-  {
-    icon: <GuideIcon fill="white" />,
-    destination: 'guias',
-    label: 'Guias',
-  },
-  {
     icon: <HeartIcon fill="white" />,
-    destination: 'contribuir',
+    destination: '/dashboard/contribuir',
     label: 'Contribuir',
   }
 ]
 
 export default function Sidebar() {
-  const [session, loading] = useSession()
-  console.log('🚀 ~ file: Sidebar.tsx ~ line 47 ~ Sidebar ~ loading', loading);
-  console.log('🚀 ~ file: Sidebar.tsx ~ line 47 ~ Sidebar ~ session', session);
+  const [session] = useSession()
 
   return (
     <>

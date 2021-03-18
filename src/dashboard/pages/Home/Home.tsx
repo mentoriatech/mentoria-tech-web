@@ -1,12 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Form from 'shared/components/Form'
-import Wrapper from 'dashboard/containers/Wrapper'
-import MainWrapper from 'dashboard/components/MainWrapper'
-import { Content, ContentHeader, ContentBody } from 'dashboard/containers/Content'
-import Sidebar from 'dashboard/containers/Sidebar'
-import TopBar from 'dashboard/containers/TopBar'
 import HeartIncon from 'svg/heart'
+import Layout from 'dashboard/containers/Layout'
 
 import { DefaultHead } from 'shared/components/DefaultHead'
 
@@ -173,19 +169,9 @@ export const Home: FC<HomeProps> = ({ content }) => {
   return (
     <>
       <DefaultHead title={content.title} description={content.description} />
-      <MainWrapper>
-        <Wrapper>
-          <Sidebar />
-          <Content>
-            <ContentHeader>
-              <TopBar title="Dashboard" icon={titleIcon} />
-            </ContentHeader>
-            <ContentBody>
+      <Layout content={content}>
 
-            </ContentBody>
-          </Content>
-        </Wrapper>
-      </MainWrapper>
+      </Layout>
     </>
   )
 }

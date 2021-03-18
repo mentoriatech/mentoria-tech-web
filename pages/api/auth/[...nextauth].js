@@ -25,10 +25,4 @@ export default NextAuth({
     password: '1234',
     database: 'mentoria'
   },
-  callbacks: {
-    async singIn(user, account, profile) {
-      console.log(user, account, profile)
-      return true
-    }
-  }
 })

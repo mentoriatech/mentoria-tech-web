@@ -1,5 +1,7 @@
-import { FC } from 'react'
+import { FC, forwardRef } from 'react'
 import MultiSelect from 'react-select'
+import { RegisterOptions } from 'react-hook-form'
+
 import { 
   InputStyled, 
   Label, 
@@ -7,8 +9,9 @@ import {
   TextAreaStyled, 
   Fieldset,
   Form,
-  customStyles,
   ActionsWrapper,
+  CustomSelect,
+  Option
 } from './Form.styles'
 
 import { PrimaryButton } from 'shared/components/Button'
@@ -21,6 +24,7 @@ type OptionsProps = {
 }
 
 type FieldProps = {
+  name: string;
   isMulti?: boolean,
   type?: string;
   required?: boolean;
@@ -29,82 +33,88 @@ type FieldProps = {
   stretch?: boolean;
   label?: string;
   hint?: string;
-  onHintHover?(): any;
-  onChange?(): any;
+  onHintHover?(e: any): void;
+  onChange?(e: any): void;
   options?: Array<OptionsProps>;
   characterLimit?: number;
+  defaultValue?: string;
+}
+
+type DefaultValuesProps = {
+  name: string;
+  gender: string;
+  occupation: string;
+  description?: string;
 }
 
 interface FormProps {
+  register?(): void;
+  defaultValues?: DefaultValuesProps;
   submitLabel: string;
   cancelLabel?: string;
   onSubmit?(e: any): void;
   onCancel?(e: any): void;
   fields: Array<FieldProps>;
+  submitDisabled?: boolean;
 }
 
-export const Input: FC<FieldProps> = ({
+export const Input: FC<FieldProps> = forwardRef(({
   type,
-  placeholder,
-  stretch,
   label,
   hint,
-  required,
-  onHintHover = () => {}
-}) => {
+  onHintHover = () => {},
+  ...props
+}, ref) => {
   return (
     <Fieldset>
       {label && <Label>{label}</Label>}
       <InputStyled
-        placeholder={placeholder}
-        type={type}
-        stretch={stretch}
-        required={required}
+        ref={ref}
+        {...props}
       />
       {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
     </Fieldset>
   )
-}
+})
 
-export const TextArea: FC<FieldProps> = ({
-  characterLimit,
-  placeholder,
+export const TextArea: FC<FieldProps> = forwardRef(({
   label,
-}) => {
+  defaultValue,
+  ...props
+}, ref) => {
   return (
     <Fieldset>
       {label && <Label>{label}</Label>}
       <TextAreaStyled
-        placeholder={placeholder}
-        maxLength={characterLimit}
+        ref={ref}
+        defaultValue={defaultValue}
+        {...props}
       >
       </TextAreaStyled>
     </Fieldset>
   )
-}
+})
 
-export const Select: FC<FieldProps> = ({
-  options,
+export const Select: FC<FieldProps> = forwardRef(({
   isMulti,
   label,
-  placeholder,
   hint,
+  options,
   onHintHover = () => {},
-}) => {
+  ...props
+}, ref) => {
   return (
     <Fieldset>
       {label && <Label>{label}</Label>}
-      <MultiSelect
-        styles={customStyles}
-        prefix="select"
-        options={options}
-        isMulti={isMulti}
-        placeholder={placeholder}
-      />
+      <CustomSelect ref={ref} {...props}>
+        {options.map((option) => 
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        )}
+      </CustomSelect>
       {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
     </Fieldset>
   )
-}
+})
 
 const fieldComponents = {
   input: Input,
@@ -112,30 +122,45 @@ const fieldComponents = {
   select: Select,
 }
 
-export const GeneratedForm: FC<FormProps> = ({ 
+export const GeneratedForm: FC<FormProps> = ({
+  register,
+  defaultValues,
   fields,
-  onSubmit,
   submitLabel,
   cancelLabel,
-  onCancel }) => {
-  return (
-    <>
-      <Form onSubmit={onSubmit}>
-        {fields.map((field) => {
-          const FieldComponent = fieldComponents[field.componentType]
-          return (
-            <FieldComponent 
-              {...field}
-            />                                                                       
-          )
-        })}
-        <ActionsWrapper>
-          {onCancel && <PrimaryButton variant="secondary" size="normal">{cancelLabel}</PrimaryButton>}
-          <PrimaryButton variant="primary" size="normal" type="submit">{submitLabel}</PrimaryButton>
-        </ActionsWrapper>
-      </Form>
-    </>
-  )
+  submitDisabled,
+  onSubmit,
+  onCancel 
+}) => {
+    return (
+      <>
+        <Form onSubmit={onSubmit}>
+          {fields.map((field) => {
+            const FieldComponent = fieldComponents[field.componentType]
+            const defaultValue = defaultValues[field.name]
+            return (
+              <FieldComponent
+                defaultValue={defaultValue}
+                key={field.name}
+                {...field}
+                ref={register}
+              />                                                                       
+            )
+          })}
+          <ActionsWrapper>
+            {onCancel && <PrimaryButton variant="secondary" size="normal">{cancelLabel}</PrimaryButton>}
+            <PrimaryButton 
+              variant="primary"
+              size="normal"
+              type="submit"
+              disabled={submitDisabled}
+            >
+              {submitLabel}
+            </PrimaryButton>
+          </ActionsWrapper>
+        </Form>
+      </>
+    )
 } 
 
 export { Hint }

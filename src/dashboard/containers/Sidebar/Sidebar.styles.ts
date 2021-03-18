@@ -53,5 +53,10 @@ export const SidebarStyled = styled('div')(({ theme }) => css`
       margin: 0 0 ${theme.spacings.tera};
     }
   }
+
+  @media (max-height: 900px) {
+    height: calc(100% - 30px);
+  }
+
 `);
 

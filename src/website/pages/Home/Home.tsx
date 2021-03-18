@@ -23,7 +23,7 @@ export const Home: FC<HomeProps> = ({ content }) => {
     <>
       <DefaultHead title={content.title} description={content.description} />
       <main>
-          <TopBar />
+        <TopBar />
         <Header
           title="mentoria em tecnologia"
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem."

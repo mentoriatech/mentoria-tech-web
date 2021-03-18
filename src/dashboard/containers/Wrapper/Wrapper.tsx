@@ -11,8 +11,15 @@ export const Wrapper = styled('div')(({ theme }) => css`
   align-items: center;
   padding: 0 ${theme.spacings.byte};
 
-  @media (min-width: ${theme.breakpoints.mega}px) {
+  @media (min-width: ${theme.breakpoints.tera}px) {
     width: 70%;
   }
+
+  @media (min-width: ${theme.breakpoints.tera}px) and (max-height: 900px) {
+    width: 85%;
+    margin-left: 100px;
+  }
+
+
 `);
 

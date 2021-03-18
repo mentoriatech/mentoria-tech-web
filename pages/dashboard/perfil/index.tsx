@@ -7,7 +7,7 @@ export async function getStaticProps() {
     content: {
       title: "mentoria.tech | editar perfil",
     },
-  };
+  };  
 
-  return { props };
+  return { props }
 }

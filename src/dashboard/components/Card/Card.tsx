@@ -1,12 +1,18 @@
-import { css } from '@emotion/react'
-import styled from 'shared/styles/styled'
+import { FC } from 'react'
+import { CardStyled, CardTitle } from './Card.styles'
 
-export const Card = styled('div')(({ theme, direction }) => css`
-  padding: ${theme.spacings.mega};
-  box-sizing: border-box;
-  border-radius: 15px;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, .1);
-  display: flex;
-  flex-direction: ${direction || 'row'};
-  width: 100%;
-`);
+interface CardProps {
+  title?: string;
+  direction?: string;
+}
+ 
+export const Card: FC<CardProps> = ({ title, children, ...props }) => {
+  return (
+    <div>
+      {title && <CardTitle>{title}</CardTitle>}
+      <CardStyled {...props}>
+        {children}
+      </CardStyled>
+    </div>
+  )
+}

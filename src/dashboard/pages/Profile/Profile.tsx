@@ -1,78 +1,17 @@
-import { FC } from 'react'
-import { useRouter } from 'next/router'
+import { FC, DispatchWithoutAction, SyntheticEvent, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import Form from 'shared/components/Form'
-import Wrapper from 'dashboard/containers/Wrapper'
-import MainWrapper from 'dashboard/components/MainWrapper'
 import Loading from 'shared/components/Loading'
 import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
-import { Content, ContentHeader, ContentBody, ContentBar } from 'dashboard/containers/Content'
-import Sidebar from 'dashboard/containers/Sidebar'
-import TopBar from 'dashboard/containers/TopBar'
 import Card from 'dashboard/components/Card'
 import ProfileIcon from 'svg/profile'
+import { useUser } from './Profile.hooks'
+import { formatDefaultValues, formFields, updateUser } from './ProfileService'
+import Layout from 'dashboard/containers/Layout'
 
-import { DefaultHead } from 'shared/components/DefaultHead'
-
-import { useSession } from 'next-auth/client'
-
+import { PageGrid } from './Profile.styles'
 
 const { GeneratedForm } = Form
-
-const registerForm = {
-  onSubmit: (e: any) => {
-    e.preventDefault()
-  },
-  onCancel: () => {},
-  submitLabel: 'salvar',
-  cancelLabel: 'cancelar',
-  fields: [
-    {
-      componentType: 'input',
-      type: 'text',
-      placeholder: 'Maria Silva',
-      stretch: true,
-      label: 'Como devemos te chamar?',
-    },
-    {
-      componentType: 'select',
-      placeholder: 'Selecione',
-      stretch: true,
-      label: 'Como você se identifica?',
-      hint: 'Por que perguntamos isso?',
-      onHintHover: () => {
-
-      },
-      options: [
-        {
-          value: 'male',
-          label: 'Homem',
-        },
-        {
-          value: 'female',
-          label: 'Mulher',
-        },
-        {
-          value: 'trans-female',
-          label: 'Mulher Transsexual',
-        },
-        {
-          value: 'trans-male',
-          label: 'Homem Transsexual',
-        },
-        {
-          value: 'non-binary',
-          label: 'Homem',
-        }
-      ]
-    },
-    {
-      componentType: 'textarea',
-      stretch: true,
-      label: 'Se abresente de forma breve',
-      characterLimit: 240,
-    }
-  ]
-}
 
 type ProfileContent = {
   title: string;
@@ -83,33 +22,88 @@ export interface ProfileProps {
   content: ProfileContent;
 }
 
+type UserProps = {
+  image: string;
+  name: string;
+  description?: string;
+  gender?: string;
+  occupation?: string;
+  email: string;
+  email_verified: boolean;
+  id: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+interface UseUserProps {
+  isLoading: boolean;
+  refetchUser?: DispatchWithoutAction;
+  user: UserProps;
+}
 
 export const Profile: FC<ProfileProps> = ({ content }) => {
-  const [session, loading] = useSession()
+  const [formRequestLoading, setFormRequestLoading] = useState(false)
+  const [formRequestError, setFormRequestError] = useState(false)
+  const [formRequestSuccess, setFormRequestSuccess] = useState(false)
+
+  const { isLoading, user } : UseUserProps = useUser()
+
+  const { register, getValues, watch, formState } = useForm({
+    mode: 'onChange',
+  })
+
+  const watchFields = watch()
+
+  const presentationFields = { ...user, ...watchFields }
+
+  const { isDirty } = formState
+  
+  const defaultValues = {
+    name: user.name,
+    gender: user.gender,
+    occupation: user.occupation,
+    description: user.description
+  }
 
   const profileIcon = <ProfileIcon />
 
+  const onSubmit = async (event: SyntheticEvent) => {
+    setFormRequestLoading(true)
+    event.preventDefault()
+
+    const values = getValues()
+
+    try {
+      const { status } = await updateUser(user.id, values)
+
+      if (!status) {
+        setTimeout(() => {
+          setFormRequestLoading(false)
+          setFormRequestSuccess(true)
+       }, 2000)
+      }
+    } catch(error) {
+        setFormRequestError(true)
+    }
+  }
+
   return (
-    <>
-      <DefaultHead title={content.title} description={content.description} />
-      {loading ? <Loading /> : (
-        <MainWrapper>
-          <Wrapper>
-          <Sidebar />
-            <Content>
-              <ContentHeader>
-                <TopBar title="Perfil" icon={profileIcon} />
-              </ContentHeader>
-              <ProfileVisualization user={session.user} />
-              <ContentBody>
-                <Card>
-                  <GeneratedForm {...registerForm} />
-                </Card>
-              </ContentBody>
-            </Content>
-          </Wrapper>
-        </MainWrapper>
-      )}
-    </>
+    <Layout content={content}>
+      <PageGrid>
+      <Card title="Editar">
+        {formRequestLoading && <Loading label="Salvando alterações" />}
+          <GeneratedForm 
+            defaultValues={defaultValues}
+            onSubmit={onSubmit}
+            register={register}
+            submitDisabled={!isDirty}
+            {...formFields} 
+          />
+      </Card>
+      <div>
+        <ProfileVisualization user={presentationFields} title="Como outras pessoas veem o seu perfil" /> 
+      </div>
+      </PageGrid>
+    </Layout>
   )
 }

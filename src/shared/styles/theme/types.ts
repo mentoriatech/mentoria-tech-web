@@ -1,6 +1,7 @@
 export type Colors = {
   white: string;
   black: string;
+  text: string;
   grey: { 
     light: string,
     normal: string,

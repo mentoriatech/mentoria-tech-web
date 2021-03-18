@@ -103,7 +103,7 @@ export const typography = {
   },
   text: {
     kilo: {
-      fontSize: '13px',
+      fontSize: '14px',
       lineHeight: '20px',
     },
     mega: {
@@ -136,6 +136,7 @@ export const fontWeight: FontWeight = {
 export const colors: Colors = {
   white: '#fff',
   black: '#000',
+  text: '#3F3D56',
   grey: {
     light: '#f1edf4',
     normal: '#e4deea',
@@ -152,8 +153,8 @@ export const colors: Colors = {
   },
   brandSecondary: {
     light: '#f0ddff',
-    normal: '#400578',
-    dark: '#606060',
+    normal: '#565987',
+    dark: '#4E528B',
   },
   brandSupport: {
     light: '',

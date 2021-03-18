@@ -11,18 +11,9 @@ export const UserDetails = styled('div')(({ theme }) => css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: ${theme.spacings.tera};
   position: relative;
-
-  &:after {
-    content: '';
-    display: block;
-    height: 70%;
-    width: 2px;
-    background-color: ${theme.colors.brandSupport.normal};
-    position: absolute;
-    right: 0;
-  }
+  border-bottom: 1px solid ${theme.colors.brandSupport.normal};
+  text-align: center;
 `);
 
 export const UserName = styled('span')(({ theme }) => css`
@@ -47,15 +38,28 @@ export const Badge = styled('span')(({ theme }) => css`
 
 export const Description = styled('p')(({ theme }) => css`
     width: 300px;
-    font-size: ${theme.typography.headings.kilo.fontSize};
-    margin-left: ${theme.spacings.tera};
+    font-size: ${theme.typography.text.mega.fontSize};
     display: flex;
     align-items: center;
     font-weight: ${theme.fontWeight.thin};
+    position: relative;
+    padding-left: ${theme.spacings.tera};
+
+    &:before {
+      content: '"';
+      font-family: ${theme.fontStack.brand};
+      font-size: ${theme.typography.headings.tera.fontSize};
+      position: absolute;
+      top: -8px;
+      left: 0;
+    }
 `);
 
 export const CustomCard = styled(Card)(({ theme }) => css`
     width: 80%;
+    padding: 0;
+    flex-direction: column;
+    padding: 0 ${theme.spacings.mega} ${theme.spacings.mega};
 `);
 
 

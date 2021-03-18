@@ -11,23 +11,23 @@ export const CustomTopBar = styled('div')(({ theme }) => css`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid ${theme.colors.brandSupport.normal};
+  border-bottom: 1px solid ${theme.colors.brandSupport.normal};
   padding-bottom: ${theme.spacings.mega};
   margin-bottom: ${theme.spacings.mega};
 `);
 
 export const Title = styled('div')(({ theme, icon }) => css`
-  color: ${theme.colors.brandSecondary.normal};
-  font-size: ${theme.typography.headings.giga.fontSize};
+  color: ${theme.colors.text};
+  font-size: ${theme.typography.headings.mega.fontSize};
   margin: 0 0 ${theme.spacings.bit};
   font-family: ${theme.fontStack.brand};
   display: flex;
-  align-items: center;
 
   svg {
+    margin-top: 2px;
     margin-right: ${theme.spacings.kilo};
-    width: 25px;
-    height: 25px;
-    fill: ${theme.colors.brandSupport.normal};
+    width: 20px;
+    height: 20px;
+    fill: ${theme.colors.brandPrimary.normal};
   }
 `);

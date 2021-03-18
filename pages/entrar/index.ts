@@ -4,8 +4,6 @@ import { Login, LoginProps } from "src/website/pages/Login";
 export default Login;
 
 export async function getStaticProps(context) {
-  console.log('🚀 ~ file: index.ts ~ line 7 ~ getStaticProps ~ context', context);
-  
   const props: LoginProps = {
     content: {
       title: "mentoria.tech | entrar",

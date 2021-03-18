@@ -7,7 +7,7 @@ import { PrimaryButton } from 'shared/components/Button'
 
 interface TopBarProps {
   title: string;
-  icon: object;
+  icon?: object;
 }
 
 export const TopBar: FC<TopBarProps> = ({ title, icon }) => {
@@ -20,7 +20,6 @@ export const TopBar: FC<TopBarProps> = ({ title, icon }) => {
         </Title>
         <Breadcrumb />
       </div>
-
       <CustomSignOutIcon onClick={signOut} />
     </CustomTopBar>
   )
