@@ -6,15 +6,16 @@ export default NextAuth({
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET
+      clientSecret: process.env.GITHUB_SECRET,
     }),
     Providers.Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   pages: {
     error: '/auth/error', // Error code passed in query string as ?error=
+    newUser: '/dashboard',
   },
   // A database is optional, but required to persist accounts in a database
   database: {
@@ -23,6 +24,6 @@ export default NextAuth({
     port: 5432,
     username: 'postgres',
     password: '1234',
-    database: 'mentoria'
+    database: 'mentoria',
   },
 })

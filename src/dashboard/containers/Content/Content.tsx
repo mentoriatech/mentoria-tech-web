@@ -8,6 +8,8 @@ export const ContentHeader = styled('div')(({ theme }) => css`
 export const ContentBody = styled('div')(({ theme }) => css`
     width: 100%;
     padding: ${theme.spacings.mega} 0;
+    display: flex;
+    align-items: stretch;
   }
 `);
 

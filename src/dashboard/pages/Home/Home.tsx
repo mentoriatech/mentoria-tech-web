@@ -154,7 +154,6 @@ export interface HomeProps {
   content: HomeContent;
 }
 
-
 export const Home: FC<HomeProps> = ({ content }) => {
   const router = useRouter()
   const [session] = useSession()
@@ -165,12 +164,17 @@ export const Home: FC<HomeProps> = ({ content }) => {
     }
   }, [session])
 
+  useEffect(() => {
+    console.log(window.location.hash)
+  } , [window.location.hash])
+
   const titleIcon = <HeartIncon />
+  
   return (
     <>
       <DefaultHead title={content.title} description={content.description} />
       <Layout content={content}>
-
+        <a href="#token"></a>
       </Layout>
     </>
   )

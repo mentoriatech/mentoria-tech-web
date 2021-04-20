@@ -9,7 +9,6 @@ import { LoginBackground } from 'website/components/HeaderBackground'
 import TopBar from 'website/components/TopBar'
 import Header from 'website/containers/Header'
 import SingIn from 'shared/components/SignIn'
-import Container from 'shared/components/Container'
 
 type LoginContent = {
   title: string;

@@ -1,9 +1,7 @@
 import { Request, Response } from 'express'
 import getUser from '../../../../server/functions/user/getUser'
 
-export default async function handler(req: Request, res: Response) {
-  const { method } = req;
-  
+export default async function handler(req: Request, res: Response) {  
   const { email } = req.query
 
   const stringEmail = email.toString().replace('@', '%40')

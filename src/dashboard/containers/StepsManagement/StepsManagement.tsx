@@ -3,14 +3,16 @@ import { CustomStepsManagement } from './StepsManagement.styles'
 import Card from 'dashboard/components/Card'
 
 interface StepsManagementProps {
-  title: string;
-  icon?: object;
+  title?: string;
+  steps?: object[];
 }
 
-export const StepsManagement: FC<StepsManagementProps> = ({ title, icon }) => {
+export const StepsManagement: FC<StepsManagementProps> = ({ steps }) => {
   return (
     <CustomStepsManagement className="StepsManagement">
-      <Card>teste</Card>
+      {steps?.map((step) => (
+        <Card title="Próximos passos">teste</Card>
+      ))}
     </CustomStepsManagement>
   )
 }

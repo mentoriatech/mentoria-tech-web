@@ -66,16 +66,15 @@ export const Contribute: FC<ContributeProps> = ({ content }) => {
         O mentoria.tech visa ser um projeto feito pela comunidade para a comunidade, por isso sinta-se à vontade para contribuir da forma que quiser.
       </Description>
       <ContributeContainer>
-          {optionsToContribute.map((option) => (
-            <CustomCard direction="column">
-              <IconWrapper color={option.color}>
-                <img src={`/icons/${option.icon}.svg`} />
-              </IconWrapper>
-              {option.description}
-              <PrimaryButton variant="tertiary" size="small">{option.action}</PrimaryButton >
-            </CustomCard>
-          ))}
-        
+        {optionsToContribute.map((option) => (
+          <CustomCard direction="column">
+            <IconWrapper color={option.color}>
+              <img src={`/icons/${option.icon}.svg`} />
+            </IconWrapper>
+            {option.description}
+            <PrimaryButton variant="tertiary" size="small">{option.action}</PrimaryButton >
+          </CustomCard>
+        ))}
       </ContributeContainer>
     </Layout>
   )

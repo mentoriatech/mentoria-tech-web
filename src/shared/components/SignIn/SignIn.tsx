@@ -23,10 +23,11 @@ interface SignInProps {
 }
 
 export const SignIn: FC<SignInProps> = ({ providers, content }) => {
+  const callbackURL = 'http://localhost:3000/dashboard'
   return (
     <LoginWrapper>
       {Object.keys(providers).map((prop) => (
-        <LoginButton variant="primary" key={prop} onClick={() => signIn(providers[prop].id)}>
+        <LoginButton variant="primary" key={prop} onClick={() => signIn(providers[prop].id, { callbackUrl: callbackURL })}>
           <img src={content[prop].icon} />
           Login com {providers[prop].name}
         </LoginButton>

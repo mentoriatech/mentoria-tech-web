@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { LinkStyled, NavigationStyled, List, ListItem } from './Navigation.styles';
-import Route from 'shared/components/Router'
+import { LinkStyled, NavigationStyled, List, ListItem } from './Navigation.styles'
 
 
 interface Item {
@@ -30,14 +29,12 @@ export default function Navigation({ items, direction }) {
         <List direction={direction}>
           {items.map((item: Item) => (
             <ListItem key={item.destination}>
-              <Route path={item.destination}>
-                <LinkStyled onClick={(e) => onClick(e, item)} active={currentPath === item.destination}>
-                  <div>
-                    {item.icon}
-                  </div>
-                  {item.label}
-                </LinkStyled>
-              </Route>
+              <LinkStyled onClick={(e) => onClick(e, item)} active={currentPath === item.destination}>
+                <div>
+                  {item.icon}
+                </div>
+                {item.label}
+              </LinkStyled>
             </ListItem>
           ))}
 

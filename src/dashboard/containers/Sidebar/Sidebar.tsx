@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import UserInfo from 'dashboard/components/UserInfo'
 import Navigation from 'dashboard/components/Navigation'
 import { SidebarStyled } from './Sidebar.styles'
@@ -37,15 +36,13 @@ const items = [
   }
 ]
 
-export default function Sidebar() {
-  const [session] = useSession()
-
+export default function Sidebar({ user }) {
   return (
     <>
-      {session && (
+      {user && (
         <SidebarStyled>
           <div>
-            <UserInfo name={session.user.name} image={session.user.image} />
+            <UserInfo name={user.name} image={user.image} />
           </div>
           <Navigation direction="column" items={items} />
         </SidebarStyled>
