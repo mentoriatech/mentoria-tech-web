@@ -5,5 +5,7 @@ module.exports = {
   trailingComma: 'all',
   bracketSpacing: true,
   jsxBracketSameLine: false,
-  parser: "flow"
-};
+  parser: 'flow',
+  singleQuote: true,
+  printWidth: 80,
+}

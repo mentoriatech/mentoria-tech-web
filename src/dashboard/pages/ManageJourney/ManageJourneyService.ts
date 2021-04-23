@@ -1,7 +1,5 @@
 import { queryStringify, encodeEmail } from '../../../utils'
-
-const getTrelloToken = (email: string) => 
-  fetch(`/api/user/get/${email}`).then((data) => data.json()).catch((error) => null)
+import { CardType, ListType, BoardType } from './types'
 
 export const saveTrelloAuthorization = (email: string) => {
   const options = {
@@ -14,12 +12,13 @@ export const saveTrelloAuthorization = (email: string) => {
   fetch(`api/user/update/${encodedEmail}`, options).then((data) => data.json())
 }
 
-export const createBoard = async (token: string) => {
+export const createBoard = async (token: string, email: string) => {
   const options = {
     method: 'POST',
+    body: JSON.stringify({ token, email })
   }
 
-  return fetch(`/api/management/post/board/${token}`, options).then((data) => data.json())
+  return fetch(`/api/management/board`, options).then((data) => data.json())
 }
 
 export const getBoardAuthUrl = () => {
@@ -42,22 +41,55 @@ export const getBoardAuthUrl = () => {
   return authUrl
 }
 
-export const saveToken = (email, token) => {
+export const saveToken = (email: string) => {
   const encodedEmail = encodeEmail(email)
 
   try {
     return saveTrelloAuthorization(encodedEmail)
   } catch(error) {
-    console.log(error)
+    return error
   }
 }
 
-export const fetchBoardData = async (email: string) => {
-  try {
-    fetch('/api/management/board')
-  } catch (error) {
-    console.log(error)
+export const fetchBoardData = (email: string, token: string) =>
+  fetch(`/api/management/board/${email}?token=${token}`).then((data) => data.json())
+
+export const mountManagementContent = (board: any) : BoardType => {
+
+  if (!board?.data?.length) {
+    return null
+  }
+
+  const rawBoard = board.data[0]['200']
+  const rawLists = board.data[1]['200']
+  const rawCards = board.data[2]['200']
+
+  const mountCards = (id: string) => rawCards.reduce((acc: object, curr: CardType) => {
+    if (curr.idList !== id) {
+      return acc
+    }
+
+    return {
+      ...acc,
+      [curr.idList]: {
+        id: curr.id,
+        name: curr.name,
+        url: curr.shortUrl,
+        idList: curr.idList,
+      }
+    }
+  }, {})
+
+  const lists = rawLists.map((item: ListType) => ({
+      id: item.id,
+      name: item.name,
+      cards: mountCards(item.id)
+  }))
+
+  return {
+    id: rawBoard.id,
+    name: rawBoard.name,
+    url: rawBoard.shortUrl,
+    lists,
   }
 }
-
-

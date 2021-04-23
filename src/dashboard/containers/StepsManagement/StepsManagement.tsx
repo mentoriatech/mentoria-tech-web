@@ -10,8 +10,8 @@ interface StepsManagementProps {
 export const StepsManagement: FC<StepsManagementProps> = ({ steps }) => {
   return (
     <CustomStepsManagement className="StepsManagement">
-      {steps?.map((step) => (
-        <Card title="Próximos passos">teste</Card>
+      {steps?.map((step, index) => (
+        <Card key={index} title="Próximos passos">teste</Card>
       ))}
     </CustomStepsManagement>
   )

@@ -1,6 +1,12 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export async function request(options: any) {
+interface RequestResponseType {
+  status: number,
+  code: number,
+  data: any,
+}
+
+export async function request(options: AxiosRequestConfig) : Promise<RequestResponseType> {
   if (!options.url || !options.method) {
     return {
       status: 1,
@@ -10,7 +16,7 @@ export async function request(options: any) {
   }
 
   try {
-    const response = await axios(options)
+    const response : AxiosResponse = await axios(options)
 
     return {
       status: response.status > 199 || response.status < 300 ? 0 : 1,

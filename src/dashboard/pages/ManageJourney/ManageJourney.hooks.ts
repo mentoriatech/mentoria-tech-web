@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { createBoard, fetchBoardData, saveTrelloAuthorization } from './ManageJourneyService'
+import { BoardType } from './types'
 
-export const useBoardToken = (email: string, token: string, path: string) => {
+import { 
+  createBoard,
+  fetchBoardData,
+  saveTrelloAuthorization,
+  mountManagementContent 
+} from './ManageJourneyService'
+
+export const useBoardToken = (email: string, path: string) => {
   const [boardToken, setToken] = useState(null)
+  const [tokenReady, setTokenReady] = useState(false)
   const [cookies, setCookie] = useCookies()
 
   useEffect(() => {
@@ -13,6 +21,7 @@ export const useBoardToken = (email: string, token: string, path: string) => {
       if (token?.length && email?.length) {
         saveTrelloAuthorization(email)
         setToken(token)
+        setTokenReady(true)
         setCookie('BoardToken', token)
       }
     }
@@ -24,50 +33,50 @@ export const useBoardToken = (email: string, token: string, path: string) => {
     }
   }, [])
 
-  return { boardToken }
+  return { boardToken, tokenReady }
 }
 
-export const useCreateBoard = async (token: string) => {
-  const [board, setBoard] = useState(null)
+export const useCreateBoard = (token: string, tokenReady: boolean, email: string) => {
+  const [board, setBoard] = useState<BoardType>({ successful: false, data: {} })
 
   useEffect(() => {
     const boardCreation = async () => {
-      console.log('eitcha lele')
       try {
-        const result = await createBoard(token)
-        console.log('🚀 ~ file: ManageJourney.hooks.ts ~ line 37 ~ boardCreation ~ result', result);
-        setBoard(result)
+        const { id, url } = await createBoard(token, email)
+
+        setBoard({ successful: true, data: { id, url }})
       } catch(error) {
-        console.log(error)
+        setBoard({ successful: false, data: error})
       }
     }
 
-    if (!board || token.length) {
+    if (!board.successful && tokenReady) {
       boardCreation()
     }
-  }, [token])
+  }, [token, tokenReady])
 
   return { board }
 }
 
-export const useBoardData = (email: string) => {
-  const [board, setBoard] = useState(null)
+export const useBoardData = (email: string, token: string) => {
+  const [board, setBoard] = useState({ successful: false, data: {}})
 
   useEffect(() => {
     const getBoardData = async () => {
       try {
-        const board = await fetchBoardData(email)
-        setBoard(board)
+        const board = await fetchBoardData(email, token)
+        const formattedBoard = mountManagementContent(board)
+        setBoard({ successful: true, data: formattedBoard })
       } catch(error) {
-        console.log(error)
+        setBoard(error)
         return null
       }
     } 
   
-    if (!board){
-      getBoardData
+    if (!board.successful && email?.length && token?.length){
+      getBoardData()
     }
-  }, [])
+  }, [email, token])
 
-  return { board }
+  return { board, setBoard }
 }

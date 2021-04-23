@@ -42,7 +42,7 @@ const removeEmptyFields = (fields: UserFields) => {
 }
 
 export const getUser = (email: string) => 
-  fetch(`/api/user/get/${email}`).then((data) => data.json())
+  fetch(`/api/user/${email}`).then((data) => data.json())
 
 
 export const updateUser = async (id: number, body: UserFields) => {

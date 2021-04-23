@@ -3,4 +3,4 @@ import { ManageJourney } from './ManageJourney'
 
 export default Connect(ManageJourney)
 
-export type { ManageJourneyProps } from "./ManageJourney"
+export type { ManageJourneyProps } from "./types"
