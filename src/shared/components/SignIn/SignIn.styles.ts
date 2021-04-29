@@ -12,7 +12,7 @@ export const LoginButton = styled(PrimaryButton)(({ theme }) => css`
   align-items: center;
 
   & img {
-    max-width: 20px;
+    max-width: 25px;
     margin-right: ${theme.spacings.byte};
   }
 `);

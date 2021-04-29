@@ -58,7 +58,7 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
             title="Que bom que você voltou"
             >
             <LoginWrapper>
-              <SingIn providers={providers} content={providersDetails} />
+              <SingIn providers={providers} size="normal" content={providersDetails} />
             </LoginWrapper>
           </Header>
       </main>

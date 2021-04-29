@@ -42,7 +42,7 @@ const removeEmptyFields = (fields: UserFields) => {
 }
 
 export const getUser = (email: string) => 
-  fetch(`/api/user/${email}`).then((data) => data.json())
+  fetch(`/api/server/user/${email}`).then((data) => data.json())
 
 
 export const updateUser = async (id: number, body: UserFields) => {
@@ -53,7 +53,7 @@ export const updateUser = async (id: number, body: UserFields) => {
     body: JSON.stringify(cleanBody)
   }
 
-  return fetch(`/api/user/update/${id}`, options).then((data) => data.json())
+  return fetch(`/api/server/user/${id}`, options).then((data) => data.json())
 }
 
 export const formatDefaultValues = (values) => {
@@ -78,36 +78,24 @@ export const formFields = {
       label: 'Como devemos te chamar?',
     },
     {
-      name: 'gender',
+      name: 'pronouns',
       componentType: 'select',
       placeholder: 'Selecione',
       stretch: true,
-      label: 'Como você se identifica?',
-      hint: 'Por que perguntamos isso?',
-      onHintHover: (e: any) => {
-
-      },
+      label: 'Quais são os seus pronomes?',
       options: [
         {
-          value: 'MALE',
-          label: 'Homem',
+          value: 'SHE',
+          label: 'Ela/Dela',
         },
         {
-          value: 'FEMALE',
-          label: 'Mulher',
+          value: 'HE',
+          label: 'Ele/Dele',
         },
         {
-          value: 'TRANS-FEMALE',
-          label: 'Mulher Transsexual',
+          value: 'THEM',
+          label: 'Elu/Delu',
         },
-        {
-          value: 'TRANS-MALE',
-          label: 'Homem Transsexual',
-        },
-        {
-          value: 'NON-BINARY',
-          label: 'Homem',
-        }
       ]
     },
     {

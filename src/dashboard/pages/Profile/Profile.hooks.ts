@@ -39,13 +39,20 @@ export const useUser = () => {
     if (!loading) {
       const email = encodeEmail(session.user.email)
 
-      getUser(email)
-      .then(({ data }) => {
-        setUser(data)
-        setLoading(false)
-      })
+      const fetchUser = async () => {
+        try {
+          const { data } = await getUser(email)
+          setUser(data)
+          setLoading(false)
+
+        } catch(error) {
+          console.log(error)
+        }
+      }
+      if(!user.email) {
+        fetchUser()
+      }
     }
-      
   }, [session, loading, tick]);
 
   return {

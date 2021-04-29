@@ -17,7 +17,7 @@ export const Background = styled('div')(({ theme }) => css`
 export const LoginBackgroundStyled = styled('div')(({ theme }) => css`
   width: 50%;
   background: rgb(187,0,72);
-  background: linear-gradient(45deg, rgba(187,0,72,1) 0%, rgba(105,15,160,1) 100%);
+  background: linear-gradient(180deg, #690FA0 0%, #FF6584 100%);
   height: 100vh;
   display: block;
   position: absolute;

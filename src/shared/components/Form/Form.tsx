@@ -150,7 +150,7 @@ export const GeneratedForm: FC<FormProps> = ({
           <ActionsWrapper>
             {onCancel && <PrimaryButton variant="secondary" size="normal">{cancelLabel}</PrimaryButton>}
             <PrimaryButton 
-              variant="primary"
+              variant="tertiary"
               size="normal"
               type="submit"
               disabled={submitDisabled}

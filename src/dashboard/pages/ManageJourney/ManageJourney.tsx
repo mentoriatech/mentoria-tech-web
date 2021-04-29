@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 import RocketIncon from 'svg/rocket'
 import BoardIcon from 'svg/board'
 import Layout from 'dashboard/containers/Layout'
+import Loading from 'shared/components/Loading'
 import StepsManagement from 'dashboard/containers/StepsManagement'
 import NoContent from 'dashboard/components/NoContent'
-
+import Progress from 'dashboard/components/Progress'
 import { ManageJourneyProps } from './types'
 
 import { 
@@ -13,19 +14,23 @@ import {
   createBoard 
 } from './ManageJourneyService'
 
-import { CustomButton, IconWrapper } from './ManageJourney.styles'
-import { useBoardToken, useCreateBoard, useBoardData } from './ManageJourney.hooks'
+import { CustomButton, IconWrapper, StepsWrapper } from './ManageJourney.styles'
+import { 
+  useBoardToken,
+  useCreateBoard,
+  useBoardData,
+} from './ManageJourney.hooks'
 
 export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => {
   const { user } = props
   const router = useRouter()
-  
+
   const { boardToken, tokenReady } = useBoardToken(user.email, router.asPath)
   
-  useCreateBoard(boardToken, tokenReady, user.email)
-
+  const { isBoardCreationLoading } = useCreateBoard(boardToken, tokenReady, user.email)
+  
   const { board, setBoard } = useBoardData(user.email, boardToken)
-
+  
   const handleAuthorizeClick = useCallback(() => {
     const boardAuthUrl = getBoardAuthUrl()
     window.location.href = boardAuthUrl
@@ -45,6 +50,7 @@ export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => 
 
   return (
     <Layout content={content} icon={titleIcon}>
+      {isBoardCreationLoading && <Loading label="Aguarde..." />}
       {!boardToken && !board && (
         <NoContent>
           <>
@@ -57,22 +63,29 @@ export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => 
         </NoContent>
       )}
       {boardToken && !board.successful && (
-        <NoContent>
+        <NoContent className="NoContent">
           <>
             <IconWrapper>
               <BoardIcon />
             </IconWrapper>
-            Parece que você ainda não tem um quadro no Trello para gerenciar sua jornada. Deseja criar um?
+            Nenhum quadro foi encontrado 😔 Deseja criar um?
               <CustomButton onClick={handleCreateBoard} variant="tertiary" size="normal">Criar quadro no Trello</CustomButton>
           </>
         </NoContent>
       )}
-      {console.log(board.data)}
       {board.successful && (
-      <StepsManagement 
-        // title={board.data.name}
-        steps={[{}, {}]} 
-      />)}
+        <StepsWrapper>
+          <>
+            {board.data?.lists?.map((list) => (
+                <StepsManagement
+                  cards={list.cards}
+                  listName={list.name}
+                  />
+            ))}
+          </>
+          <Progress num={board.progress} />
+        </StepsWrapper>
+      )}
     </Layout>
   )
 }

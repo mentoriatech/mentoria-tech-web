@@ -14,7 +14,7 @@ export const HeaderStyled = styled('div')(({ theme }) => css`
   }
   
   @media (min-width: ${theme.breakpoints.tera}px) {
-    height: 950px;
+    height: 100%;
   }
 `);
 

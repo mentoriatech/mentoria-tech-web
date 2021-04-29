@@ -1,17 +1,24 @@
 import { FC } from 'react'
-import { CustomStepsManagement } from './StepsManagement.styles'
-import Card from 'dashboard/components/Card'
+import { CustomStepsManagement, ColumnTitle, CustomCard, CustomAnchor } from './StepsManagement.styles'
 
-interface StepsManagementProps {
-  title?: string;
-  steps?: object[];
+type StepsManagementType = {
+  listName: string;
+  cards: [{
+    id: string,
+    name: string,
+    url: string,
+  }]
 }
 
-export const StepsManagement: FC<StepsManagementProps> = ({ steps }) => {
+export const StepsManagement: FC<StepsManagementType> = ({ listName, cards }) => {
   return (
     <CustomStepsManagement className="StepsManagement">
-      {steps?.map((step, index) => (
-        <Card key={index} title="Próximos passos">teste</Card>
+      <ColumnTitle>{listName}</ColumnTitle>
+      {cards.map((card, index) => (
+        <CustomCard key={index}>
+          {card.name}
+          <a href={card.url} target="_blank"><CustomAnchor /></a>
+        </CustomCard>
       ))}
     </CustomStepsManagement>
   )

@@ -19,15 +19,16 @@ interface SignInProps {
       icon: string;
       label: string;
     }
-  }
+  },
+  size: string;
 }
 
-export const SignIn: FC<SignInProps> = ({ providers, content }) => {
+export const SignIn: FC<SignInProps> = ({ providers, content, size }) => {
   const callbackURL = 'http://localhost:3000/dashboard'
   return (
     <LoginWrapper>
       {Object.keys(providers).map((prop) => (
-        <LoginButton variant="primary" key={prop} onClick={() => signIn(providers[prop].id, { callbackUrl: callbackURL })}>
+        <LoginButton variant="tertiary" size={size} key={prop} onClick={() => signIn(providers[prop].id, { callbackUrl: callbackURL })}>
           <img src={content[prop].icon} />
           Login com {providers[prop].name}
         </LoginButton>

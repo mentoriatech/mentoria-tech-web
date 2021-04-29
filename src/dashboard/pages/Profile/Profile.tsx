@@ -64,6 +64,7 @@ export const Profile: FC<ProfileProps> = ({ content }) => {
     occupation: user.occupation,
     description: user.description
   }
+  console.log('🚀 ~ file: Profile.tsx ~ line 67 ~ defaultValues', defaultValues);
 
   const profileIcon = <ProfileIcon />
 

@@ -21,29 +21,31 @@ export type CardType = {
 export type ListType = {
   id?: string,
   name?: string,
-  cards?: string,
+  cards?: [],
+}
+
+export type BoardDataType = {
+  id?: string,
+  name?: string,
+  url?: string,
+  lists?: [
+    {
+      id: string,
+      name: string,
+      cards: [
+        {
+          id: string,
+          name: string,
+          url: string,
+          idList: string,
+        }
+      ]
+    }
+  ]
 }
 
 export type BoardType = {
   successful: boolean,
-  data: {
-    id?: string,
-    name?: string,
-    url?: string,
-    lists?: [
-      {
-        id: string,
-        name: string,
-        cards: [
-          {
-            id: string,
-            name: string,
-            url: string,
-            idList: string,
-          }
-        ]
-      }
-    ]
-  }
-  
+  data?: BoardDataType,
+  progress?: number  
 }

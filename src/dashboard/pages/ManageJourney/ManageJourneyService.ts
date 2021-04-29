@@ -1,5 +1,6 @@
 import { queryStringify, encodeEmail } from '../../../utils'
-import { CardType, ListType, BoardType } from './types'
+import { CardType, ListType, BoardDataType } from './types'
+import { BOARD_COLUMNS_RAW } from 'dashboard/constants'
 
 export const saveTrelloAuthorization = (email: string) => {
   const options = {
@@ -18,7 +19,7 @@ export const createBoard = async (token: string, email: string) => {
     body: JSON.stringify({ token, email })
   }
 
-  return fetch(`/api/management/board`, options).then((data) => data.json())
+  return fetch(`/api/server/board`, options).then((data) => data.json())
 }
 
 export const getBoardAuthUrl = () => {
@@ -52,10 +53,23 @@ export const saveToken = (email: string) => {
 }
 
 export const fetchBoardData = (email: string, token: string) =>
-  fetch(`/api/management/board/${email}?token=${token}`).then((data) => data.json())
+  fetch(`/api/server/board/${email}?token=${token}`).then((data) => data.json())
 
-export const mountManagementContent = (board: any) : BoardType => {
 
+export const calculateProgress = (lists = []) => {
+  const done = lists.find((list: ListType) => list.name === BOARD_COLUMNS_RAW.DONE)
+  const total = lists.reduce((acc: number, curr: ListType) => curr.cards.length + acc, 0)
+
+  return (done.cards.length * 100) / total
+}
+
+export const removeList = (board, listName: string | null) => {
+  const lists = board?.lists?.filter((item: ListType) => item.name !== listName)
+
+  return { ...board, lists }
+}
+
+export const mountManagementContent = (board: any) : BoardDataType => {
   if (!board?.data?.length) {
     return null
   }
@@ -64,27 +78,31 @@ export const mountManagementContent = (board: any) : BoardType => {
   const rawLists = board.data[1]['200']
   const rawCards = board.data[2]['200']
 
-  const mountCards = (id: string) => rawCards.reduce((acc: object, curr: CardType) => {
+  const mountCards = (id: string) => rawCards.reduce((acc: [], curr: CardType) => {
     if (curr.idList !== id) {
       return acc
     }
 
-    return {
+    return [
       ...acc,
-      [curr.idList]: {
+      {
         id: curr.id,
         name: curr.name,
         url: curr.shortUrl,
         idList: curr.idList,
       }
-    }
-  }, {})
+    ]
+  }, [])
 
-  const lists = rawLists.map((item: ListType) => ({
-      id: item.id,
-      name: item.name,
-      cards: mountCards(item.id)
-  }))
+  const lists = rawLists.reduce((acc: [], curr: ListType) => {    
+    const list = {
+      id: curr.id,
+      name: curr.name,
+      cards: mountCards(curr.id)
+    }
+
+    return [...acc, list]
+  }, [])
 
   return {
     id: rawBoard.id,
