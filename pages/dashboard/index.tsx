@@ -12,6 +12,7 @@ export async function getStaticProps() {
     user: {
       name: '',
       trelloToken: '',
+      email: '',
     },
   }
 

@@ -4,7 +4,7 @@ import Form from 'shared/components/Form'
 import Loading from 'shared/components/Loading'
 import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
 import Card from 'dashboard/components/Card'
-import ProfileIcon from 'svg/profile'
+import ProfileIcon from 'svg/profile.svg'
 import { formFields, updateUser } from './ProfileService'
 import Layout from 'dashboard/containers/Layout'
 
@@ -19,7 +19,7 @@ type ProfileContent = {
 
 export interface ProfileProps {
   content: ProfileContent;
-  user: UserProps;
+  user?: UserProps;
 }
 
 type UserProps = {

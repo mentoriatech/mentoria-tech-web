@@ -1,14 +1,12 @@
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Form from 'shared/components/Form'
-import HeartIncon from 'svg/heart'
+import HeartIncon from 'svg/heart.svg'
 import Layout from 'dashboard/containers/Layout'
 
 import { DefaultHead } from 'shared/components/DefaultHead'
 
-import {
-  useSession
-} from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 
 const { GeneratedForm } = Form
 
@@ -33,9 +31,7 @@ const registerForm = {
       stretch: true,
       label: 'Como você se identifica?',
       hint: 'Por que perguntamos isso?',
-      onHintHover: () => {
-
-      },
+      onHintHover: () => {},
       options: [
         {
           value: 'male',
@@ -56,8 +52,8 @@ const registerForm = {
         {
           value: 'non-binary',
           label: 'Homem',
-        }
-      ]
+        },
+      ],
     },
     {
       componentType: 'input',
@@ -83,8 +79,8 @@ const registerForm = {
         {
           value: '5-8',
           label: '5 a 8 horas',
-        }
-      ]
+        },
+      ],
     },
     {
       componentType: 'select',
@@ -121,15 +117,15 @@ const registerForm = {
           value: 'nodejs',
           label: 'NodeJs',
         },
-      ]
+      ],
     },
     {
       componentType: 'textarea',
       stretch: true,
       label: 'Se abresente de forma breve',
       characterLimit: 240,
-    }
-  ]
+    },
+  ],
 }
 
 const items = [
@@ -142,13 +138,13 @@ const items = [
     icon: '/icons/people.svg',
     destination: '/gerenciar',
     label: 'Gerenciar',
-  }
+  },
 ]
 
 type HomeContent = {
-  title: string;
-  description?: string;
-};
+  title: string,
+  description?: string,
+}
 
 export interface HomeProps {
   content: HomeContent;
@@ -165,7 +161,7 @@ export const Home: FC<HomeProps> = ({ content }) => {
   }, [session])
 
   const titleIcon = <HeartIncon />
-  
+
   return (
     <>
       <DefaultHead title={content.title} description={content.description} />
