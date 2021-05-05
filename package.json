@@ -25,7 +25,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "html-react-parser": "^1.2.5",
     "next": "10.0.6",
-    "next-auth": "^3.2.0",
+    "next-auth": "^3.3.0",
     "next-redux-wrapper": "^6.0.2",
     "nextjs-breadcrumbs": "^0.9.9",
     "pg": "^8.5.1",
