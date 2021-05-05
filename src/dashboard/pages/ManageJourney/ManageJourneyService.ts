@@ -2,10 +2,10 @@ import { queryStringify, encodeEmail } from '../../../utils'
 import { CardType, ListType, BoardDataType } from './types'
 import { BOARD_COLUMNS_RAW } from 'dashboard/constants'
 
-export const saveTrelloAuthorization = (email: string) => {
+export const saveTrelloAuthorization = (email: string): void => {
   const options = {
     method: 'PUT',
-    body: JSON.stringify({ board_auth: true })
+    body: JSON.stringify({ board_auth: true }),
   }
 
   const encodedEmail = encodeEmail(email)
@@ -16,7 +16,7 @@ export const saveTrelloAuthorization = (email: string) => {
 export const createBoard = async (token: string, email: string) => {
   const options = {
     method: 'POST',
-    body: JSON.stringify({ token, email })
+    body: JSON.stringify({ token, email }),
   }
 
   return fetch(`/api/server/board`, options).then((data) => data.json())
@@ -24,7 +24,7 @@ export const createBoard = async (token: string, email: string) => {
 
 export const getBoardAuthUrl = () => {
   const url = `${process.env.NEXT_PUBLIC_TRELLO_ROOT_URL}/authorize`
-  
+
   const parsedQueryParams = {
     key: process.env.NEXT_PUBLIC_TRELLO_KEY,
     return_url: 'http://localhost:3000/dashboard/',
@@ -32,7 +32,7 @@ export const getBoardAuthUrl = () => {
     expiration: 'never',
     name: 'mentoria.tech',
     scope: 'write,read',
-    response_type: 'token'
+    response_type: 'token',
   }
 
   const querystring = queryStringify(parsedQueryParams)
@@ -47,18 +47,25 @@ export const saveToken = (email: string) => {
 
   try {
     return saveTrelloAuthorization(encodedEmail)
-  } catch(error) {
+  } catch (error) {
     return error
   }
 }
 
-export const fetchBoardData = (email: string, token: string) =>
+export const fetchBoardData = (
+  email: string,
+  token: string,
+): Promise<unknown> =>
   fetch(`/api/server/board/${email}?token=${token}`).then((data) => data.json())
 
-
-export const calculateProgress = (lists = []) => {
-  const done = lists.find((list: ListType) => list.name === BOARD_COLUMNS_RAW.DONE)
-  const total = lists.reduce((acc: number, curr: ListType) => curr.cards.length + acc, 0)
+export const calculateProgress = (lists = []): number => {
+  const done = lists.find(
+    (list: ListType) => list.name === BOARD_COLUMNS_RAW.DONE,
+  )
+  const total = lists.reduce(
+    (acc: number, curr: ListType) => curr.cards.length + acc,
+    0,
+  )
 
   return (done.cards.length * 100) / total
 }
@@ -69,7 +76,15 @@ export const removeList = (board, listName: string | null) => {
   return { ...board, lists }
 }
 
-export const mountManagementContent = (board: any) : BoardDataType => {
+interface ManagementContentProps {
+  board: {
+    data: unknown,
+  };
+}
+
+export const mountManagementContent: ManagementContentProps = (
+  board,
+): BoardDataType => {
   if (!board?.data?.length) {
     return null
   }
@@ -78,27 +93,28 @@ export const mountManagementContent = (board: any) : BoardDataType => {
   const rawLists = board.data[1]['200']
   const rawCards = board.data[2]['200']
 
-  const mountCards = (id: string) => rawCards.reduce((acc: [], curr: CardType) => {
-    if (curr.idList !== id) {
-      return acc
-    }
-
-    return [
-      ...acc,
-      {
-        id: curr.id,
-        name: curr.name,
-        url: curr.shortUrl,
-        idList: curr.idList,
+  const mountCards = (id: string) =>
+    rawCards.reduce((acc: [], curr: CardType) => {
+      if (curr.idList !== id) {
+        return acc
       }
-    ]
-  }, [])
 
-  const lists = rawLists.reduce((acc: [], curr: ListType) => {    
+      return [
+        ...acc,
+        {
+          id: curr.id,
+          name: curr.name,
+          url: curr.shortUrl,
+          idList: curr.idList,
+        },
+      ]
+    }, [])
+
+  const lists = rawLists.reduce((acc: [], curr: ListType) => {
     const list = {
       id: curr.id,
       name: curr.name,
-      cards: mountCards(curr.id)
+      cards: mountCards(curr.id),
     }
 
     return [...acc, list]

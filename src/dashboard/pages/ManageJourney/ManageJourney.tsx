@@ -9,56 +9,72 @@ import NoContent from 'dashboard/components/NoContent'
 import Progress from 'dashboard/components/Progress'
 import { ManageJourneyProps } from './types'
 
-import { 
-  getBoardAuthUrl,
-  createBoard 
-} from './ManageJourneyService'
+import { getBoardAuthUrl, createBoard } from './ManageJourneyService'
 
 import { CustomButton, IconWrapper, StepsWrapper } from './ManageJourney.styles'
-import { 
+import {
   useBoardToken,
   useCreateBoard,
   useBoardData,
 } from './ManageJourney.hooks'
 
-export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => {
+export const ManageJourney: FC<ManageJourneyProps> = ({
+  content,
+  ...props
+}) => {
   const { user } = props
   const router = useRouter()
 
   const { boardToken, tokenReady } = useBoardToken(user.email, router.asPath)
-  
-  const { isBoardCreationLoading } = useCreateBoard(boardToken, tokenReady, user.email)
-  
+
   const { board, setBoard } = useBoardData(user.email, boardToken)
-  
+
+  const { isBoardCreationLoading } = useCreateBoard(
+    boardToken,
+    tokenReady,
+    user.email,
+    board,
+    setBoard,
+  )
+
   const handleAuthorizeClick = useCallback(() => {
     const boardAuthUrl = getBoardAuthUrl()
     window.location.href = boardAuthUrl
   }, [])
 
-  const handleCreateBoard = useCallback(() => (async () => {
-    try {
-      const board = await createBoard(boardToken, user.email)
-      setBoard(board)
-  
-    } catch(error) {
-      setBoard(error)
-    }
-  })(), [boardToken, user.email])
+  const handleCreateBoard = useCallback(
+    () =>
+      (async () => {
+        try {
+          const board = await createBoard(boardToken, user.email)
+          setBoard(board)
+        } catch (error) {
+          setBoard(error)
+        }
+      })(),
+    [boardToken, user.email],
+  )
 
   const titleIcon = <RocketIncon />
 
   return (
     <Layout content={content} icon={titleIcon}>
       {isBoardCreationLoading && <Loading label="Aguarde..." />}
-      {!boardToken && !board && (
+      {!boardToken && !board.successful && (
         <NoContent>
           <>
             <IconWrapper>
               <BoardIcon />
             </IconWrapper>
-            Quando você começar sua jornada, poderá gerenciar por aqui, mas para isso precisamos criar um quadro no Trello para você.
-              <CustomButton onClick={handleAuthorizeClick} variant="tertiary" size="normal">Criar quadro no Trello</CustomButton>
+            Quando você começar sua jornada, poderá gerenciar por aqui, mas para
+            isso precisamos criar um quadro no Trello para você.
+            <CustomButton
+              onClick={handleAuthorizeClick}
+              variant="tertiary"
+              size="normal"
+            >
+              Criar quadro no Trello
+            </CustomButton>
           </>
         </NoContent>
       )}
@@ -69,7 +85,13 @@ export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => 
               <BoardIcon />
             </IconWrapper>
             Nenhum quadro foi encontrado 😔 Deseja criar um?
-              <CustomButton onClick={handleCreateBoard} variant="tertiary" size="normal">Criar quadro no Trello</CustomButton>
+            <CustomButton
+              onClick={handleCreateBoard}
+              variant="tertiary"
+              size="normal"
+            >
+              Criar quadro no Trello
+            </CustomButton>
           </>
         </NoContent>
       )}
@@ -77,10 +99,7 @@ export const ManageJourney: FC<ManageJourneyProps> = ({ content, ...props }) => 
         <StepsWrapper>
           <>
             {board.data?.lists?.map((list) => (
-                <StepsManagement
-                  cards={list.cards}
-                  listName={list.name}
-                  />
+              <StepsManagement cards={list.cards} listName={list.name} />
             ))}
           </>
           <Progress num={board.progress} />

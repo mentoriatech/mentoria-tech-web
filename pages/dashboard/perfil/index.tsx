@@ -1,4 +1,4 @@
-import { Profile, ProfileProps } from "dashboard/pages/Profile";
+import Profile, { ProfileProps } from "dashboard/pages/Profile";
 
 export default Profile;
 

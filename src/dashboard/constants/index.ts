@@ -15,3 +15,15 @@ export const PRONOUNS = {
   HE: 'Ele/Dele',
   THEM: 'Elu/Delu'
 }
+
+export const TRELLO_LISTS = {
+  TODO: 'To Do',
+  DOING: 'Doing',
+  DONE: 'Done'
+}
+
+export const TRELLO_LISTS_ALIASES = {
+  TODO: 'Próximos passos',
+  DOING: 'Em andamento',
+  DONE: 'Finalizado'
+}

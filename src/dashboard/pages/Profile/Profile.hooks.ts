@@ -3,21 +3,6 @@ import { useSession } from 'next-auth/client'
 import { getUser, updateUser } from './ProfileService'
 import { encodeEmail } from '../../../utils/'
 
-export const useUpdateUser = (id, userData) => {
-  const [loading, setLoadingState] = useState(false)
-  const [result, setResult] = useState(null)
-
-  useEffect(() => {
-    setLoadingState(true)
-    updateUser(id, userData)
-    .then((data) => {
-      setResult(data)
-    })
-  }, [])
-
-  return { result, loading }
-}
-
 export const useUser = () => {
   const [session, loading] = useSession()
   const [isLoading, setLoading] = useState(true)
@@ -34,31 +19,30 @@ export const useUser = () => {
     updated_at: '',
   })
   const [tick, refetchUser] = useReducer((x) => x + 1, 0)
-  
+
   useEffect(() => {
     if (!loading) {
-      const email = encodeEmail(session.user.email)
+      const email = encodeEmail(session?.user?.email)
 
       const fetchUser = async () => {
         try {
           const { data } = await getUser(email)
           setUser(data)
           setLoading(false)
-
-        } catch(error) {
+        } catch (error) {
           console.log(error)
         }
       }
-      if(!user.email) {
+
+      if (!user.email) {
         fetchUser()
       }
     }
-  }, [session, loading, tick]);
+  }, [session, loading, tick])
 
   return {
     user,
     refetchUser,
     isLoading,
-  };
-};
-
+  }
+}

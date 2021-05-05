@@ -41,11 +41,10 @@ const removeEmptyFields = (fields: UserFields) => {
     return newObj
 }
 
-export const getUser = (email: string) => 
+export const getUser = (email: string) : Promise<unknown> =>
   fetch(`/api/server/user/${email}`).then((data) => data.json())
 
-
-export const updateUser = async (id: number, body: UserFields) => {
+export const updateUser = async (email: string, body: UserFields) : Promise<unknown> => {
   const cleanBody = removeEmptyFields(body)
 
   const options = {
@@ -53,7 +52,7 @@ export const updateUser = async (id: number, body: UserFields) => {
     body: JSON.stringify(cleanBody)
   }
 
-  return fetch(`/api/server/user/${id}`, options).then((data) => data.json())
+  return fetch(`/api/server/user/${email}`, options).then((data) => data.json())
 }
 
 export const formatDefaultValues = (values) => {

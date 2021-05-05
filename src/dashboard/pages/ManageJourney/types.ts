@@ -1,13 +1,13 @@
 export interface ManageJourneyProps {
   content: {
-    title: string;
-    description?: string;
-  },
-  dispatch?: (action: any) => void;
+    title: string,
+    description?: string,
+  };
+  dispatch?: (action: unknown) => void;
   user: {
-    name: string;
-    trelloToken: string;
-    email: string;
+    name: string,
+    trelloToken: string,
+    email: string,
   };
 }
 
@@ -38,14 +38,14 @@ export type BoardDataType = {
           name: string,
           url: string,
           idList: string,
-        }
-      ]
-    }
-  ]
+        },
+      ],
+    },
+  ],
 }
 
 export type BoardType = {
   successful: boolean,
   data?: BoardDataType,
-  progress?: number  
+  progress?: number,
 }

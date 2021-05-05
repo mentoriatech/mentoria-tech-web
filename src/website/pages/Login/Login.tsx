@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import {
-  useSession
-} from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { LoginWrapper } from './Login.styles'
 import { DefaultHead } from 'shared/components/DefaultHead'
 import { LoginBackground } from 'website/components/HeaderBackground'
@@ -11,32 +9,31 @@ import Header from 'website/containers/Header'
 import SingIn from 'shared/components/SignIn'
 
 type LoginContent = {
-  title: string;
-  description?: string;
-};
+  title: string,
+  description?: string,
+}
 
 export interface LoginProps {
   content: LoginContent;
-  providers: { 
-    id: string;
-    name: string;
-    callbackUrl: string;
-    signinUrl: string;
-    type: string;
+  providers: {
+    id: string,
+    name: string,
+    callbackUrl: string,
+    signinUrl: string,
+    type: string,
   };
 }
 
 const providersDetails = {
   github: {
     icon: '/icons/github.svg',
-    label: 'Cadastrar com'
+    label: 'Cadastrar com',
   },
   google: {
     icon: '/icons/google.svg',
-    label: 'Cadastrar com'
-  }
+    label: 'Cadastrar com',
+  },
 }
-
 
 export const Login: FC<LoginProps> = ({ content, providers }) => {
   const router = useRouter()
@@ -44,7 +41,7 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
 
   if (session) {
     router.push('/dashboard')
-    return <></>;
+    return <></>
   }
 
   return (
@@ -52,15 +49,12 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
       <DefaultHead title={content.title} description={content.description} />
       <main>
         <TopBar darkNav={true} />
-          <LoginBackground />
-          <Header 
-            direction="row"
-            title="Que bom que você voltou"
-            >
-            <LoginWrapper>
-              <SingIn providers={providers} size="normal" content={providersDetails} />
-            </LoginWrapper>
-          </Header>
+        <LoginBackground />
+        <Header title="Que bom que você voltou">
+          <LoginWrapper>
+            <SingIn providers={providers} content={providersDetails} />
+          </LoginWrapper>
+        </Header>
       </main>
     </>
   )

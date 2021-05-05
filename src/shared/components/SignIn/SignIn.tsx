@@ -8,27 +8,35 @@ const { Hint } = Form
 
 interface SignInProps {
   providers: {
-    id: string;
-    name: string;
-    callbackUrl: string;
-    signinUrl: string;
-    type: string;
+    id: string,
+    name: string,
+    callbackUrl: string,
+    signinUrl: string,
+    type: string,
   };
   content: {
     [key: string]: {
-      icon: string;
-      label: string;
-    }
-  },
-  size: string;
+      icon: string,
+      label: string,
+    },
+  };
 }
 
-export const SignIn: FC<SignInProps> = ({ providers, content, size }) => {
+export const SignIn: FC<SignInProps> = ({ providers, content }) => {
   const callbackURL = 'http://localhost:3000/dashboard'
+
   return (
     <LoginWrapper>
       {Object.keys(providers).map((prop) => (
-        <LoginButton variant="tertiary" size={size} key={prop} onClick={() => signIn(providers[prop].id, { callbackUrl: callbackURL })}>
+        <LoginButton
+          data-testid={providers[prop].name}
+          variant="tertiary"
+          size="normal"
+          key={prop}
+          onClick={() =>
+            signIn(providers[prop].id, { callbackUrl: callbackURL })
+          }
+        >
           <img src={content[prop].icon} />
           Login com {providers[prop].name}
         </LoginButton>

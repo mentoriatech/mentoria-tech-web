@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, cloneElement } from 'react'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Sidebar from 'dashboard/containers/Sidebar'
@@ -23,23 +23,22 @@ interface LayoutProps {
   };
 }
 
+
 export const Layout: FC<LayoutProps> = ({ content, children, icon, ...props }) => {
   const { dispatch, user } = props
   const [session] = useSession()
   const router = useRouter()
-  
   useEffect(() => {
     if (!session) {
       router.push('/entrar')
       return;
     } 
     
-    if (!user?.name?.length) {
+    if (session && !user?.name?.length) {
       dispatch(setUser({ user: { ...user, ...session?.user } }))
     }
     
   }, [session])
-
   return (
     <>
       <DefaultHead title={content.title} description={content.description} />

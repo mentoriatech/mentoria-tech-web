@@ -1,17 +1,11 @@
-
-import { 
+import { FC } from 'react'
+import {
   LoginBackgroundStyled as LoginBackground,
   Background,
 } from './HeaderBackground.styles'
 
-export function HomeBackground() {
-  return (
-    <Background className="Background">
-      
-    </Background>
-  )
+export const HomeBackground: FC = () => {
+  return <Background className="Background"></Background>
 }
 
-export {
-  LoginBackground
-}
+export { LoginBackground }

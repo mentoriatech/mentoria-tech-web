@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { FC, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { LinkStyled, NavigationStyled, List, ListItem } from './Navigation.styles';
+import {
+  LinkStyled,
+  NavigationStyled,
+  List,
+  ListItem,
+} from './Navigation.styles'
 
 interface Item {
   icon: string;
@@ -10,7 +14,12 @@ interface Item {
   dark?: boolean;
 }
 
-export default function Navigation({ items, dark }) {
+interface NavigationProps {
+  items: Item[];
+  dark?: boolean;
+}
+
+export const Navigation: FC<NavigationProps> = ({ items, dark }) => {
   const [navState, setNavState] = useState(false)
 
   const onNavClick = () => {
@@ -20,8 +29,8 @@ export default function Navigation({ items, dark }) {
   return (
     <>
       <NavigationStyled>
-      <input type="checkbox" id="btnControl"/>
-      <label htmlFor="btnControl"></label>
+        <input type="checkbox" id="btnControl" />
+        <label htmlFor="btnControl"></label>
         <List>
           {items.map((item: Item) => (
             <ListItem key={item.destination}>
@@ -29,11 +38,10 @@ export default function Navigation({ items, dark }) {
                 <LinkStyled dark={dark}>
                   {item.icon && <img src={item.icon} width="12" height="12" />}
                   {item.label}
-                  </LinkStyled>
+                </LinkStyled>
               </Link>
             </ListItem>
           ))}
-
         </List>
       </NavigationStyled>
     </>
