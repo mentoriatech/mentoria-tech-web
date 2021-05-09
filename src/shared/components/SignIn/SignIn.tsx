@@ -30,7 +30,7 @@ export const SignIn: FC<SignInProps> = ({ providers, content }) => {
       {Object.keys(providers).map((prop) => (
         <LoginButton
           data-testid={providers[prop].name}
-          variant="tertiary"
+          variant="primary"
           size="normal"
           key={prop}
           onClick={() =>

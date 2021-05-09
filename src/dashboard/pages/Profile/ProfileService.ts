@@ -1,66 +1,58 @@
-type OptionsProps = {
-  value: string,
-  label: string,
-  selected?: boolean,
-  default?: boolean,
-}
-
-type FieldProps = {
-  name: string;
-  defaultValue?: string;
-  isMulti?: boolean,
-  type?: string;
-  required?: boolean;
-  componentType?: string;
-  placeholder?: string;
-  stretch?: boolean;
-  label?: string;
-  hint?: string;
-  onHintHover?(e: any): void;
-  onChange?(e: any): void;
-  options?: Array<OptionsProps>;
-  characterLimit?: number;
-}
+import { UpdateUserResponse } from './types'
+import { UserType } from 'types'
 
 type UserFields = {
-  name?: string;
-  gender?: string;
-  occupation?: string;
-  description?: string;
+  name?: string,
+  gender?: string,
+  occupation?: string,
+  description?: string,
 }
 
 const removeEmptyFields = (fields: UserFields) => {
   const newObj = {}
 
-    Object.keys(fields).forEach((prop) => {
-      if (fields[prop]) {
-        newObj[prop] = fields[prop]
-      }
-    })
+  Object.keys(fields).forEach((prop) => {
+    if (fields[prop]) {
+      newObj[prop] = fields[prop]
+    }
+  })
 
-    return newObj
+  return newObj
 }
 
-export const getUser = (email: string) : Promise<unknown> =>
+type GetUserResponse = {
+  data: UserType,
+}
+
+export const getUser = (email: string): Promise<GetUserResponse> =>
   fetch(`/api/server/user/${email}`).then((data) => data.json())
 
-export const updateUser = async (email: string, body: UserFields) : Promise<unknown> => {
+export const updateUser = async (
+  email: string,
+  body: UserFields,
+): Promise<UpdateUserResponse> => {
   const cleanBody = removeEmptyFields(body)
 
   const options = {
     method: 'PUT',
-    body: JSON.stringify(cleanBody)
+    body: JSON.stringify(cleanBody),
   }
 
   return fetch(`/api/server/user/${email}`, options).then((data) => data.json())
 }
 
-export const formatDefaultValues = (values) => {
+type DefaultValues = {
+  name: string,
+  pronouns: string,
+  occupation: string,
+  description: string,
+}
+export const formatDefaultValues = (values: UserType): DefaultValues => {
   return {
     name: values.name,
-    gender: values.gender,
+    pronouns: values.pronouns,
     occupation: values.occupation,
-    description: values.description
+    description: values.description,
   }
 }
 
@@ -95,7 +87,7 @@ export const formFields = {
           value: 'THEM',
           label: 'Elu/Delu',
         },
-      ]
+      ],
     },
     {
       name: 'occupation',
@@ -111,6 +103,6 @@ export const formFields = {
       stretch: true,
       label: 'Se abresente de forma breve',
       characterLimit: 240,
-    }
-  ]
+    },
+  ],
 }

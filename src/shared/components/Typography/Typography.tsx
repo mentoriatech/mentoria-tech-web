@@ -1,8 +1,13 @@
-import { TitleStyled, SubtitleStyled, SectionTitleStyled, CustomLink } from './Typography.styles';
+import {
+  TitleStyled,
+  SubtitleStyled,
+  SectionTitleStyled,
+  CustomLink,
+} from './Typography.styles'
 
 interface SectionTitle {
   children: any;
-  color: string; 
+  color: string;
   prefix: string;
 }
 

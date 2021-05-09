@@ -1,3 +1,3 @@
-import HowItWorks from './HowItWorks'
+import { HowItWorks } from './HowItWorks'
 
 export default HowItWorks

@@ -1,16 +1,15 @@
 import React from 'react'
-
+import { actionType } from 'types'
 interface StateProps {
-  store: object;
-  dispatch: (action: string) => void;
+  store: unknown;
+  dispatch: (action: actionType) => void;
 }
 
-export const initialState : StateProps = {
+export const initialState: StateProps = {
   store: {},
-  dispatch: (action) => {},
+  dispatch: (action) => action,
 }
 
-const Context = React.createContext(initialState)
+const Context = React.createContext<StateProps>(initialState)
 
 export default Context
-

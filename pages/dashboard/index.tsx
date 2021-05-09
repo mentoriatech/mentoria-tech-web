@@ -4,12 +4,17 @@ import ManageJourney, {
 
 export default ManageJourney
 
-export async function getStaticProps() {
+type StaticPropsResponse = {
+  props: ManageJourneyProps,
+}
+
+export async function getStaticProps(): Promise<StaticPropsResponse> {
   const props: ManageJourneyProps = {
     content: {
       title: 'mentoria.tech | dashboard',
     },
     user: {
+      email: '',
       name: '',
       trelloToken: '',
     },

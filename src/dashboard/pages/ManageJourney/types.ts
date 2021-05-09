@@ -1,13 +1,23 @@
+import { actionType } from 'types'
+
 export interface ManageJourneyProps {
   content: {
     title: string,
     description?: string,
   };
-  dispatch?: (action: unknown) => void;
+  dispatch?: (action: actionType) => void;
   user: {
+    id: number,
     name: string,
-    trelloToken: string,
     email: string,
+    boards?: {
+      id: number,
+      url: string,
+      user_id: string,
+      board_id?: string,
+      created_at: string,
+      updated_at: string,
+    },
   };
 }
 
@@ -45,7 +55,7 @@ export type BoardDataType = {
 }
 
 export type BoardType = {
-  successful: boolean,
+  successful?: boolean,
   data?: BoardDataType,
   progress?: number,
 }

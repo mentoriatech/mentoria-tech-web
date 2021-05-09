@@ -10,6 +10,7 @@
       "utils/*": ["src/utils/*"],
       "context/*": ["src/context/*"],
       "store/*": [ "src/store/*"],
+      "types/*": ["types/*.ts"],
     },
     "target": "es5",
     "lib": [

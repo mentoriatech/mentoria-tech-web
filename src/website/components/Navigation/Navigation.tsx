@@ -11,7 +11,7 @@ interface Item {
   icon: string;
   destination: string;
   label: string;
-  dark?: boolean;
+  background?: boolean;
 }
 
 interface NavigationProps {
@@ -19,13 +19,7 @@ interface NavigationProps {
   dark?: boolean;
 }
 
-export const Navigation: FC<NavigationProps> = ({ items, dark }) => {
-  const [navState, setNavState] = useState(false)
-
-  const onNavClick = () => {
-    setNavState(!navState)
-  }
-
+export const Navigation: FC<NavigationProps> = ({ items }) => {
   return (
     <>
       <NavigationStyled>
@@ -35,7 +29,7 @@ export const Navigation: FC<NavigationProps> = ({ items, dark }) => {
           {items.map((item: Item) => (
             <ListItem key={item.destination}>
               <Link href={item.destination}>
-                <LinkStyled dark={dark}>
+                <LinkStyled background={item.background}>
                   {item.icon && <img src={item.icon} width="12" height="12" />}
                   {item.label}
                 </LinkStyled>

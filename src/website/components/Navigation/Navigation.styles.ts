@@ -117,12 +117,20 @@ export const NavigationStyled = styled('div')(
 )
 
 export const LinkStyled = styled('a')(
-  ({ theme, dark }) => css`
+  ({ theme, background }) => css`
     text-decoration: none;
-    color: ${dark ? theme.colors.brandSecondary.normal : theme.colors.white};
+    color: ${theme.colors.black};
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    ${background &&
+    `
+      background-color: ${theme.colors.black};
+      color: ${theme.colors.white};
+      padding: ${theme.spacings.bit} ${theme.spacings.mega};
+      border-radius: 20px;;
+    `}
 
     img,
     div {

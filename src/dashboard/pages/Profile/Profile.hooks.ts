@@ -10,7 +10,7 @@ export const useUser = () => {
     image: '',
     name: '',
     description: '',
-    gender: '',
+    pronouns: '',
     occupation: '',
     email: '',
     email_verified: false,

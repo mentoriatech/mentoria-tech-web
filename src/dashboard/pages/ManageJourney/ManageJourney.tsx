@@ -1,5 +1,4 @@
-import { FC, useCallback } from 'react'
-import { useRouter } from 'next/router'
+import { FC, useCallback, useEffect, useState } from 'react'
 import RocketIncon from 'svg/rocket'
 import BoardIcon from 'svg/board'
 import Layout from 'dashboard/containers/Layout'
@@ -8,101 +7,72 @@ import StepsManagement from 'dashboard/containers/StepsManagement'
 import NoContent from 'dashboard/components/NoContent'
 import Progress from 'dashboard/components/Progress'
 import { ManageJourneyProps } from './types'
+import { setUser } from 'store/userStore'
 
-import { getBoardAuthUrl, createBoard } from './ManageJourneyService'
+import { createBoard } from './ManageJourneyService'
 
 import { CustomButton, IconWrapper, StepsWrapper } from './ManageJourney.styles'
-import {
-  useBoardToken,
-  useCreateBoard,
-  useBoardData,
-} from './ManageJourney.hooks'
 
 export const ManageJourney: FC<ManageJourneyProps> = ({
   content,
+  dispatch,
   ...props
 }) => {
+  const [loading, isLoading] = useState(true)
   const { user } = props
-  const router = useRouter()
+  console.log('🚀 ~ file: ManageJourney.tsx ~ line 23 ~ user', user)
 
-  const { boardToken, tokenReady } = useBoardToken(user.email, router.asPath)
-
-  const { board, setBoard } = useBoardData(user.email, boardToken)
-
-  const { isBoardCreationLoading } = useCreateBoard(
-    boardToken,
-    tokenReady,
-    user.email,
-    board,
-    setBoard,
-  )
-
-  const handleAuthorizeClick = useCallback(() => {
-    const boardAuthUrl = getBoardAuthUrl()
-    window.location.href = boardAuthUrl
-  }, [])
+  useEffect(() => {
+    return user?.name && isLoading(false)
+  }, [user?.name])
 
   const handleCreateBoard = useCallback(
     () =>
       (async () => {
         try {
-          const board = await createBoard(boardToken, user.email)
-          setBoard(board)
+          const boards = await createBoard(user.id)
+          dispatch(setUser({ user: { ...user, boards } }))
+          // setUser(board)
         } catch (error) {
-          setBoard(error)
+          // setBoard(error)
         }
       })(),
-    [boardToken, user.email],
+    [user.email],
   )
 
-  const titleIcon = <RocketIncon />
-
+  const layoutProps = {
+    content,
+    icon: <RocketIncon />,
+  }
   return (
-    <Layout content={content} icon={titleIcon}>
-      {isBoardCreationLoading && <Loading label="Aguarde..." />}
-      {!boardToken && !board.successful && (
+    <Layout {...layoutProps}>
+      {loading && <Loading label="Aguarde..." />}
+      {!user.boards?.id && (
         <NoContent>
           <>
             <IconWrapper>
               <BoardIcon />
             </IconWrapper>
             Quando você começar sua jornada, poderá gerenciar por aqui, mas para
-            isso precisamos criar um quadro no Trello para você.
-            <CustomButton
-              onClick={handleAuthorizeClick}
-              variant="tertiary"
-              size="normal"
-            >
-              Criar quadro no Trello
-            </CustomButton>
-          </>
-        </NoContent>
-      )}
-      {boardToken && !board.successful && (
-        <NoContent className="NoContent">
-          <>
-            <IconWrapper>
-              <BoardIcon />
-            </IconWrapper>
-            Nenhum quadro foi encontrado 😔 Deseja criar um?
+            isso precisamos criar um projeto no GitHub para você.
             <CustomButton
               onClick={handleCreateBoard}
-              variant="tertiary"
+              variant="primary"
               size="normal"
             >
-              Criar quadro no Trello
+              Criar projeto
             </CustomButton>
           </>
         </NoContent>
       )}
-      {board.successful && (
+      {user.boards?.id && (
         <StepsWrapper>
           <>
-            {board.data?.lists?.map((list) => (
+            {user.boards?.lists?.map((list) => (
               <StepsManagement cards={list.cards} listName={list.name} />
             ))}
           </>
-          <Progress num={board.progress} />
+          {/* <Progress num={boardProgress} /> */}
         </StepsWrapper>
       )}
     </Layout>

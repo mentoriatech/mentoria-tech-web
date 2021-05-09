@@ -21,6 +21,7 @@ export const LoginButton = styled(PrimaryButton)(
 
 export const LoginWrapper = styled('div')(
   () => css`
+    justify-content: center;
     display: flex;
     flex-direction: column;
   `,

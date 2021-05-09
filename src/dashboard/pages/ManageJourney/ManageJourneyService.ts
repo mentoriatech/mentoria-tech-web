@@ -1,5 +1,5 @@
 import { queryStringify, encodeEmail } from '../../../utils'
-import { CardType, ListType, BoardDataType } from './types'
+import { CardType, ListType, BoardDataType, BoardType } from './types'
 import { BOARD_COLUMNS_RAW } from 'dashboard/constants'
 
 export const saveTrelloAuthorization = (email: string): void => {
@@ -10,13 +10,13 @@ export const saveTrelloAuthorization = (email: string): void => {
 
   const encodedEmail = encodeEmail(email)
 
-  fetch(`api/user/update/${encodedEmail}`, options).then((data) => data.json())
+  fetch(`api/server/user/${encodedEmail}`, options).then((data) => data.json())
 }
 
-export const createBoard = async (token: string, email: string) => {
+export const createBoard = async (userId: number) => {
   const options = {
     method: 'POST',
-    body: JSON.stringify({ token, email }),
+    body: JSON.stringify({ userId }),
   }
 
   return fetch(`/api/server/board`, options).then((data) => data.json())
@@ -52,11 +52,8 @@ export const saveToken = (email: string) => {
   }
 }
 
-export const fetchBoardData = (
-  email: string,
-  token: string,
-): Promise<unknown> =>
-  fetch(`/api/server/board/${email}?token=${token}`).then((data) => data.json())
+export const fetchBoardData = (email: string): Promise<unknown> =>
+  fetch(`/api/server/board/${email}`).then((data) => data.json())
 
 export const calculateProgress = (lists = []): number => {
   const done = lists.find(
@@ -77,13 +74,11 @@ export const removeList = (board, listName: string | null) => {
 }
 
 interface ManagementContentProps {
-  board: {
-    data: unknown,
-  };
+  data: unknown[];
 }
 
-export const mountManagementContent: ManagementContentProps = (
-  board,
+export const mountManagementContent = (
+  board: ManagementContentProps,
 ): BoardDataType => {
   if (!board?.data?.length) {
     return null

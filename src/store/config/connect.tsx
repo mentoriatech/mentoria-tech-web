@@ -1,14 +1,14 @@
-import React from "react";
-import Context from "./config";
+import React, { FC } from 'react'
+import Context from './config'
 
-const Connect = Component => {
+const Connect = (Component: FC) => {
   return (props) => (
     <Context.Consumer>
       {({ dispatch, store }) => {
-        return <Component {...props} {...store} dispatch={dispatch} />;
+        return <Component {...props} {...store} dispatch={dispatch} />
       }}
     </Context.Consumer>
-  );
-};
+  )
+}
 
-export default Connect;
+export default Connect

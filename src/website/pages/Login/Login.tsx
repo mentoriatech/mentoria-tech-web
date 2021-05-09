@@ -1,11 +1,10 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { LoginWrapper } from './Login.styles'
+import { LoginWrapper, PageWrapper } from './Login.styles'
 import { DefaultHead } from 'shared/components/DefaultHead'
 import { LoginBackground } from 'website/components/HeaderBackground'
 import TopBar from 'website/components/TopBar'
-import Header from 'website/containers/Header'
 import SingIn from 'shared/components/SignIn'
 
 type LoginContent = {
@@ -47,15 +46,13 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
   return (
     <>
       <DefaultHead title={content.title} description={content.description} />
-      <main>
-        <TopBar darkNav={true} />
+      <TopBar darkNav={true} />
+      <PageWrapper>
         <LoginBackground />
-        <Header title="Que bom que você voltou">
-          <LoginWrapper>
-            <SingIn providers={providers} content={providersDetails} />
-          </LoginWrapper>
-        </Header>
-      </main>
+        <LoginWrapper>
+          <SingIn providers={providers} content={providersDetails} />
+        </LoginWrapper>
+      </PageWrapper>
     </>
   )
 }

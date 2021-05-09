@@ -11,7 +11,7 @@ export const ContainerStyled = styled(Container)(
     align-items: center;
 
     @media (min-width: ${theme.breakpoints.mega}) {
-      width: 100%;
+      width: 1024px;
     }
   `,
 )

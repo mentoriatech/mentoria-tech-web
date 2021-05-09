@@ -1,13 +1,13 @@
 import Link from 'next/link'
 
-import { 
-  SectionStyled, 
-  SectionTitleStyled, 
-  SectionDescription, 
+import {
+  SectionStyled,
+  SectionTitleStyled,
+  SectionDescription,
   SectionContentWrapper,
   SectionLinkWrapper,
-  SectionLinkStyled
-} from './Section.styles';
+  SectionLinkStyled,
+} from './Section.styles'
 
 interface Section {
   title?: string;
@@ -16,23 +16,32 @@ interface Section {
   children: any;
 }
 
-export default function Section({ title, description, direction, children }: Section) {
+export default function Section({
+  title,
+  description,
+  direction,
+  children,
+}: Section) {
   return (
     <SectionStyled>
-      {title && <SectionTitleStyled spaceBottom={!description}>{title}</SectionTitleStyled>}
+      {title && (
+        <SectionTitleStyled spaceBottom={!description}>
+          {title}
+        </SectionTitleStyled>
+      )}
       {description && <SectionDescription>{description}</SectionDescription>}
-      <SectionContentWrapper direction={direction}>{children}</SectionContentWrapper>
+      <SectionContentWrapper direction={direction}>
+        {children}
+      </SectionContentWrapper>
     </SectionStyled>
   )
 }
 
-export function SectionLink({ href, label}) {
+export function SectionLink({ href, label }) {
   return (
     <SectionLinkWrapper>
       <Link href={href}>
-        <SectionLinkStyled>
-          {label}
-        </SectionLinkStyled>
+        <SectionLinkStyled>{label}</SectionLinkStyled>
       </Link>
     </SectionLinkWrapper>
   )

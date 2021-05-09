@@ -33,7 +33,7 @@ const items = [
     icon: <HeartIcon fill="white" />,
     destination: '/dashboard/contribuir',
     label: 'Contribuir',
-  }
+  },
 ]
 
 export default function Sidebar({ user }) {

@@ -31,13 +31,13 @@ export const Header: FC<HeaderProps> = ({
     <HeaderStyled className="Header">
       <HeaderContainer className="HeaderContainer">
         <HeaderContent className="Content" direction={direction}>
-          {title && <Title color="white">{title}</Title>}
+          {title && <Title>{title}</Title>}
           {subtitle && (
             <SubtitleWrapper>
-              <Subtitle color="white">{subtitle}</Subtitle>
+              <Subtitle>{subtitle}</Subtitle>
               {buttonLabel && buttonDestination && (
                 <Link href={buttonDestination}>
-                  <PrimaryButton variant="secondary" size="normal">
+                  <PrimaryButton variant="primary" size="normal">
                     começar agora
                   </PrimaryButton>
                 </Link>

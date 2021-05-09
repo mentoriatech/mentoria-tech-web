@@ -23,6 +23,7 @@
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "global": "^4.4.0",
     "html-react-parser": "^1.2.5",
     "next": "10.0.6",
     "next-auth": "^3.2.0",
@@ -47,6 +48,16 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "redux-devtools-extension": "^2.13.9",
-    "typescript": "^4.1.3"
+    "type-coverage": "^2.17.5",
+    "typescript": "^4.2.4"
+  },
+  "typeCoverage": {
+    "atLeast": 99,
+    "debug": false,
+    "detail": false,
+    "project": "tsconfig.json",
+    "ignore-files": ["src/**/**/**/*.styles.ts"],
+    "strict": true,
+    "suppressError": true
   }
 }

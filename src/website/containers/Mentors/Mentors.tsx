@@ -23,19 +23,18 @@ const mentors = [
     subtitle: ' back-end developer',
     image: 'https://plchldr.co/i/250x200',
     quote: 'Consectetur adipiscing elit et',
-  }
+  },
 ]
 
 export default function Mentors() {
   return (
     <Container>
-      <Section 
-      title="mentores"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget."
-      direction="row">
-      <CardQuote
-        data={mentors}
-      />
+      <Section
+        title="mentores"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget."
+        direction="row"
+      >
+        <CardQuote data={mentors} />
       </Section>
       <SectionLink href="/" label="como atuam os mentores?" />
     </Container>

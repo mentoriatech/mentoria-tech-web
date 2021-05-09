@@ -1,13 +1,14 @@
-import { LogoWrapper } from './Logo.style';
+import { FC } from 'react'
+import { LogoWrapper } from './Logo.style'
 
 interface Logo {
   size: string;
 }
 
-export default function Logo({ size }: Logo) {
+export const Logo: FC<Logo> = ({ size }) => {
   return (
     <LogoWrapper size={size}>
-      <img src="/icons/logo_negativo.svg" />
+      <img src="/icons/logo.svg" />
     </LogoWrapper>
   )
 }

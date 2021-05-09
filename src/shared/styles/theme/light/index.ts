@@ -135,11 +135,11 @@ export const fontWeight: FontWeight = {
 export const colors: Colors = {
   white: '#fff',
   black: '#000',
-  text: '#3F3D56',
+  text: '#000',
   grey: {
-    light: '#f1edf4',
-    normal: '#e4deea',
-    dark: '#7f7f7f',
+    light: '#f2f2f2',
+    normal: '',
+    dark: '',
   },
   background: {
     light: '#514f68',
@@ -147,17 +147,17 @@ export const colors: Colors = {
   },
   brandPrimary: {
     light: '#ffdde7',
-    normal: '#f61067',
+    normal: '#EE3D5A',
     dark: '#dd0456',
   },
   brandSecondary: {
-    light: '#f0ddff',
-    normal: '#565987',
-    dark: '#404372',
+    light: '#FFC449',
+    normal: '#F5A601',
+    dark: '#E8A10E',
   },
   brandSupport: {
     light: '',
-    normal: '#F5A600',
+    normal: '',
     dark: '',
   },
 }

@@ -2,16 +2,15 @@ import styled from 'shared/styles/styled'
 import { css } from '@emotion/react'
 
 export const TitleStyled = styled('h1')(
-  ({ theme, color }) => css`
+  ({ theme }) => css`
     display: inline-block;
     margin: 0;
     font-size: ${theme.typography.headings.giga.fontSize};
-    color: ${color ? theme.colors[color] : 'inherit'};
     font-weight: 300;
 
     &:after {
       content: '_';
-      color: ${theme.colors.brandSupport.normal};
+      color: ${theme.colors.brandPrimary.normal};
     }
 
     strong {
@@ -25,10 +24,9 @@ export const TitleStyled = styled('h1')(
 )
 
 export const SubtitleStyled = styled('p')(
-  ({ theme, color }) => css`
+  ({ theme }) => css`
     font-size: ${theme.typography.text.mega.fontSize};
     font-weight: ${theme.fontWeight.regular};
-    color: ${color ? theme.colors[color] : 'inherit'};
     display: inline-block;
   `,
 )

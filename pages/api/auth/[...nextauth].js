@@ -7,6 +7,7 @@ export default NextAuth({
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      scope: 'user,repo',
     }),
     Providers.Google({
       clientId: process.env.GOOGLE_CLIENT_ID,

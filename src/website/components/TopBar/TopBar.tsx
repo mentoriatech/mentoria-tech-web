@@ -17,6 +17,7 @@ const items = [
   {
     label: 'entrar',
     destination: '/entrar',
+    background: true,
   },
 ]
 

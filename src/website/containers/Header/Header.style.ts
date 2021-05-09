@@ -69,7 +69,7 @@ export const HeaderContainer = styled(Container)(
     flex-direction: column;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
-      height: 85%;
+      height: 100vh;
       flex-direction: row;
     }
   `,

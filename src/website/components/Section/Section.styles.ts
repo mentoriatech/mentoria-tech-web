@@ -1,80 +1,90 @@
-import styled from 'shared/styles/styled';
-import { css } from '@emotion/react';
-import { SectionTitle } from 'shared/components/Typography';
+import styled from 'shared/styles/styled'
+import { css } from '@emotion/react'
+import { SectionTitle } from 'shared/components/Typography'
 
-export const SectionStyled = styled('div')(({ theme }) => css`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: ${theme.spacings.mega} 0 ${theme.spacings.zetta};
-`);
+export const SectionStyled = styled('div')(
+  ({ theme }) => css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: ${theme.spacings.mega} 0 ${theme.spacings.zetta};
+  `,
+)
 
-export const SectionTitleStyled = styled(SectionTitle)(({ theme, spaceBottom }) => css`
-  font-family: ${theme.fontStack.brand};
-  font-size: ${theme.typography.headings.mega.fontSize};
-  margin-bottom: ${spaceBottom ? theme.spacings.zetta : 0};
-  text-align: center;
-  
-  &:before {
-    content: '_';
-    color: ${theme.colors.brandPrimary.normal};
-  }
-  
-  @media (min-width: ${theme.breakpoints.tera}px) {
+export const SectionTitleStyled = styled(SectionTitle)(
+  ({ theme, spaceBottom }) => css`
+    font-family: ${theme.fontStack.brand};
+    font-size: ${theme.typography.headings.mega.fontSize};
+    margin-bottom: ${spaceBottom ? theme.spacings.zetta : 0};
     text-align: center;
-    font-size: ${theme.typography.headings.giga.fontSize };
-  }
-`);
 
-export const SectionDescription = styled('p')(({ theme }) => css`
-  text-align: center;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: ${theme.spacings.zetta};
-  font-size: ${theme.typography.headings.kilo.fontSize};
-  
-  @media (min-width: ${theme.breakpoints.mega}px) {
-    font-size: ${theme.typography.headings.mega.fontSize};
-  }
+    &:before {
+      content: '_';
+      color: ${theme.colors.brandPrimary.normal};
+    }
 
-`);
+    @media (min-width: ${theme.breakpoints.tera}px) {
+      text-align: center;
+      font-size: ${theme.typography.headings.giga.fontSize};
+    }
+  `,
+)
 
-export const SectionContentWrapper = styled('div')(({ theme, direction }) => css`
-  display: flex;
-  flex-direction: ${direction};
-  align-items: center;
-`);
+export const SectionDescription = styled('p')(
+  ({ theme }) => css`
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: ${theme.spacings.zetta};
+    font-size: ${theme.typography.headings.kilo.fontSize};
 
-export const SectionLinkWrapper = styled('div')(({ theme }) => css`
-  width: 100%;
-  text-align: center;
-  margin-bottom: ${theme.spacings.zetta};
-`);
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      font-size: ${theme.typography.headings.mega.fontSize};
+    }
+  `,
+)
 
-export const SectionLinkStyled = styled('a')(({ theme }) => css`
-  text-align: center;
-  font-size: ${theme.typography.headings.kilo.fontSize};
-  cursor: pointer;
+export const SectionContentWrapper = styled('div')(
+  ({ theme, direction }) => css`
+    display: flex;
+    flex-direction: ${direction};
+    align-items: center;
+  `,
+)
 
-  &:hover {
-    text-decoration: underline;
-  }
+export const SectionLinkWrapper = styled('div')(
+  ({ theme }) => css`
+    width: 100%;
+    text-align: center;
+    margin-bottom: ${theme.spacings.zetta};
+  `,
+)
 
-  &:before {
-    content: '{';
-    margin-right: ${theme.spacings.mega};
-    color: ${theme.colors.brandPrimary.normal};
-  }
+export const SectionLinkStyled = styled('a')(
+  ({ theme }) => css`
+    text-align: center;
+    font-size: ${theme.typography.headings.kilo.fontSize};
+    cursor: pointer;
 
-  &:after {
-    content: '}';
-    margin-left: ${theme.spacings.mega};
-    color: ${theme.colors.brandPrimary.normal};
-  }
+    &:hover {
+      text-decoration: underline;
+    }
 
-  @media (min-width: ${theme.breakpoints.mega}px) {
-    font-size: ${theme.typography.headings.mega.fontSize};
-  }
-`);
+    &:before {
+      content: '{';
+      margin-right: ${theme.spacings.mega};
+      color: ${theme.colors.brandPrimary.normal};
+    }
 
+    &:after {
+      content: '}';
+      margin-left: ${theme.spacings.mega};
+      color: ${theme.colors.brandPrimary.normal};
+    }
+
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      font-size: ${theme.typography.headings.mega.fontSize};
+    }
+  `,
+)

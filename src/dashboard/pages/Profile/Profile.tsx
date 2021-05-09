@@ -7,6 +7,7 @@ import Card from 'dashboard/components/Card'
 import ProfileIcon from 'svg/profile'
 import { formFields, updateUser } from './ProfileService'
 import Layout from 'dashboard/containers/Layout'
+import { setUser } from 'store/userStore'
 
 import { PageGrid } from './Profile.styles'
 
@@ -20,13 +21,14 @@ type ProfileContent = {
 export interface ProfileProps {
   content: ProfileContent;
   user: UserProps;
+  dispatch: DispatchWithoutAction;
 }
 
 type UserProps = {
   image: string,
   name: string,
   description?: string,
-  gender?: string,
+  pronouns?: string,
   occupation?: string,
   email: string,
   email_verified: boolean,
@@ -35,13 +37,8 @@ type UserProps = {
   updated_at?: string,
 }
 
-interface UseUserProps {
-  isLoading: boolean;
-  refetchUser?: DispatchWithoutAction;
-  user: UserProps;
-}
-
-export const Profile: FC<ProfileProps> = ({ content, user }) => {
+export const Profile: FC<ProfileProps> = ({ content, user, dispatch }) => {
+  console.log('🚀 ~ file: Profile.tsx ~ line 41 ~ dispatch', dispatch)
   const [formRequestLoading, setFormRequestLoading] = useState(false)
   const [formRequestError, setFormRequestError] = useState(false)
   const [formRequestSuccess, setFormRequestSuccess] = useState(false)
@@ -58,7 +55,7 @@ export const Profile: FC<ProfileProps> = ({ content, user }) => {
 
   const defaultValues = {
     name: user.name,
-    gender: user.gender,
+    pronouns: user.pronouns,
     occupation: user.occupation,
     description: user.description,
   }
@@ -72,13 +69,12 @@ export const Profile: FC<ProfileProps> = ({ content, user }) => {
     const values = getValues()
 
     try {
-      const { status } = await updateUser(user.email, values)
-
+      const { successful, data } = await updateUser(user.email, values)
       if (!status) {
         setTimeout(() => {
           setFormRequestLoading(false)
           setFormRequestSuccess(true)
-        }, 2000)
+        }, 1000)
       }
     } catch (error) {
       setFormRequestError(true)
