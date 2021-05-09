@@ -1,14 +1,14 @@
-import { FC, DispatchWithoutAction, SyntheticEvent, useState } from 'react'
+import { FC, Dispatch, SyntheticEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Form from 'shared/components/Form'
 import Loading from 'shared/components/Loading'
 import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
 import Card from 'dashboard/components/Card'
-import ProfileIcon from 'svg/profile'
+import ProfileIcon from 'svg/profile.svg'
 import { formFields, updateUser } from './ProfileService'
 import Layout from 'dashboard/containers/Layout'
 import { setUser } from 'store/userStore'
-
+import { actionType } from 'types'
 import { PageGrid } from './Profile.styles'
 
 const { GeneratedForm } = Form
@@ -20,8 +20,8 @@ type ProfileContent = {
 
 export interface ProfileProps {
   content: ProfileContent;
-  user: UserProps;
-  dispatch: DispatchWithoutAction;
+  user?: UserProps;
+  dispatch: Dispatch<actionType>;
 }
 
 type UserProps = {

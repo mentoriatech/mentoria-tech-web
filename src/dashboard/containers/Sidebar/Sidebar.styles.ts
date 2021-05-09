@@ -20,7 +20,6 @@ export const SidebarStyled = styled(Card)(
     z-index: 2;
     border-radius: 15px;
     background-color: #272727;
-    // background: linear-gradient(168.71deg, #595959 -2.03%, #000000 92.2%);
     box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.09);
     @media (min-height: 1000px) {
       height: calc(100% - 150px);

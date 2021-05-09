@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
-import EditIcon from 'svg/edit'
+import EditIcon from 'svg/edit.svg'
 
 export const CustomEditIcon = styled(EditIcon)(
   ({ theme }) => css`
@@ -58,7 +58,7 @@ export const UserName = styled('div')(
 
 export const UserEmail = styled('div')(
   ({ theme }) => css`
-    color: ${theme.colors.black};
+    color: ${theme.colors.white};
     font-size: ${theme.typography.text.kilo.fontSize};
   `,
 )

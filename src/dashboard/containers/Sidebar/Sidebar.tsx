@@ -1,12 +1,12 @@
 import UserInfo from 'dashboard/components/UserInfo'
 import Navigation from 'dashboard/components/Navigation'
 import { SidebarStyled } from './Sidebar.styles'
-import HomeIcon from 'svg/home'
-import ProfileIcon from 'svg/profile'
-import MentoredIcon from 'svg/mentored'
-import JourneyIcon from 'svg/journey'
-import GuideIcon from 'svg/guide'
-import HeartIcon from 'svg/heart'
+import HomeIcon from 'svg/home.svg'
+import ProfileIcon from 'svg/profile.svg'
+import MentoredIcon from 'svg/mentored.svg'
+import JourneyIcon from 'svg/journey.svg'
+import GuideIcon from 'svg/guide.svg'
+import HeartIcon from 'svg/heart.svg'
 
 const items = [
   {
