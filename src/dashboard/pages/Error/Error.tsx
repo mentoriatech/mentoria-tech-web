@@ -5,7 +5,7 @@ import Layout from 'dashboard/containers/Layout'
 
 import { useSession } from 'next-auth/client'
 
-interface ErrorProps {
+export interface ErrorProps {
   content: {
     title: string,
     description: string,
@@ -27,7 +27,9 @@ export const Error: FC<ErrorProps> = ({ content, protectedRoute }) => {
 
   return (
     <>
-      <Layout content={content}>Página não encontrada</Layout>
+      <Layout icon={titleIcon} content={content}>
+        Página não encontrada
+      </Layout>
     </>
   )
 }

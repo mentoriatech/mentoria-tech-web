@@ -2,23 +2,17 @@ import { useEffect, useState, useReducer } from 'react'
 import { useSession } from 'next-auth/client'
 import { getUser, updateUser } from './ProfileService'
 import { encodeEmail } from '../../../utils/'
+import { UserType } from 'types'
 
-export const useUser = () => {
+type UseUserReturn = {
+  user: UserType,
+  isLoading: boolean,
+}
+
+export const useUser = (): UseUserReturn => {
   const [session, loading] = useSession()
   const [isLoading, setLoading] = useState(true)
-  const [user, setUser] = useState({
-    image: '',
-    name: '',
-    description: '',
-    pronouns: '',
-    occupation: '',
-    email: '',
-    email_verified: false,
-    id: 0,
-    created_at: '',
-    updated_at: '',
-  })
-  const [tick, refetchUser] = useReducer((x) => x + 1, 0)
+  const [user, setUser] = useState<UserType>()
 
   useEffect(() => {
     if (!loading) {
@@ -29,7 +23,7 @@ export const useUser = () => {
           const { data } = await getUser(email)
           setUser(data)
           setLoading(false)
-        } catch (error) {
+        } catch (error: unknown) {
           console.log(error)
         }
       }
@@ -38,11 +32,10 @@ export const useUser = () => {
         fetchUser()
       }
     }
-  }, [session, loading, tick])
+  }, [session, loading])
 
   return {
     user,
-    refetchUser,
     isLoading,
   }
 }

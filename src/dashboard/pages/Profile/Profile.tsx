@@ -21,7 +21,7 @@ type ProfileContent = {
 export interface ProfileProps {
   content: ProfileContent;
   user?: UserProps;
-  dispatch: Dispatch<actionType>;
+  dispatch?: Dispatch<actionType>;
 }
 
 type UserProps = {
@@ -76,7 +76,7 @@ export const Profile: FC<ProfileProps> = ({ content, user, dispatch }) => {
           setFormRequestSuccess(true)
         }, 1000)
       }
-    } catch (error) {
+    } catch (error: unknown) {
       setFormRequestError(true)
     }
   }

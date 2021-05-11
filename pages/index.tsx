@@ -1,13 +1,13 @@
-import { Home, HomeProps } from "../src/website/pages/Home";
+import { Home, HomeProps } from '../src/website/pages/Home'
 
-export default Home;
+export default Home
 
 export async function getStaticProps() {
   const props: HomeProps = {
     content: {
-      title: "mentoria.tech",
+      title: 'mentoria.tech',
     },
-  };
+  }
 
-  return { props };
+  return { props }
 }

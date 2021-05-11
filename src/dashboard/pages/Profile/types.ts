@@ -5,12 +5,14 @@ export interface UpdatedUser {
   email_verified: unknown;
   id: number;
   image: string;
-  mentor: unknown;
   name: string;
   occupation: string;
   pronouns: string;
-  skills: string[];
   updated_at: string;
+  boards?: unknown;
+  skills: string[];
+  mentor: number;
+  ready: boolean;
 }
 
 export interface UpdateUserResponse {

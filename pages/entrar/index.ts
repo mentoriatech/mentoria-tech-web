@@ -1,15 +1,15 @@
 import { providers } from 'next-auth/client'
-import { Login, LoginProps } from "src/website/pages/Login";
+import { Login, LoginProps } from 'src/website/pages/Login'
 
-export default Login;
+export default Login
 
 export async function getStaticProps(context) {
   const props: LoginProps = {
     content: {
-      title: "mentoria.tech | entrar",
+      title: 'mentoria.tech | entrar',
     },
-    providers: await providers(context)
-  };
+    providers: await providers(context),
+  }
 
-  return { props };
+  return { props }
 }

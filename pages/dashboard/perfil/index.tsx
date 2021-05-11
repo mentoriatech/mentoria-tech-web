@@ -1,13 +1,13 @@
-import Profile, { ProfileProps } from "dashboard/pages/Profile";
+import Profile, { ProfileProps } from 'dashboard/pages/Profile'
+import { GetStaticProps } from 'next'
+export default Profile
 
-export default Profile;
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const props: ProfileProps = {
     content: {
-      title: "mentoria.tech | editar perfil",
+      title: 'mentoria.tech | editar perfil',
     },
-  };  
+  }
 
   return { props }
 }

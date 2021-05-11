@@ -1,5 +1,3 @@
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled'
 
-import { Theme } from './theme/types';
-
-export default styled as CreateStyled<Theme>;
+export default styled

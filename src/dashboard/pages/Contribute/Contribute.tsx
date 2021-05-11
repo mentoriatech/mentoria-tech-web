@@ -1,6 +1,4 @@
-import { FC, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import Card from 'dashboard/components/Card'
+import { FC } from 'react'
 import Layout from 'dashboard/containers/Layout'
 import { PrimaryButton } from 'shared/components/Button'
 
@@ -11,7 +9,7 @@ import {
   CustomCard,
 } from './Contribute.styles'
 
-interface ContributeProps {
+export interface ContributeProps {
   content: {
     title: string,
     description?: string,

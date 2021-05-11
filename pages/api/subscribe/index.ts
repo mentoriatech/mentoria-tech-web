@@ -12,7 +12,7 @@ const functionMapping = {
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+): Promise<void> {
   const { method } = req
 
   const subscriptionAction = functionMapping[method]

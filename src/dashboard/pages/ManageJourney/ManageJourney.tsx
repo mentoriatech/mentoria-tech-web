@@ -68,9 +68,9 @@ export const ManageJourney: FC<ManageJourneyProps> = ({
       {user.boards?.id && (
         <StepsWrapper>
           <>
-            {user.boards?.lists?.map((list) => (
+            {/* {user.boards?.lists?.map((list) => (
               <StepsManagement cards={list.cards} listName={list.name} />
-            ))}
+            ))} */}
           </>
           {/* <Progress num={boardProgress} /> */}
         </StepsWrapper>

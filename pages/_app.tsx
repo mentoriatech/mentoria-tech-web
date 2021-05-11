@@ -7,7 +7,16 @@ import { light } from '../src/shared/styles/theme/'
 import '../src/shared/styles/globals.css'
 import '../src/shared/styles/header-background.scss'
 
-const App: FC<AppProps> = ({ Component, pageProps }) => (
+type LocalAppProps = {
+  pageProps: {
+    content: {
+      title: string,
+    },
+    session: unknown,
+  },
+}
+
+const App: FC<AppProps & LocalAppProps> = ({ Component, pageProps }) => (
   <Provider session={pageProps.session}>
     <ThemeProvider theme={light}>
       <StoreProvider>

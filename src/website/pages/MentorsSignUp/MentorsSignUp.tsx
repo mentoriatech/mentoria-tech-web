@@ -1,37 +1,34 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import {
-  useSession
-} from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { DefaultHead } from 'shared/components/DefaultHead'
 import Header from 'website/containers/Header'
 import WhyMentoring from 'website/containers/WhyMentoring'
-import MentorRegister from 'website/containers/MentorRegister'
 import Footer from 'shared/containers/Footer'
 
 type MentorsSignUpContent = {
-  title: string;
-  description?: string;
-};
+  title: string,
+  description?: string,
+}
 
 export interface MentorsSignUpProps {
   content: MentorsSignUpContent;
   providers: {
-    id: string;
-    name: string;
-    callbackUrl: string;
-    signinUrl: string;
-    type: string;
+    id: string,
+    name: string,
+    callbackUrl: string,
+    signinUrl: string,
+    type: string,
   };
 }
 
-export const MentorsSignUp: FC<MentorsSignUpProps> = ({ content, providers }) => {
+export const MentorsSignUp: FC<MentorsSignUpProps> = ({ content }) => {
   const router = useRouter()
   const [session] = useSession()
 
   if (session) {
     router.push('/dashboard')
-    return <></>;
+    return <></>
   }
 
   return (
@@ -40,7 +37,6 @@ export const MentorsSignUp: FC<MentorsSignUpProps> = ({ content, providers }) =>
       <main>
         <Header />
         <WhyMentoring />
-        <MentorRegister providers={providers} />
         <Footer />
       </main>
     </>

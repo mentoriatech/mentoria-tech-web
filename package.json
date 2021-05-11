@@ -56,8 +56,8 @@
     "debug": false,
     "detail": false,
     "project": "tsconfig.json",
-    "ignore-files": ["src/**/**/**/*.styles.ts"],
-    "strict": true,
+    "ignore-files": ["src/**/**/**/*.styles.ts", "src/shared/styles/theme/utils/*", "custom.d.ts"],
+    "strict": false,
     "suppressError": true
   }
 }

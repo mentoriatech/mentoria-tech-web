@@ -16,8 +16,6 @@ export async function getStaticProps(): Promise<StaticPropsResponse> {
     user: {
       email: '',
       name: '',
-      trelloToken: '',
-      email: '',
     },
   }
 

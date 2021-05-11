@@ -28,7 +28,7 @@ export const useBoardData = (email: string): BoardDataReturn => {
 
         // const progress = calculateProgress(formattedBoard?.lists)
         // setBoard({ successful: true, data: filteredBoard, progress })
-      } catch (error) {
+      } catch (error: unknown) {
         setBoard(error)
       }
     }

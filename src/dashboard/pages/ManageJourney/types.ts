@@ -7,7 +7,7 @@ export interface ManageJourneyProps {
   };
   dispatch?: (action: actionType) => void;
   user: {
-    id: number,
+    id?: number,
     name: string,
     email: string,
     boards?: {
