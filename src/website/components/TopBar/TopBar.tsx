@@ -7,17 +7,18 @@ const items = [
   {
     icon: '',
     label: 'slack',
-    destination: '/'
+    destination: '/',
   },
   {
     icon: '',
     label: 'blog',
-    destination: '/blog'
+    destination: '/blog',
   },
   {
     label: 'entrar',
-    destination: '/entrar'
-  }
+    destination: '/entrar',
+    background: true,
+  },
 ]
 
 interface TopBarProps {
@@ -36,4 +37,4 @@ const TopBar: FC<TopBarProps> = ({ background, darkNav }) => {
   )
 }
 
-export default TopBar;
+export default TopBar

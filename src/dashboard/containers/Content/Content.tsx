@@ -1,19 +1,21 @@
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
 
-export const ContentHeader = styled('div')(({ theme }) => css`
+export const ContentHeader = styled('div')(({ theme }) => css``)
 
-`);
-
-export const ContentBody = styled('div')(({ theme }) => css`
+export const ContentBody = styled('div')(
+  ({ theme, direction }) => css`
     width: 100%;
     padding: ${theme.spacings.mega} 0;
     display: flex;
     align-items: stretch;
+    flex-direction: ${direction || 'row'};
   }
-`);
+`,
+)
 
-export const Content = styled('div')(({ theme }) => css`
+export const Content = styled('div')(
+  ({ theme }) => css`
   background-color: ${theme.colors.white};
   box-shadow: 2px 1px 2px rgba(0, 0, 0, .1);
   height: 100%;
@@ -37,9 +39,11 @@ export const Content = styled('div')(({ theme }) => css`
   @media (min-width: ${theme.breakpoints.giga}px) {
     border-top-right-radius: unset;
     border-radius: 15px;
-`);
+`,
+)
 
-export const ContentBar = styled(Content)(({ theme }) => css`
+export const ContentBar = styled(Content)(
+  ({ theme }) => css`
     width: 400px;
-`)
-
+  `,
+)

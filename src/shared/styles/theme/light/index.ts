@@ -1,4 +1,4 @@
-import { createMediaQueries } from '../utils/media-queries';
+import { createMediaQueries } from '../utils/media-queries'
 
 import {
   Colors,
@@ -10,7 +10,7 @@ import {
   FontWeight,
   Breakpoints,
   MediaQueries,
-} from '../types';
+} from '../types'
 
 export const breakpoints: Breakpoints = {
   byte: 320,
@@ -23,9 +23,9 @@ export const breakpoints: Breakpoints = {
   giga: 960,
   gigaToTera: '(min-width: 960px) and (max-width: 1279px)',
   tera: 1280,
-};
+}
 
-export const mq: MediaQueries = createMediaQueries(breakpoints);
+export const mq: MediaQueries = createMediaQueries(breakpoints)
 
 export const spacings: Spacings = {
   bit: '4px',
@@ -37,13 +37,13 @@ export const spacings: Spacings = {
   peta: '40px',
   exa: '48px',
   zetta: '56px',
-};
+}
 
 export const iconSizes: IconSizes = {
   kilo: '16px',
   mega: '24px',
   giga: '32px',
-};
+}
 
 export const borderRadius: BorderRadius = {
   kilo: '1px',
@@ -52,13 +52,13 @@ export const borderRadius: BorderRadius = {
   tera: '32px',
   circle: '100%',
   half: '50%',
-  pill: '999999px', 
-};
+  pill: '999999px',
+}
 
 export const borderWidth: BorderWidth = {
   kilo: '1px',
   mega: '2px',
-};
+}
 
 export const typography = {
   headings: {
@@ -119,28 +119,27 @@ export const typography = {
       lineHeight: '30px',
     },
   },
-};
+}
 
 export const fontStack: FontStack = {
-  default:
-    'Nunito, sans-serif',
+  default: 'Nunito, sans-serif',
   brand: 'Anonymous Pro, monospace',
-};
+}
 
 export const fontWeight: FontWeight = {
   thin: '100',
   regular: '400',
   bold: '700',
-};
+}
 
 export const colors: Colors = {
   white: '#fff',
   black: '#000',
-  text: '#3F3D56',
+  text: '#000',
   grey: {
-    light: '#f1edf4',
-    normal: '#e4deea',
-    dark: '#7f7f7f',
+    light: '#f2f2f2',
+    normal: '',
+    dark: '',
   },
   background: {
     light: '#514f68',
@@ -148,18 +147,17 @@ export const colors: Colors = {
   },
   brandPrimary: {
     light: '#ffdde7',
-    normal: '#f61067',
-    dark: '#dd0456'
+    normal: '#EE3D5A',
+    dark: '#dd0456',
   },
   brandSecondary: {
-    light: '#f0ddff',
-    normal: '#565987',
-    dark: '#4E528B',
+    light: '#FFC449',
+    normal: '#F5A601',
+    dark: '#E8A10E',
   },
   brandSupport: {
     light: '',
-    normal: '#F5A600',
-    dark: ''
+    normal: '',
+    dark: '',
   },
 }
-

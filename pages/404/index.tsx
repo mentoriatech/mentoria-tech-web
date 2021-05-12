@@ -1,14 +1,16 @@
-import { Error, ErrorProps } from "dashboard/pages/Error";
+import { GetStaticProps } from 'next'
+import { Error, ErrorProps } from 'dashboard/pages/Error'
 
-export default Error;
+export default Error
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async () => {
   const props: ErrorProps = {
     content: {
-      title: "mentoria.tech | página não encontrada",
+      title: 'mentoria.tech | página não encontrada',
+      description: '',
     },
-    protectedRoute: true
-  };  
+    protectedRoute: true,
+  }
 
   return { props }
 }

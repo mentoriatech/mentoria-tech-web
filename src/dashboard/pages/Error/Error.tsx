@@ -1,18 +1,15 @@
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import HeartIncon from 'svg/heart'
+import HeartIncon from 'svg/heart.svg'
 import Layout from 'dashboard/containers/Layout'
 
-import {
-  useSession
-} from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 
-
-interface ErrorProps {
+export interface ErrorProps {
   content: {
-    title: string;
-    description: string;
-  },
+    title: string,
+    description: string,
+  };
   protectedRoute: boolean;
 }
 
@@ -30,8 +27,8 @@ export const Error: FC<ErrorProps> = ({ content, protectedRoute }) => {
 
   return (
     <>
-      <Layout content={content}>
-          Página não encontrada
+      <Layout icon={titleIcon} content={content}>
+        Página não encontrada
       </Layout>
     </>
   )

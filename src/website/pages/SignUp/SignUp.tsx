@@ -1,9 +1,6 @@
-
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import {
-  useSession
-} from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { SignUpWrapper } from './SignUp.styles'
 import { DefaultHead } from 'shared/components/DefaultHead'
 import { LoginBackground } from 'website/components/HeaderBackground'
@@ -13,32 +10,31 @@ import SingIn from 'shared/components/SignIn'
 import Container from 'shared/components/Container'
 
 type SignUpContent = {
-  title: string;
-  description?: string;
-};
+  title: string,
+  description?: string,
+}
 
 export interface SignUpProps {
   content: SignUpContent;
-  providers: { 
-    id: string;
-    name: string;
-    callbackUrl: string;
-    signinUrl: string;
-    type: string;
+  providers: {
+    id: string,
+    name: string,
+    callbackUrl: string,
+    signinUrl: string,
+    type: string,
   };
 }
 
 const providersDetails = {
   github: {
     icon: '/icons/github.svg',
-    label: 'Cadastrar com'
+    label: 'Cadastrar com',
   },
   google: {
     icon: '/icons/google.svg',
-    label: 'Cadastrar com'
-  }
+    label: 'Cadastrar com',
+  },
 }
-
 
 export const SignUp: FC<SignUpProps> = ({ content, providers }) => {
   const router = useRouter()
@@ -46,7 +42,7 @@ export const SignUp: FC<SignUpProps> = ({ content, providers }) => {
 
   if (session) {
     router.push('/dashboard')
-    return <></>;
+    return <></>
   }
 
   return (
@@ -54,15 +50,12 @@ export const SignUp: FC<SignUpProps> = ({ content, providers }) => {
       <DefaultHead title={content.title} description={content.description} />
       <main>
         <TopBar darkNav={true} />
-          <LoginBackground />
-          <Header 
-            direction="row"
-            title="msg em linguagem neutra"
-            >
-            <SignUpWrapper>
-              <SingIn providers={providers} content={providersDetails} />
-            </SignUpWrapper>
-          </Header>
+        <LoginBackground />
+        <Header direction="row" title="msg em linguagem neutra">
+          <SignUpWrapper>
+            <SingIn providers={providers} content={providersDetails} />
+          </SignUpWrapper>
+        </Header>
       </main>
     </>
   )

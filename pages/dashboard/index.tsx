@@ -1,18 +1,23 @@
-import ManageJourney, { ManageJourneyProps } from "dashboard/pages/ManageJourney";
+import ManageJourney, {
+  ManageJourneyProps,
+} from 'dashboard/pages/ManageJourney'
 
 export default ManageJourney
 
-export async function getStaticProps() {
+type StaticPropsResponse = {
+  props: ManageJourneyProps,
+}
+
+export async function getStaticProps(): Promise<StaticPropsResponse> {
   const props: ManageJourneyProps = {
     content: {
-      title: "mentoria.tech | dashboard",
+      title: 'mentoria.tech | dashboard',
     },
     user: {
+      email: '',
       name: '',
-      trelloToken: '',
-
     },
-  };
+  }
 
-  return { props };
+  return { props }
 }

@@ -1,13 +1,13 @@
-import styled from 'shared/styles/styled';
-import { css } from '@emotion/react';
+import styled from 'shared/styles/styled'
+import { css } from '@emotion/react'
 
 const variants = (theme) => ({
   primary: `
-    background-color: ${theme.colors.brandPrimary.normal};
+    background-color: ${theme.colors.black};
     color: ${theme.colors.white};
 
     &:hover {
-      background-color: ${theme.colors.brandPrimary.dark};
+      background-color: ${theme.colors.brandPrimary.normal};
     }
   `,
   secondary: `
@@ -25,7 +25,7 @@ const variants = (theme) => ({
     &:hover {
       background-color: ${theme.colors.brandSecondary.dark};
     }
-  `
+  `,
 })
 
 const sizes = (theme) => ({
@@ -44,22 +44,23 @@ const sizes = (theme) => ({
   `,
   big: `
     padding: ${theme.spacings.mega} ${theme.spacings.giga};
-  `
+  `,
 })
 
-
-export const PrimaryButton = styled('button')(({ theme, variant, size, icon }) => css`
-  ${variants(theme)[variant]}
-  ${sizes(theme)[size]}
+export const PrimaryButton = styled('button')(
+  ({ theme, variant, size, icon }) => css`
+    ${variants(theme)[variant]}
+    ${sizes(theme)[size]}
   height: fit-content;
-  border: none;
-  font-family: ${theme.fontStack.default};
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    border: none;
+    font-family: ${theme.fontStack.default};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  ${icon && `&:before {
+    ${icon &&
+    `&:before {
     content: '';
     background-image: url(${icon});
     background-size: contain;
@@ -69,11 +70,12 @@ export const PrimaryButton = styled('button')(({ theme, variant, size, icon }) =
     margin-right: ${theme.spacings.bit};
   }`}
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+      outline: 0;
+    }
 
-  &:disabled {
-    background-color: ${theme.colors.grey.light};
-  }
-`);
+    &:disabled {
+      background-color: ${theme.colors.grey.light};
+    }
+  `,
+)

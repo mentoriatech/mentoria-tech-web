@@ -1,15 +1,14 @@
-import { providers } from 'next-auth/client'
-import { Journeys, JourneysProps } from "dashboard/pages/Journeys";
- 
-export default Journeys;
+import { GetStaticProps } from 'next'
+import Journeys, { JourneysProps } from 'dashboard/pages/Journeys'
 
-export async function getStaticProps(context) {
+export default Journeys
+
+export const getStaticProps: GetStaticProps = async () => {
   const props: JourneysProps = {
     content: {
-      title: "mentoria.tech | jornadas",
+      title: 'mentoria.tech | jornadas',
     },
-    providers: await providers(context)
-  };
+  }
 
-  return { props };
+  return { props }
 }

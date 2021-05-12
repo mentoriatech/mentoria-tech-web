@@ -9,21 +9,23 @@ const functionMapping = {
   DELETE: cancelSubscription,
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { method } = req;
-  
-  const subscriptionAction = functionMapping[method];
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
+  const { method } = req
+
+  const subscriptionAction = functionMapping[method]
 
   try {
-    const response = await subscriptionAction(req.body);
+    const response = await subscriptionAction(req.body)
 
     const status = response.status || 200
 
     res.status(status).json(response)
-
   } catch (error) {
     const status = error.status || 400
-    
+
     res.status(status).json(error)
   }
 }

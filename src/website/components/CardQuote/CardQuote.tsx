@@ -1,10 +1,10 @@
-import { 
+import {
   CardQuoteWrapper,
   CardQuoteItem,
   CardQuoteImage,
   CardQuoteTitle,
   CardQuoteSubtitle,
-  CardBlockQuote
+  CardBlockQuote,
 } from './CardQuote.styles'
 
 interface CardItem {
@@ -18,7 +18,7 @@ interface CardItem {
 export default function CardQuote({ data }) {
   return (
     <CardQuoteWrapper>
-      {data.map((item : CardItem) => (
+      {data.map((item: CardItem) => (
         <CardQuoteItem className="CardQuoteItem" key={item.index}>
           <CardQuoteImage src={item.image} />
           <CardQuoteTitle>{item.title}</CardQuoteTitle>

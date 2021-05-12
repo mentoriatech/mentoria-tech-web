@@ -2,63 +2,40 @@ import { useEffect, useState, useReducer } from 'react'
 import { useSession } from 'next-auth/client'
 import { getUser, updateUser } from './ProfileService'
 import { encodeEmail } from '../../../utils/'
+import { UserType } from 'types'
 
-export const useUpdateUser = (id, userData) => {
-  const [loading, setLoadingState] = useState(false)
-  const [result, setResult] = useState(null)
-
-  useEffect(() => {
-    setLoadingState(true)
-    updateUser(id, userData)
-    .then((data) => {
-      setResult(data)
-    })
-  }, [])
-
-  return { result, loading }
+type UseUserReturn = {
+  user: UserType,
+  isLoading: boolean,
 }
 
-export const useUser = () => {
+export const useUser = (): UseUserReturn => {
   const [session, loading] = useSession()
   const [isLoading, setLoading] = useState(true)
-  const [user, setUser] = useState({
-    image: '',
-    name: '',
-    description: '',
-    gender: '',
-    occupation: '',
-    email: '',
-    email_verified: false,
-    id: 0,
-    created_at: '',
-    updated_at: '',
-  })
-  const [tick, refetchUser] = useReducer((x) => x + 1, 0)
-  
+  const [user, setUser] = useState<UserType>()
+
   useEffect(() => {
     if (!loading) {
-      const email = encodeEmail(session.user.email)
+      const email = encodeEmail(session?.user?.email)
 
       const fetchUser = async () => {
         try {
           const { data } = await getUser(email)
           setUser(data)
           setLoading(false)
-
-        } catch(error) {
+        } catch (error: unknown) {
           console.log(error)
         }
       }
-      if(!user.email) {
+
+      if (!user.email) {
         fetchUser()
       }
     }
-  }, [session, loading, tick]);
+  }, [session, loading])
 
   return {
     user,
-    refetchUser,
     isLoading,
-  };
-};
-
+  }
+}

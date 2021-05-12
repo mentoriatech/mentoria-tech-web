@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { DefaultHead } from "../../../shared/components/DefaultHead"
+import { FC } from 'react'
+import { DefaultHead } from '../../../shared/components/DefaultHead'
 import TopBar from 'website/components/TopBar'
 import Header from 'website/containers/Header'
 import { HomeBackground } from 'website/components/HeaderBackground'
@@ -10,9 +10,9 @@ import Chat from 'website/containers/Chat'
 import Footer from 'shared/containers/Footer'
 
 type HomeContent = {
-  title: string;
-  description?: string;
-};
+  title: string,
+  description?: string,
+}
 
 export interface HomeProps {
   content: HomeContent;
@@ -39,5 +39,5 @@ export const Home: FC<HomeProps> = ({ content }) => {
         <Footer />
       </main>
     </>
-  );
-};
+  )
+}

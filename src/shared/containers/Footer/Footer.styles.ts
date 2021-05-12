@@ -3,50 +3,61 @@ import Link from 'next/link'
 import styled from 'shared/styles/styled'
 import Container from 'shared/components/Container'
 
-export const FooterContainer = styled(Container)(({ theme }) => css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  
-  @media (min-width: ${theme.breakpoints.mega}px) {
-    flex-direction: row;
-  }
-`);
+export const FooterContainer = styled(Container)(
+  ({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 
-export const FooterContent = styled('footer')(({ theme }) => css`
-  width: 100%;
-  background-color: ${theme.colors.background.normal};
-  padding: ${theme.spacings.mega} 0;
-  
-  @media (min-width: ${theme.breakpoints.mega}px) {
-    padding: ${theme.spacings.exa} 0;
-  }
-`)
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      flex-direction: row;
+    }
+  `,
+)
 
-export const FooterBottom = styled('div')(({ theme }) => css`
-  width: 100%;
-  background-color: ${theme.colors.background.light};
-  padding: ${theme.spacings.byte};
-`);
+export const FooterContent = styled('footer')(
+  ({ theme }) => css`
+    width: 100%;
+    background-color: ${theme.colors.white};
+    padding: ${theme.spacings.mega} 0;
 
-export const FooterDescription = styled('div')(({ theme }) => css`
-  color: ${theme.colors.white};
-  width: 50%;
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      padding: ${theme.spacings.exa} 0;
+    }
+  `,
+)
 
-  @media (min-width: ${theme.breakpoints.mega}px) {
-    width: unset;
-    margin-right: ${theme.spacings.tera};
-  }
-`);
+export const FooterBottom = styled('div')(
+  ({ theme }) => css`
+    width: 100%;
+    background-color: ${theme.colors.grey.light};
+    padding: ${theme.spacings.byte};
+  `,
+)
 
-export const FooterText = styled('p')(({ theme }) => css`
-  font-size: ${theme.typography.text.kilo.fontSize};
-  color: #858496;
-  margin: 0;
-  `);
-  
-export const FooterNavigation = styled('ul')(({ theme, changeDirection }) => css`
+export const FooterDescription = styled('div')(
+  ({ theme }) => css`
+    color: ${theme.colors.black};
+    width: 50%;
+
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      width: unset;
+      margin-right: ${theme.spacings.tera};
+    }
+  `,
+)
+
+export const FooterText = styled('p')(
+  ({ theme }) => css`
+    font-size: ${theme.typography.text.kilo.fontSize};
+    color: #858496;
+    margin: 0;
+  `,
+)
+
+export const FooterNavigation = styled('ul')(
+  ({ theme, changeDirection }) => css`
   padding: 0;
   font-size: ${theme.typography.text.kilo.fontSize};
   margin: 28px 0 0;
@@ -99,13 +110,16 @@ export const FooterNavigation = styled('ul')(({ theme, changeDirection }) => css
       margin-left: ${theme.spacings.mega};
     }
   })
-`);
+`,
+)
 
-export const FooterLink = styled('a')(({ theme }) => css`
+export const FooterLink = styled('a')(
+  ({ theme }) => css`
     color: #c2c1ca;
     cursor: pointer;
 
     &:hover {
       text-decoration: underline;
     }
-`);
+  `,
+)

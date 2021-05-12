@@ -1,26 +1,35 @@
-import { actionType } from './config/types'
+import { UserType, actionType } from 'types'
+
+interface SetUserResponse {
+  type: string;
+  state: UserStore;
+}
+
+interface UserStore {
+  user: UserType;
+}
 
 export const userStore = {
-  user: {}
-};
+  user: {},
+}
 
-const UserStore = (state = userStore, action: actionType) => {
+const UserStore = (state: UserStore, action: actionType): UserStore => {
   switch (action.type) {
-      case 'USER':
-        return {
-          ...state,
-          ...action.state,
-        }
+    case 'USER':
+      return {
+        ...state,
+        ...action.state,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export const setUser = (state: any) => {
+export const setUser = (state: UserStore): SetUserResponse => {
   return {
     type: 'USER',
-    state
-  };
-};
+    state,
+  }
+}
 
-export default UserStore;
+export default UserStore

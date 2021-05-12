@@ -1,17 +1,15 @@
-import { FC, forwardRef } from 'react'
-import MultiSelect from 'react-select'
-import { RegisterOptions } from 'react-hook-form'
+import { FC, forwardRef, MouseEvent, SyntheticEvent } from 'react'
 
-import { 
-  InputStyled, 
-  Label, 
-  Hint, 
-  TextAreaStyled, 
+import {
+  InputStyled,
+  Label,
+  Hint,
+  TextAreaStyled,
   Fieldset,
   Form,
   ActionsWrapper,
   CustomSelect,
-  Option
+  Option,
 } from './Form.styles'
 
 import { PrimaryButton } from 'shared/components/Button'
@@ -24,97 +22,84 @@ type OptionsProps = {
 }
 
 type FieldProps = {
-  name: string;
+  name: string,
   isMulti?: boolean,
-  type?: string;
-  required?: boolean;
-  componentType?: string;
-  placeholder?: string;
-  stretch?: boolean;
-  label?: string;
-  hint?: string;
-  onHintHover?(e: any): void;
-  onChange?(e: any): void;
-  options?: Array<OptionsProps>;
-  characterLimit?: number;
-  defaultValue?: string;
+  type?: string,
+  required?: boolean,
+  componentType?: string,
+  placeholder?: string,
+  stretch?: boolean,
+  label?: string,
+  hint?: string,
+  onHintHover?: (event: MouseEvent) => void,
+  onChange?: (event: SyntheticEvent) => void,
+  options?: Array<OptionsProps>,
+  characterLimit?: number,
+  defaultValue?: string,
 }
 
 type DefaultValuesProps = {
-  name: string;
-  gender: string;
-  occupation: string;
-  description?: string;
+  name: string,
+  pronouns: string,
+  occupation: string,
+  description?: string,
 }
 
 interface FormProps {
-  register?(): void;
+  register?: () => void;
   defaultValues?: DefaultValuesProps;
   submitLabel: string;
   cancelLabel?: string;
-  onSubmit?(e: any): void;
-  onCancel?(e: any): void;
+  onSubmit?: (event: SyntheticEvent) => void;
+  onCancel?: (event: SyntheticEvent) => void;
   fields: Array<FieldProps>;
   submitDisabled?: boolean;
 }
 
-export const Input: FC<FieldProps> = forwardRef(({
-  type,
-  label,
-  hint,
-  onHintHover = () => {},
-  ...props
-}, ref) => {
-  return (
-    <Fieldset>
-      {label && <Label>{label}</Label>}
-      <InputStyled
-        ref={ref}
-        {...props}
-      />
-      {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
-    </Fieldset>
-  )
-})
+export const Input: FC<FieldProps> = forwardRef(
+  ({ label, hint, onHintHover, ...props }, ref) => {
+    return (
+      <Fieldset>
+        {label && <Label>{label}</Label>}
+        <InputStyled ref={ref} {...props} />
+        {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
+      </Fieldset>
+    )
+  },
+)
 
-export const TextArea: FC<FieldProps> = forwardRef(({
-  label,
-  defaultValue,
-  ...props
-}, ref) => {
-  return (
-    <Fieldset>
-      {label && <Label>{label}</Label>}
-      <TextAreaStyled
-        ref={ref}
-        defaultValue={defaultValue}
-        {...props}
-      >
-      </TextAreaStyled>
-    </Fieldset>
-  )
-})
+export const TextArea: FC<FieldProps> = forwardRef(
+  ({ label, defaultValue, ...props }, ref) => {
+    return (
+      <Fieldset>
+        {label && <Label>{label}</Label>}
+        <TextAreaStyled
+          ref={ref}
+          defaultValue={defaultValue}
+          {...props}
+        ></TextAreaStyled>
+      </Fieldset>
+    )
+  },
+)
 
-export const Select: FC<FieldProps> = forwardRef(({
-  isMulti,
-  label,
-  hint,
-  options,
-  onHintHover = () => {},
-  ...props
-}, ref) => {
-  return (
-    <Fieldset>
-      {label && <Label>{label}</Label>}
-      <CustomSelect ref={ref} {...props}>
-        {options.map((option) => 
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        )}
-      </CustomSelect>
-      {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
-    </Fieldset>
-  )
-})
+export const Select: FC<FieldProps> = forwardRef(
+  ({ label, hint, options, onHintHover, ...props }, ref) => {
+    return (
+      <Fieldset>
+        {label && <Label>{label}</Label>}
+        <CustomSelect ref={ref} {...props}>
+          {options.map((option) => (
+            <Option key={option.value} value={option.value}>
+              {option.label}
+            </Option>
+          ))}
+        </CustomSelect>
+        {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
+      </Fieldset>
+    )
+  },
+)
 
 const fieldComponents = {
   input: Input,
@@ -130,37 +115,41 @@ export const GeneratedForm: FC<FormProps> = ({
   cancelLabel,
   submitDisabled,
   onSubmit,
-  onCancel 
+  onCancel,
 }) => {
-    return (
-      <>
-        <Form onSubmit={onSubmit}>
-          {fields.map((field) => {
-            const FieldComponent = fieldComponents[field.componentType]
-            const defaultValue = defaultValues[field.name]
-            return (
-              <FieldComponent
-                defaultValue={defaultValue}
-                key={field.name}
-                {...field}
-                ref={register}
-              />                                                                       
-            )
-          })}
-          <ActionsWrapper>
-            {onCancel && <PrimaryButton variant="secondary" size="normal">{cancelLabel}</PrimaryButton>}
-            <PrimaryButton 
-              variant="tertiary"
-              size="normal"
-              type="submit"
-              disabled={submitDisabled}
-            >
-              {submitLabel}
+  return (
+    <>
+      <Form onSubmit={onSubmit}>
+        {fields.map((field) => {
+          const FieldComponent = fieldComponents[field.componentType]
+          const defaultValue = defaultValues[field.name]
+          return (
+            <FieldComponent
+              defaultValue={defaultValue}
+              key={field.name}
+              {...field}
+              ref={register}
+            />
+          )
+        })}
+        <ActionsWrapper>
+          {onCancel && (
+            <PrimaryButton variant="secondary" size="normal">
+              {cancelLabel}
             </PrimaryButton>
-          </ActionsWrapper>
-        </Form>
-      </>
-    )
-} 
+          )}
+          <PrimaryButton
+            variant="primary"
+            size="normal"
+            type="submit"
+            disabled={submitDisabled}
+          >
+            {submitLabel}
+          </PrimaryButton>
+        </ActionsWrapper>
+      </Form>
+    </>
+  )
+}
 
 export { Hint }

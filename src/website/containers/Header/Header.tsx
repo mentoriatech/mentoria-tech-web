@@ -3,12 +3,12 @@ import { PrimaryButton } from 'shared/components/Button'
 import { Title, Subtitle } from 'shared/components/Typography/'
 import Link from 'next/link'
 
-import { 
+import {
   HeaderStyled,
   HeaderContent,
   SubtitleWrapper,
   HeaderChildren,
-  HeaderContainer 
+  HeaderContainer,
 } from './Header.style'
 
 interface HeaderProps {
@@ -19,31 +19,33 @@ interface HeaderProps {
   buttonDestination?: string;
 }
 
-export const Header: FC<HeaderProps> = ({ 
+export const Header: FC<HeaderProps> = ({
   children,
   direction,
   title,
   subtitle,
   buttonLabel,
-  buttonDestination
+  buttonDestination,
 }) => {
   return (
     <HeaderStyled className="Header">
       <HeaderContainer className="HeaderContainer">
         <HeaderContent className="Content" direction={direction}>
-          {title && <Title color="white">{title}</Title>}
-          {subtitle && <SubtitleWrapper>
-            <Subtitle color="white">{subtitle}</Subtitle>
-            {buttonLabel && buttonDestination && (
-              <Link href={buttonDestination}>
-                <PrimaryButton variant="primary" size="normal">começar agora</PrimaryButton>
-              </Link>
-            )}
-          </SubtitleWrapper>}
+          {title && <Title>{title}</Title>}
+          {subtitle && (
+            <SubtitleWrapper>
+              <Subtitle>{subtitle}</Subtitle>
+              {buttonLabel && buttonDestination && (
+                <Link href={buttonDestination}>
+                  <PrimaryButton variant="primary" size="normal">
+                    começar agora
+                  </PrimaryButton>
+                </Link>
+              )}
+            </SubtitleWrapper>
+          )}
         </HeaderContent>
-        <HeaderChildren>
-          {children}
-        </HeaderChildren>
+        <HeaderChildren>{children}</HeaderChildren>
       </HeaderContainer>
     </HeaderStyled>
   )

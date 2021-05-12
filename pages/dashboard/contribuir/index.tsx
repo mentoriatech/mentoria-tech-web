@@ -1,13 +1,14 @@
-import { Contribute, ContributeProps } from "dashboard/pages/Contribute";
+import { GetStaticProps } from 'next'
+import { Contribute, ContributeProps } from 'dashboard/pages/Contribute'
 
-export default Contribute;
+export default Contribute
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async () => {
   const props: ContributeProps = {
     content: {
-      title: "mentoria.tech | mentoria",
+      title: 'mentoria.tech | mentoria',
     },
-  };  
+  }
 
   return { props }
 }
