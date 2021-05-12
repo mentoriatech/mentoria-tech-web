@@ -2,7 +2,7 @@ import { UserType, actionType } from 'types'
 
 interface SetUserResponse {
   type: string;
-  state: UserType;
+  state: UserStore;
 }
 
 interface UserStore {

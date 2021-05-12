@@ -51,7 +51,7 @@ export const Layout: FC<LayoutProps> = ({
     }
 
     if (session && !user?.name?.length) {
-      dispatch(setUser({ ...user, ...session?.user, ready: true }))
+      dispatch(setUser({ user: { ...user, ...session?.user, ready: true } }))
     }
   }, [session, user])
 

@@ -8,7 +8,7 @@ import {
 } from './Navigation.styles'
 
 interface Item {
-  icon: string;
+  icon?: string;
   destination: string;
   label: string;
   background?: boolean;

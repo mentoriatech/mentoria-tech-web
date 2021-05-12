@@ -1,6 +1,8 @@
 export type actionType = {
   type: string,
-  state: unknown,
+  state: {
+    user: UserType,
+  },
 }
 
 export interface ApiResponse {

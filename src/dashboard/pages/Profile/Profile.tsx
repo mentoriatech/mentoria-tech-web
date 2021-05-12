@@ -38,7 +38,6 @@ type UserProps = {
 }
 
 export const Profile: FC<ProfileProps> = ({ content, user, dispatch }) => {
-  console.log('🚀 ~ file: Profile.tsx ~ line 41 ~ dispatch', dispatch)
   const [formRequestLoading, setFormRequestLoading] = useState(false)
   const [formRequestError, setFormRequestError] = useState(false)
   const [formRequestSuccess, setFormRequestSuccess] = useState(false)
