@@ -22,36 +22,6 @@ export const createBoard = async (userId: number) => {
   return fetch(`/api/server/board`, options).then((data) => data.json())
 }
 
-export const getBoardAuthUrl = () => {
-  const url = `${process.env.NEXT_PUBLIC_TRELLO_ROOT_URL}/authorize`
-
-  const parsedQueryParams = {
-    key: process.env.NEXT_PUBLIC_TRELLO_KEY,
-    return_url: 'http://localhost:3000/dashboard/',
-    callback_method: 'fragment',
-    expiration: 'never',
-    name: 'mentoria.tech',
-    scope: 'write,read',
-    response_type: 'token',
-  }
-
-  const querystring = queryStringify(parsedQueryParams)
-
-  const authUrl = `${url}?${querystring}`
-
-  return authUrl
-}
-
-export const saveToken = (email: string) => {
-  const encodedEmail = encodeEmail(email)
-
-  try {
-    return saveTrelloAuthorization(encodedEmail)
-  } catch (error) {
-    return error
-  }
-}
-
 export const fetchBoardData = (email: string): Promise<unknown> =>
   fetch(`/api/server/board/${email}`).then((data) => data.json())
 

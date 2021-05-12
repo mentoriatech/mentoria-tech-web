@@ -20,7 +20,6 @@ export const ManageJourney: FC<ManageJourneyProps> = ({
 }) => {
   const [loading, isLoading] = useState(true)
   const { user } = props
-  console.log('🚀 ~ file: ManageJourney.tsx ~ line 23 ~ user', user)
 
   useEffect(() => {
     return user?.name && isLoading(false)
