@@ -51,13 +51,14 @@ export const PrimaryButton = styled('button')(
   ({ theme, variant, size, icon }) => css`
     ${variants(theme)[variant]}
     ${sizes(theme)[size]}
-  height: fit-content;
+    height: fit-content;
     border: none;
     font-family: ${theme.fontStack.default};
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.17s linear;
 
     ${icon &&
     `&:before {

@@ -1,0 +1,43 @@
+export const formFields = {
+  submitLabel: 'salvar',
+  cancelLabel: 'cancelar',
+  fields: [
+    {
+      name: 'weekly_time',
+      componentType: 'radio',
+      stretch: true,
+      label: 'Qual sua disponibilidade semanal?',
+      options: [
+        {
+          value: '2',
+          label: '2 horas por semana',
+        },
+        {
+          value: '4',
+          label: '4 horas por semana',
+        },
+        {
+          value: '6',
+          label: '6 horas por semana',
+        },
+        {
+          value: 'flex',
+          label: 'Flexível',
+        },
+      ],
+    },
+    {
+      name: 'journey',
+      componentType: 'select',
+      placeholder: 'Selecione',
+      stretch: true,
+      label: 'Para qual jornada você pode oferecer mentoria?',
+      options: [
+        {
+          value: 'front-end',
+          label: 'Front-End',
+        },
+      ],
+    },
+  ],
+}

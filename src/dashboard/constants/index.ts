@@ -27,3 +27,8 @@ export const TRELLO_LISTS_ALIASES = {
   DOING: 'Em andamento',
   DONE: 'Finalizado',
 }
+
+export const ENVS = {
+  DEVELOPMENT: 'development',
+  TEST: 'test',
+}

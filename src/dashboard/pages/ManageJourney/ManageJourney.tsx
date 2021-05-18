@@ -16,10 +16,9 @@ import { CustomButton, IconWrapper, StepsWrapper } from './ManageJourney.styles'
 export const ManageJourney: FC<ManageJourneyProps> = ({
   content,
   dispatch,
-  ...props
+  user,
 }) => {
   const [loading, isLoading] = useState(true)
-  const { user } = props
 
   useEffect(() => {
     return user?.name && isLoading(false)

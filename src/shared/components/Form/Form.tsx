@@ -10,6 +10,8 @@ import {
   ActionsWrapper,
   CustomSelect,
   Option,
+  CustomRadio,
+  RadioLabel,
 } from './Form.styles'
 
 import { PrimaryButton } from 'shared/components/Button'
@@ -55,6 +57,29 @@ interface FormProps {
   fields: Array<FieldProps>;
   submitDisabled?: boolean;
 }
+
+export const RadioButton: FC<FieldProps> = forwardRef(
+  ({ label, hint, onHintHover, ...props }, ref) => {
+    return (
+      <Fieldset>
+        {label && <Label>{label}</Label>}
+        {props.options.map((option) => (
+          <RadioLabel>
+            <CustomRadio
+              type="radio"
+              name="example"
+              checked
+              ref={ref}
+              {...props}
+            />
+            {option.label}
+          </RadioLabel>
+        ))}
+        {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
+      </Fieldset>
+    )
+  },
+)
 
 export const Input: FC<FieldProps> = forwardRef(
   ({ label, hint, onHintHover, ...props }, ref) => {
@@ -105,6 +130,7 @@ const fieldComponents = {
   input: Input,
   textarea: TextArea,
   select: Select,
+  radio: RadioButton,
 }
 
 export const GeneratedForm: FC<FormProps> = ({
@@ -122,7 +148,7 @@ export const GeneratedForm: FC<FormProps> = ({
       <Form onSubmit={onSubmit}>
         {fields.map((field) => {
           const FieldComponent = fieldComponents[field.componentType]
-          const defaultValue = defaultValues[field.name]
+          const defaultValue = defaultValues ? defaultValues[field.name] : ''
           return (
             <FieldComponent
               defaultValue={defaultValue}
