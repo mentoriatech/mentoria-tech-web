@@ -21,8 +21,8 @@ type ProviderType = {
 }
 
 export interface LoginProps {
-  content: LoginContent;
-  providers: {
+  content?: LoginContent;
+  providers?: {
     credentials: ProviderType,
     github: ProviderType,
     google: ProviderType,

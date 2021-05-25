@@ -46,6 +46,7 @@ export const Profile: FC<ProfileProps> = ({ content, user }) => {
     <Layout content={content}>
       <PageGrid>
         <ProfileForm
+          user={user}
           onSubmit={onSubmit}
           fields={formFields}
           defaultValues={defaultValues}
