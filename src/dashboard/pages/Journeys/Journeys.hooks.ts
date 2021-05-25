@@ -1,8 +1,21 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
-export const useJourneys = (userId) => {
-  const [journeys, setJourneys] = useState([])
+type JourneyType = {
+  title: string,
+  description: string,
+  featuredImage: string,
+  image: string,
+  slug: string,
+  type: string,
+}
+
+interface UseJourneysProps {
+  journeys: JourneyType[];
+}
+
+export const useJourneys = (userId: number): UseJourneysProps => {
+  const [journeys, setJourneys] = useState<JourneyType[]>([])
 
   useEffect(() => {
     const fetchJourneys = async () => {
@@ -10,17 +23,10 @@ export const useJourneys = (userId) => {
         const {
           data: { data },
         } = await axios(`/api/server/journeys/${userId}`)
-        console.log(
-          '🚀 ~ file: Journeys.hooks.ts ~ line 11 ~ fetchJourneys ~ data',
-          data,
-        )
 
         setJourneys(data)
-      } catch (error) {
-        console.log(
-          '🚀 ~ file: Journeys.hooks.ts ~ line 15 ~ fetchJourneys ~ error',
-          error,
-        )
+      } catch (error: unknown) {
+        return error
       }
     }
 

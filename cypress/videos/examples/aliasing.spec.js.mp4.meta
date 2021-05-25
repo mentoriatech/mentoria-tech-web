@@ -1,0 +1,11 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=1614
+END=2593
+title=Aliasing .as() - alias a DOM element for later use
+[CHAPTER]
+TIMEBASE=1/1000
+START=2223
+END=3577
+title=Aliasing .as() - alias a route for later use

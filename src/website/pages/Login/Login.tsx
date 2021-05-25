@@ -12,14 +12,20 @@ type LoginContent = {
   description?: string,
 }
 
+type ProviderType = {
+  id: string,
+  name: string,
+  callbackUrl: string,
+  signinUrl: string,
+  type: string,
+}
+
 export interface LoginProps {
   content: LoginContent;
   providers: {
-    id: string,
-    name: string,
-    callbackUrl: string,
-    signinUrl: string,
-    type: string,
+    credentials: ProviderType,
+    github: ProviderType,
+    google: ProviderType,
   };
 }
 

@@ -6,7 +6,7 @@
       "dashboard/*": ["src/dashboard/*"],
       "website/*": ["src/website/*"],
       "theme/*": ["src/shared/styles/theme/*"],
-      "utils/*": ["src/utils/*"],
+      "utils/*": ["src/utils/*.ts"],
       "svg/*": ["public/icons/*"],
       "context/*": ["src/context/*"],
       "store/*": [ "src/store/*"],

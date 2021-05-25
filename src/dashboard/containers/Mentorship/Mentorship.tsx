@@ -74,13 +74,6 @@ export const Mentorship: FC<MentorshipProps> = ({ content, user }) => {
         <MentorshipTitle>Quero mentorar</MentorshipTitle>
         {!mentor ? (
           <>
-            <MentorshipDescription>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              scelerisque neque at orci imperdiet finibus. Sed pretium elit
-              dolor, id laoreet massa faucibus malesuada. Ut maximus tellus at
-              sollicitudin convallis. Fusce nec venenatis tellus, a cursus eros.
-              Nulla maximus efficitur iaculis.
-            </MentorshipDescription>
             <CustomButton
               onClick={handleMentorClick}
               variant="primary"
@@ -100,13 +93,6 @@ export const Mentorship: FC<MentorshipProps> = ({ content, user }) => {
       </CustomCard>
       <CustomCard>
         <MentorshipTitle>Quero mentoria</MentorshipTitle>
-        <MentorshipDescription>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          scelerisque neque at orci imperdiet finibus. Sed pretium elit dolor,
-          id laoreet massa faucibus malesuada. Ut maximus tellus at sollicitudin
-          convallis. Fusce nec venenatis tellus, a cursus eros. Nulla maximus
-          efficitur iaculis.
-        </MentorshipDescription>
         <CustomButton variant="primary" size="normal">
           Pedir mentoria
         </CustomButton>

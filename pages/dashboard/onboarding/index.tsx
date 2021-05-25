@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
-import Mentorship, { MentorshipProps } from 'dashboard/pages/Mentorship'
+import Onboarding, { OnboardingProps } from 'dashboard/pages/Onboarding'
 
-export default Mentorship
+export default Onboarding
 
 export const getStaticProps: GetStaticProps = async () => {
-  const props: MentorshipProps = {
+  const props: OnboardingProps = {
     content: {
       title: 'mentoria.tech | jornadas',
     },

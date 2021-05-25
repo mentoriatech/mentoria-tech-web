@@ -21,8 +21,8 @@ type JourneysContent = {
 
 export interface JourneysProps {
   content: JourneysContent;
-  user: {
-    id: number,
+  user?: {
+    id?: number,
   };
 }
 

@@ -14,8 +14,9 @@ export const MentorshipContainer = styled('div')(
 export const MentorshipTitle = styled('div')(
   ({ theme }) => css`
     width: 100%;
-    font-size: ${theme.typography.headings.giga.fontSize};
+    font-size: ${theme.typography.headings.mega.fontSize};
     font-weight: ${theme.fontWeight.bold};
+    margin-bottom: ${theme.spacings.mega};
   `,
 )
 
@@ -23,7 +24,7 @@ export const MentorshipDescription = styled('div')(
   ({ theme }) => css`
     width: 100%;
     font-weight: ${theme.fontWeight.thin};
-    font-size: ${theme.typography.text.giga.fontSize};
+    font-size: ${theme.typography.text.mega.fontSize};
   `,
 )
 
@@ -41,8 +42,7 @@ export const Description = styled('div')(
 export const CustomCard = styled(Card)(
   ({ theme }) => css`
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px;
+    // min-height: 300px;
     font-size: ${theme.typography.text.kilo.fontSize};
     font-weight: ${theme.fontWeight.thin};
   `,
