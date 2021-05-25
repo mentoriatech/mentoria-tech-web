@@ -7,14 +7,16 @@ interface GetStaticProps {
   props: LoginProps;
 }
 
-export async function getStaticProps(
+export async function getServerSideProps(
   context: unknown,
 ): Promise<GetStaticProps> {
-  const props: LoginProps = {
+  const loginProviders = await providers(context)
+
+  const props = {
     content: {
       title: 'mentoria.tech | entrar',
     },
-    providers: await providers(context),
+    providers: loginProviders,
   }
 
   return { props }

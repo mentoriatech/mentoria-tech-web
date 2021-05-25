@@ -35,11 +35,11 @@ const WizardBar: FC<WizardProps> = ({ totalSteps, currentStep }) => {
   )
 }
 
-export const Onboarding: FC<OnboardingProps> = () => {
+export const Onboarding: FC<OnboardingProps> = ({ user }) => {
   return (
     <OnboardingContainer>
       <StepWizard nav={<WizardBar />}>
-        <ProfileStep />
+        <ProfileStep user={user} />
         <MentorshipStep />
       </StepWizard>
     </OnboardingContainer>

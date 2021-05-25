@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
 import ProfileForm from 'dashboard/containers/ProfileForm'
+import { UserType } from 'types'
 
 const ProfileWrapper = styled('div')(
   () => css`
@@ -11,16 +12,17 @@ const ProfileWrapper = styled('div')(
 
 interface ProfileFormStepProps {
   nextStep?: () => void;
+  user: UserType;
 }
 
-const ProfileFormStep: FC<ProfileFormStepProps> = ({ nextStep }) => {
+const ProfileFormStep: FC<ProfileFormStepProps> = ({ nextStep, user }) => {
   const submitProfile = () => {
     nextStep()
   }
 
   return (
     <ProfileWrapper>
-      <ProfileForm beforeSubmit={submitProfile} />
+      <ProfileForm beforeSubmit={submitProfile} user={user} />
     </ProfileWrapper>
   )
 }

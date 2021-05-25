@@ -22,7 +22,7 @@ export interface ProfileProps {
 }
 
 export const Profile: FC<ProfileProps> = ({ user, beforeSubmit, dispatch }) => {
-  console.log('🚀 ~ file: Profile.tsx ~ line 24 ~ beforeSubmit', beforeSubmit)
+  console.log('🚀 ~ file: Profile.tsx ~ line 25 ~ user', user)
   const [formRequestLoading, setFormRequestLoading] = useState(false)
   const [formRequestError, setFormRequestError] = useState(false)
   const [formRequestSuccess, setFormRequestSuccess] = useState(false)

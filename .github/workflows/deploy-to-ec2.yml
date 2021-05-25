@@ -1,0 +1,48 @@
+name: GitHub Actions Demo
+
+on: push
+
+jobs:
+  build:
+    name: Name of the Build job
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.0.0]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Using Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Install dependencies
+      run: |
+        npm install -g yarn
+        yarn --pure-lockfile
+    
+    - name: Build app
+      run: |
+        yarn
+        yarn build
+    
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'

@@ -76,7 +76,7 @@ export const Layout: FC<LayoutProps> = ({
     if (!hasFullUser && session?.user?.email && !isLoading) {
       fetchUser()
     }
-  }, [user.ready, session?.user?.email])
+  }, [user?.ready, session?.user?.email])
 
   return (
     <>
