@@ -20,7 +20,7 @@
     "babel-plugin-inline-react-svg": "^2.0.1",
     "cypress": "^7.2.0",
     "cypress-social-logins": "^1.11.3",
-    "eslint": "^7.24.0",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "global": "^4.4.0",
@@ -31,14 +31,16 @@
     "nextjs-breadcrumbs": "^0.9.9",
     "pg": "^8.5.1",
     "plop": "^2.7.4",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "react": "17.0.1",
+    "react-albus": "^2.0.0",
     "react-cookie": "^4.0.3",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.4",
     "react-images-uploading": "^3.1.2",
     "react-redux": "^7.2.3",
     "react-select": "^4.1.0",
+    "react-step-wizard": "^5.3.6",
     "redux": "^4.0.5",
     "sass": "^1.32.7"
   },
@@ -47,16 +49,22 @@
     "@types/react": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "redux-devtools-extension": "^2.13.9",
     "type-coverage": "^2.17.5",
     "typescript": "^4.2.4"
   },
   "typeCoverage": {
-    "atLeast": 90,
+    "atLeast": 100,
     "debug": false,
     "detail": false,
     "project": "tsconfig.json",
-    "ignore-files": ["src/**/**/**/*.styles.ts", "src/shared/styles/theme/utils/*", "custom.d.ts"],
+    "ignore-files": [
+      "src/**/**/**/*.styles.ts",
+      "src/shared/styles/theme/utils/*",
+      "custom.d.ts"
+    ],
     "strict": false,
     "suppressError": true
   }

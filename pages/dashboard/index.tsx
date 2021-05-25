@@ -1,15 +1,13 @@
-import ManageJourney, {
-  ManageJourneyProps,
-} from 'dashboard/pages/ManageJourney'
+import Profile, { ProfileProps } from 'dashboard/pages/Profile'
 
-export default ManageJourney
+export default Profile
 
 type StaticPropsResponse = {
-  props: ManageJourneyProps,
+  props: ProfileProps,
 }
 
 export async function getStaticProps(): Promise<StaticPropsResponse> {
-  const props: ManageJourneyProps = {
+  const props: ProfileProps = {
     content: {
       title: 'mentoria.tech | dashboard',
     },

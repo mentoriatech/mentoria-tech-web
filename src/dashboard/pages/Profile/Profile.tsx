@@ -1,17 +1,11 @@
-import { FC, Dispatch, SyntheticEvent, useState } from 'react'
+import { FC, Dispatch, SyntheticEvent } from 'react'
 import { useForm } from 'react-hook-form'
-import Form from 'shared/components/Form'
-import Loading from 'shared/components/Loading'
-import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
-import Card from 'dashboard/components/Card'
-import ProfileIcon from 'svg/profile.svg'
 import { formFields, updateUser } from './ProfileService'
+import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
 import Layout from 'dashboard/containers/Layout'
-import { setUser } from 'store/userStore'
-import { actionType } from 'types'
+import { actionType, UserType } from 'types'
 import { PageGrid } from './Profile.styles'
-
-const { GeneratedForm } = Form
+import ProfileForm from 'dashboard/containers/ProfileForm'
 
 type ProfileContent = {
   title: string,
@@ -20,37 +14,18 @@ type ProfileContent = {
 
 export interface ProfileProps {
   content: ProfileContent;
-  user?: UserProps;
+  user?: UserType;
   dispatch?: Dispatch<actionType>;
 }
 
-type UserProps = {
-  image: string,
-  name: string,
-  description?: string,
-  pronouns?: string,
-  occupation?: string,
-  email: string,
-  email_verified: boolean,
-  id: number,
-  created_at?: string,
-  updated_at?: string,
-}
-
-export const Profile: FC<ProfileProps> = ({ content, user, dispatch }) => {
-  const [formRequestLoading, setFormRequestLoading] = useState(false)
-  const [formRequestError, setFormRequestError] = useState(false)
-  const [formRequestSuccess, setFormRequestSuccess] = useState(false)
-
-  const { register, getValues, watch, formState } = useForm({
+export const Profile: FC<ProfileProps> = ({ content, user }) => {
+  const { getValues, watch } = useForm({
     mode: 'onChange',
   })
 
   const watchFields = watch()
 
-  const presentationFields = { ...user, ...watchFields }
-
-  const { isDirty } = formState
+  const presentationFields: UserType = { ...user, ...watchFields }
 
   const defaultValues = {
     name: user.name,
@@ -59,40 +34,22 @@ export const Profile: FC<ProfileProps> = ({ content, user, dispatch }) => {
     description: user.description,
   }
 
-  const profileIcon = <ProfileIcon />
-
-  const onSubmit = async (event: SyntheticEvent) => {
-    setFormRequestLoading(true)
+  const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
 
     const values = getValues()
 
-    try {
-      const { successful, data } = await updateUser(user.email, values)
-      if (!status) {
-        setTimeout(() => {
-          setFormRequestLoading(false)
-          setFormRequestSuccess(true)
-        }, 1000)
-      }
-    } catch (error: unknown) {
-      setFormRequestError(true)
-    }
+    return updateUser(user.email, values)
   }
 
   return (
     <Layout content={content}>
       <PageGrid>
-        <Card title="Editar">
-          {formRequestLoading && <Loading label="Salvando alterações" />}
-          <GeneratedForm
-            defaultValues={defaultValues}
-            onSubmit={onSubmit}
-            register={register}
-            submitDisabled={!isDirty}
-            {...formFields}
-          />
-        </Card>
+        <ProfileForm
+          onSubmit={onSubmit}
+          fields={formFields}
+          defaultValues={defaultValues}
+        />
         <div>
           <ProfileVisualization
             user={presentationFields}

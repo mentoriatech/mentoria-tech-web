@@ -49,7 +49,7 @@ export default NextAuth({
   ],
   pages: {
     error: '/auth/error', // Error code passed in query string as ?error=
-    newUser: '/dashboard',
+    newUser: '/dashboard/onboarding',
   },
   // A database is optional, but required to persist accounts in a database
   database: {

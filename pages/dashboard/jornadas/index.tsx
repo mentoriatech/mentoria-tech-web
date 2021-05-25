@@ -11,6 +11,7 @@ export async function getStaticProps(): Promise<StaticPropsResponse> {
     content: {
       title: 'mentoria.tech | dashboard',
     },
+    user: {},
   }
 
   return { props }

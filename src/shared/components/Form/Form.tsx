@@ -66,9 +66,9 @@ export const RadioButton: FC<FieldProps> = forwardRef(
         {props.options.map((option) => (
           <RadioLabel>
             <CustomRadio
+              value={option.value}
               type="radio"
               name="example"
-              checked
               ref={ref}
               {...props}
             />
