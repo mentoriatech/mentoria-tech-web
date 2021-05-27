@@ -1,2 +1,3 @@
 MentoriaTechWeb: 
   component: '@sls-next/serverless-component'
+  stage: production

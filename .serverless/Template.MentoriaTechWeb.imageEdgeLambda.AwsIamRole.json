@@ -2,8 +2,8 @@
   "name": "e6n2tdb-3ecam3k",
   "arn": "arn:aws:iam::333383341199:role/e6n2tdb-3ecam3k",
   "service": [
-    "lambda.amazonaws.com",
-    "edgelambda.amazonaws.com"
+    "edgelambda.amazonaws.com",
+    "lambda.amazonaws.com"
   ],
   "policy": {
     "Version": "2012-10-17",
