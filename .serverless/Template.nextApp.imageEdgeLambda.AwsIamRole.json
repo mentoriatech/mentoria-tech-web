@@ -1,9 +1,9 @@
 {
-  "name": "e6n2tdb-iwhmsq",
-  "arn": "arn:aws:iam::333383341199:role/e6n2tdb-iwhmsq",
+  "name": "e6n2tdb-pbp3v87",
+  "arn": "arn:aws:iam::333383341199:role/e6n2tdb-pbp3v87",
   "service": [
-    "edgelambda.amazonaws.com",
-    "lambda.amazonaws.com"
+    "lambda.amazonaws.com",
+    "edgelambda.amazonaws.com"
   ],
   "policy": {
     "Version": "2012-10-17",
@@ -19,7 +19,7 @@
       },
       {
         "Effect": "Allow",
-        "Resource": "arn:aws:s3:::e6n2tdb-tooaywsj/*",
+        "Resource": "arn:aws:s3:::e6n2tdb-j383ut/*",
         "Action": [
           "s3:GetObject",
           "s3:PutObject"

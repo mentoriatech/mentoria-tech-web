@@ -1,8 +1,8 @@
 {
-  "name": "e6n2tdb-u8nl9da",
-  "hash": "Ap0RH3FGuIrcRKjC+ky+RdnBydsBhF9+o2QvgHBed4k=",
+  "name": "e6n2tdb-vrli4ol",
+  "hash": "hV7Bdppqq+dMqLJ/OX/UGjJB5YL+D9Erlfu3GlfkXLA=",
   "description": "Image Lambda@Edge for Next CloudFront distribution",
-  "memory": 512,
+  "memory": 1024,
   "timeout": 10,
   "code": "/Users/evellyn.montalvao/projects/mentoria-tech-web/.serverless_nextjs/image-lambda",
   "shims": [],
@@ -10,8 +10,8 @@
   "runtime": "nodejs12.x",
   "env": {},
   "role": {
-    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-3ecam3k"
+    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-pbp3v87"
   },
-  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-u8nl9da",
+  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-vrli4ol",
   "region": "us-east-1"
 }

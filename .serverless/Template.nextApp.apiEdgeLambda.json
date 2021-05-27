@@ -1,8 +1,8 @@
 {
-  "name": "e6n2tdb-er0plng",
-  "hash": "k+MSgIOWtwbfKYZeIWK6+0+PHIwRuv2EosHWXprKcow=",
+  "name": "e6n2tdb-e8adu9l",
+  "hash": "Wu1zaP0+lLu1IY3x/JjvUwNbkUPMe66O0BLs4qenTQY=",
   "description": "API Lambda@Edge for Next CloudFront distribution",
-  "memory": 512,
+  "memory": 1024,
   "timeout": 10,
   "code": "/Users/evellyn.montalvao/projects/mentoria-tech-web/.serverless_nextjs/api-lambda",
   "shims": [],
@@ -10,8 +10,8 @@
   "runtime": "nodejs12.x",
   "env": {},
   "role": {
-    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-ib9p2j"
+    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-kys6q0k"
   },
-  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-er0plng",
+  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-e8adu9l",
   "region": "us-east-1"
 }

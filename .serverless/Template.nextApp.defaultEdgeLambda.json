@@ -1,8 +1,8 @@
 {
-  "name": "e6n2tdb-b395gv",
-  "hash": "NszAfDZVP+NFculerwLg35ElekubTlfnwoQLcuIfCwI=",
+  "name": "e6n2tdb-d965nfq",
+  "hash": "LqMf0+kOS7PKrsNi1QK6tog+uUxVTK5MgQFJ+VlYlWs=",
   "description": "Default Lambda@Edge for Next CloudFront distribution",
-  "memory": 512,
+  "memory": 1024,
   "timeout": 10,
   "code": "/Users/evellyn.montalvao/projects/mentoria-tech-web/.serverless_nextjs/default-lambda",
   "shims": [],
@@ -10,8 +10,8 @@
   "runtime": "nodejs12.x",
   "env": {},
   "role": {
-    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-iwhmsq"
+    "arn": "arn:aws:iam::333383341199:role/e6n2tdb-je1w6ua"
   },
-  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv",
+  "arn": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-d965nfq",
   "region": "us-east-1"
 }

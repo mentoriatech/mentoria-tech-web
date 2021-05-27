@@ -17,13 +17,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Dependencies
-      run: yarn
+      run: yarn && yarn add pg-native
     - name: Build
       run: yarn build
-    - name: Serverless
-      uses: serverless/github-action@master
-      with:
-        args: deploy
+    - name: Serverless install
+      run: npm install -g serverless-cli && npm i @sls-next/serverless-component
+    - name: Serverless deploy
+      run: sls deploy
       env:
         NEXTAUTH_URL: "https://mentoria.tech"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
