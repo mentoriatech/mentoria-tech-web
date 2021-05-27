@@ -138,8 +138,8 @@ export const colors: Colors = {
   text: '#000',
   grey: {
     light: '#f2f2f2',
-    normal: '',
-    dark: '',
+    normal: '#eee',
+    dark: '#272727',
   },
   background: {
     light: '#514f68',

@@ -16,7 +16,7 @@ export const List = styled('ul')(
       position: fixed;
       right: -100%;
       transition: all 0.5s linear;
-      background-color: ${theme.colors.brandSecondary.dark};
+      background-color: ${theme.colors.white};
       width: 100%;
       padding: 84px 0 0;
     }
@@ -59,6 +59,7 @@ export const NavigationStyled = styled('div')(
 
     input:checked + label ~ ul {
       right: 0;
+      width: 90%;
     }
 
     input:checked + label {
