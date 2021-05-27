@@ -20,6 +20,8 @@ jobs:
       run: yarn
     - name: Build
       run: yarn build
+    - name: Serverless Login
+      run: serverless login
     - name: Serverless
       uses: serverless/github-action@master
       with:
@@ -30,4 +32,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         GH_APPLICATION_CLIENT_ID: ${{ secrets.GH_APPLICATION_CLIENT_ID }}
         GH_APPLICATION_CLIENT_SECRET: ${{ secrets.GH_APPLICATION_CLIENT_SECRET }}
+
+
+        
 

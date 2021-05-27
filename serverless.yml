@@ -1,3 +1,2 @@
-MentoriaTechWeb: 
-  component: '@sls-next/serverless-component'
-  stage: production
+component: website
+name: mentoria-tech
