@@ -31,6 +31,3 @@ jobs:
         GH_APPLICATION_CLIENT_ID: ${{ secrets.GH_APPLICATION_CLIENT_ID }}
         GH_APPLICATION_CLIENT_SECRET: ${{ secrets.GH_APPLICATION_CLIENT_SECRET }}
 
-
-        
-
