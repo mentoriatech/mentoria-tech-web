@@ -4,7 +4,7 @@ import Container from 'shared/components/Container'
 
 export const LoginWrapper = styled('div')(
   ({ theme }) => css`
-    width: 50%;
+    width: 100%;
     height: 100%;
     margin-top: ${theme.spacings.giga};
 
@@ -15,9 +15,14 @@ export const LoginWrapper = styled('div')(
 )
 
 export const PageWrapper = styled(Container)(
-  () => css`
+  ({ theme }) => css`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
+
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      flex-direction: row;
+    }
   `,
 )

@@ -9,10 +9,6 @@ export default NextAuth({
       clientSecret: process.env.GH_APPLICATION_CLIENT_SECRET,
       scope: 'user,repo',
     }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
   ],
   pages: {
     error: '/auth/error', // Error code passed in query string as ?error=

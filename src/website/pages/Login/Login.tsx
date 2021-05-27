@@ -55,7 +55,7 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
       <TopBar darkNav={true} />
       <PageWrapper>
         <LoginBackground />
-        <LoginWrapper>
+        <LoginWrapper className="LoginWrapper">
           <SingIn providers={providers} content={providersDetails} />
         </LoginWrapper>
       </PageWrapper>

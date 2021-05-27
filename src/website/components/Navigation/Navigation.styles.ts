@@ -9,6 +9,7 @@ export const List = styled('ul')(
     display: flex;
     width: 100%;
     margin-top: -45px;
+    z-index: 2;
 
     @media (max-width: ${theme.breakpoints.giga}px) {
       flex-direction: column;
@@ -17,6 +18,7 @@ export const List = styled('ul')(
       right: -100%;
       transition: all 0.5s linear;
       background-color: ${theme.colors.white};
+      box-shadow: -1px 0px 4px rgba(0, 0, 0, 0.1);
       width: 100%;
       padding: 84px 0 0;
     }
@@ -85,7 +87,7 @@ export const NavigationStyled = styled('div')(
       position: relative;
       transition: all 0.2s linear;
       margin-bottom: 5px;
-      z-index: 1;
+      z-index: 3;
 
       &:after {
         content: '';

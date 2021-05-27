@@ -1,14 +1,14 @@
 {
-  "id": "E2S1XDF08RQ71J",
-  "arn": "arn:aws:cloudfront::333383341199:distribution/E2S1XDF08RQ71J",
-  "url": "https://dghbw6chq0e5o.cloudfront.net",
+  "id": "E108H04ADY2KXA",
+  "arn": "arn:aws:cloudfront::333383341199:distribution/E108H04ADY2KXA",
+  "url": "https://d30ohc03muv8kv.cloudfront.net",
   "region": "us-east-1",
   "enabled": true,
   "comment": "",
   "priceClass": "PriceClass_All",
   "origins": [
     {
-      "url": "http://e6n2tdb-tooaywsj.s3.us-east-1.amazonaws.com",
+      "url": "http://e6n2tdb-w9yqqw.s3.us-east-1.amazonaws.com",
       "private": true,
       "pathPatterns": {
         "_next/static/*": {
@@ -45,7 +45,7 @@
             "PATCH"
           ],
           "lambda@edge": {
-            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-er0plng:4"
+            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-er0plng:10"
           }
         },
         "_next/image*": {
@@ -67,7 +67,7 @@
             ]
           },
           "lambda@edge": {
-            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-u8nl9da:4"
+            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-u8nl9da:10"
           }
         },
         "_next/data/*": {
@@ -79,8 +79,8 @@
             "GET"
           ],
           "lambda@edge": {
-            "origin-response": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:4",
-            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:4"
+            "origin-response": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:10",
+            "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:10"
           }
         }
       }
@@ -105,8 +105,8 @@
       "PATCH"
     ],
     "lambda@edge": {
-      "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:4",
-      "origin-response": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:4"
+      "origin-request": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:10",
+      "origin-response": "arn:aws:lambda:us-east-1:333383341199:function:e6n2tdb-b395gv:10"
     },
     "compress": true
   }

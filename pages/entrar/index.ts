@@ -17,5 +17,7 @@ export async function getServerSideProps(
     providers: await providers(context),
   }
 
+  console.log(props)
+
   return { props }
 }

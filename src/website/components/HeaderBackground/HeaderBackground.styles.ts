@@ -22,16 +22,20 @@ export const Background = styled('div')(
 export const LoginBackgroundStyled = styled('div')(
   ({ theme }) => css`
     width: 100%;
+    height: 300px;
     background-image: url('/images/sign.svg');
     background-repeat: no-repeat;
     background-position: 100% 50%;
-    background-size: 700px;
-    height: 100vh;
+    background-size: 100%;
     display: block;
+    margin-top: ${theme.spacings.zetta};
     // position: absolute;
     z-index: -1;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
+      margin-top: 0;
+      height: 100vh;
+      background-size: 700px;
       width: 50%;
     }
   `,
