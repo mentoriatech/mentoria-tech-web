@@ -21,9 +21,9 @@ jobs:
     - name: Build
       run: yarn build
     - name: Serverless install
-      run: npm install -g serverless-cli && npm i @sls-next/serverless-component
+      run: npm install -g serverless && npm i -g @sls-next/serverless-component
     - name: Serverless deploy
-      run: sls deploy
+      run: serverless --component=MentoriaTechWeb build && serverless --component=MentoriaTechWeb deploy 
       env:
         NEXTAUTH_URL: "https://mentoria.tech"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
