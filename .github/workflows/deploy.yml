@@ -11,13 +11,6 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1
-      with:
-        envkey_DEBUG: false
-        envkey_NEXTAUTH_URL: "https://mentoria.tech"
-        envkey_GH_APPLICATION_CLIENT_ID: ${{ secrets.GH_APPLICATION_CLIENT_ID }}
-        envkey_GH_APPLICATION_CLIENT_SECRET: ${{ secrets.GH_APPLICATION_CLIENT_SECRET }}
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -32,6 +25,9 @@ jobs:
       with:
         args: deploy
       env:
+        NEXTAUTH_URL: "https://mentoria.tech"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GH_APPLICATION_CLIENT_ID: ${{ secrets.GH_APPLICATION_CLIENT_ID }}
+        GH_APPLICATION_CLIENT_SECRET: ${{ secrets.GH_APPLICATION_CLIENT_SECRET }}
 
