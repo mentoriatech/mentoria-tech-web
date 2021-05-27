@@ -5,12 +5,13 @@ import Container from 'shared/components/Container'
 export const HeaderStyled = styled('div')(
   ({ theme }) => css`
     position: relative;
-    height: 400px;
+    padding: calc(${theme.spacings.zetta} * 2) 0 0;
     width: 100%;
     margin-bottom: ${theme.spacings.zetta};
 
     @media (min-width: ${theme.breakpoints.mega}px) {
-      margin-bottom: calc(${theme.spacings.zetta} * 3);
+      padding: 0;
+      margin-bottom: calc(${theme.spacings.zetta} * 2);
       height: 600px;
     }
 
@@ -26,11 +27,10 @@ export const HeaderContent = styled('div')(
     display: inline-flex;
     z-index: 1;
     width: 100%;
-    text-align: center;
+    text-align: left;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
       width: 50%;
-      text-align: left;
     }
   `,
 )
@@ -38,7 +38,6 @@ export const HeaderContent = styled('div')(
 export const SubtitleWrapper = styled('div')(
   ({ theme }) => css`
     margin-top: ${theme.spacings.kilo};
-    display: none;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
       display: block;

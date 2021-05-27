@@ -1,11 +1,11 @@
-import { 
-  FooterContent, 
-  FooterBottom, 
-  FooterDescription, 
+import {
+  FooterContent,
+  FooterBottom,
+  FooterDescription,
   FooterNavigation,
   FooterContainer,
   FooterText,
-  FooterLink
+  FooterLink,
 } from './Footer.styles'
 import Link from 'next/link'
 import Logo from 'shared/components/Logo'
@@ -13,39 +13,39 @@ import Logo from 'shared/components/Logo'
 const footerNavigation = [
   {
     label: 'Seja nosso parceiro',
-    destination: '/'
+    destination: '/',
   },
   {
     label: 'Fale com a gente',
-    destination: '/'
+    destination: '/',
   },
   {
     label: 'Slack',
-    destination: '/'
+    destination: '/',
   },
   {
     label: 'Blog',
-    destination: '/'
-  }
+    destination: '/',
+  },
 ]
 
 const footerSocialMedia = [
   {
     image: '/icons/slack-logo.svg',
-    destination: '/'
+    destination: '/',
   },
   {
     image: '/icons/twitter-logo.svg',
-    destination: '/'
+    destination: '/',
   },
   {
     image: '/icons/instagram-logo.svg',
-    destination: '/'
+    destination: '/',
   },
   {
     image: '/icons/facebook-logo.svg',
-    destination: '/'
-  }
+    destination: '/',
+  },
 ]
 
 export default function Footer() {
@@ -53,10 +53,12 @@ export default function Footer() {
     <>
       <FooterContent className="FooterContent">
         <FooterContainer className="Container">
+          <Logo size="small" />
+        </FooterContainer>
+        <FooterContainer className="Container">
           <FooterDescription className="FooterDescription">
-            <Logo size="small" />
             <FooterText className="FooterTex">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
+              Lorem ipsum dolor sit amet, consectetur adipiscing
             </FooterText>
           </FooterDescription>
           <FooterNavigation className="FooterNavigation" changeDirection={true}>
@@ -81,9 +83,7 @@ export default function Footer() {
       </FooterContent>
       <FooterBottom>
         <FooterContainer>
-          <FooterText>
-            © mentoria.tech 2021
-          </FooterText>
+          <FooterText>© mentoria.tech 2021</FooterText>
         </FooterContainer>
       </FooterBottom>
     </>

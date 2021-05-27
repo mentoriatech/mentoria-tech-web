@@ -48,11 +48,11 @@ const howItWorksContent = [
 
 export const HowItWorks: FC = () => {
   return (
-    <Section title="como funciona" direction="column">
-      <Container>
+    <Container>
+      <Section title="como funciona" direction="column">
         <Card data={howItWorksContent} direction="row" />
         <SectionLink href="/" label="mapa de conhecimento" />
-      </Container>
-    </Section>
+      </Section>
+    </Container>
   )
 }

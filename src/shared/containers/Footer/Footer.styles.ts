@@ -7,10 +7,12 @@ export const FooterContainer = styled(Container)(
   ({ theme }) => css`
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
+    padding: ${theme.spacings.mega} 0;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
+      align-items: center;
       flex-direction: row;
     }
   `,
@@ -60,9 +62,13 @@ export const FooterNavigation = styled('ul')(
   ({ theme, changeDirection }) => css`
   padding: 0;
   font-size: ${theme.typography.text.kilo.fontSize};
-  margin: 28px 0 0;
   display: flex;
   flex-direction: ${changeDirection ? 'column' : 'row'};
+  margin: 0 0 0 ${theme.spacings.kilo};
+  
+  @media (min-width: ${theme.breakpoints.mega}px) {
+    margin: ${theme.spacings.byte} 0 0;
+  }
 
   &:last-child {
     width: 100%;

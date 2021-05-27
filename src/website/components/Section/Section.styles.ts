@@ -16,7 +16,7 @@ export const SectionTitleStyled = styled(SectionTitle)(
     font-family: ${theme.fontStack.brand};
     font-size: ${theme.typography.headings.mega.fontSize};
     margin-bottom: ${spaceBottom ? theme.spacings.zetta : 0};
-    text-align: center;
+    text-align: left;
 
     &:before {
       content: '_';
@@ -32,24 +32,25 @@ export const SectionTitleStyled = styled(SectionTitle)(
 
 export const SectionDescription = styled('p')(
   ({ theme }) => css`
-    text-align: center;
-    width: 80%;
+    text-align: left;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: ${theme.spacings.zetta};
     font-size: ${theme.typography.headings.kilo.fontSize};
 
     @media (min-width: ${theme.breakpoints.mega}px) {
+      text-align: center;
       font-size: ${theme.typography.headings.mega.fontSize};
     }
   `,
 )
 
 export const SectionContentWrapper = styled('div')(
-  ({ theme, direction }) => css`
+  ({ direction }) => css`
     display: flex;
     flex-direction: ${direction};
-    align-items: center;
+    justify-content: space-between;
   `,
 )
 

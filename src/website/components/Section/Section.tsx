@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Link from 'next/link'
 
 import {
@@ -13,36 +14,33 @@ interface Section {
   title?: string;
   description?: string;
   direction?: string;
-  children: any;
 }
 
-export default function Section({
-  title,
-  description,
-  direction,
-  children,
-}: Section) {
-  return (
-    <SectionStyled>
-      {title && (
-        <SectionTitleStyled spaceBottom={!description}>
-          {title}
-        </SectionTitleStyled>
-      )}
-      {description && <SectionDescription>{description}</SectionDescription>}
-      <SectionContentWrapper direction={direction}>
-        {children}
-      </SectionContentWrapper>
-    </SectionStyled>
-  )
+interface SectionLinkProps {
+  href: string;
+  label: string;
 }
 
-export function SectionLink({ href, label }) {
-  return (
-    <SectionLinkWrapper>
-      <Link href={href}>
-        <SectionLinkStyled>{label}</SectionLinkStyled>
-      </Link>
-    </SectionLinkWrapper>
-  )
-}
+const Section: FC<Section> = ({ title, description, direction, children }) => (
+  <SectionStyled>
+    {title && (
+      <SectionTitleStyled spaceBottom={!description}>
+        {title}
+      </SectionTitleStyled>
+    )}
+    {description && <SectionDescription>{description}</SectionDescription>}
+    <SectionContentWrapper direction={direction}>
+      {children}
+    </SectionContentWrapper>
+  </SectionStyled>
+)
+const SectionLink: FC<SectionLinkProps> = ({ href, label }) => (
+  <SectionLinkWrapper>
+    <Link href={href}>
+      <SectionLinkStyled>{label}</SectionLinkStyled>
+    </Link>
+  </SectionLinkWrapper>
+)
+
+export default Section
+export { SectionLink }

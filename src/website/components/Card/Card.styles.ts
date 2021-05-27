@@ -77,10 +77,11 @@ export const CardContent = styled('div')(
 
 export const CardTitle = styled('h3')(
   ({ theme }) => css`
-    font-weight: ${theme.fontWeight.regular};
-    font-size: ${theme.typography.headings.mega.fontSize};
-    margin: 0 0 ${theme.spacings.giga};
-    text-align: center;
+    width: 100%;
+    font-weight: ${theme.fontWeight.bold};
+    font-size: ${theme.typography.headings.kilo.fontSize};
+    margin: 0 0 ${theme.spacings.kilo};
+    text-align: left;
 
     &:before {
       content: '_';
@@ -88,14 +89,22 @@ export const CardTitle = styled('h3')(
     }
 
     @media (min-width: ${theme.breakpoints.mega}px) {
-      text-align: left;
+      margin: 0 0 ${theme.spacings.giga};
+      font-weight: ${theme.fontWeight.regular};
+      font-size: ${theme.typography.headings.mega.fontSize};
+      text-align: center;
     }
   `,
 )
 
 export const CardSubtitle = styled('div')(
   ({ theme }) => css`
+    text-align: left;
     font-size: ${theme.typography.subHeadings.giga};
+
+    @media (min-width: ${theme.breakpoints.mega}px) {
+      text-align: center;
+    }
   `,
 )
 
@@ -103,11 +112,11 @@ export const CardText = styled('div')(
   ({ theme }) => css`
     font-size: ${theme.typography.text.mega.fontSize};
     font-family: ${theme.fontStack.default};
-    text-align: center;
+    text-align: left;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
+      text-align: center;
       font-size: ${theme.typography.text.giga.fontSize};
-      text-align: left;
     }
   `,
 )

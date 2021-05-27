@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 
 const sizes = {
   mobile: {
-    small: '100px',
+    small: '140px',
     medium: '150px',
     large: '200px',
   },

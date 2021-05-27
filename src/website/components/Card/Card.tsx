@@ -25,19 +25,21 @@ export default function Card(props: CardsProps) {
   return (
     <>
       {props.data.map((card: CardProps, index: number) => (
-        <CardStyled
-          className="Card"
-          direction={props.direction}
-          align={card.alignEnd ? 'end' : 'start'}
-        >
-          <CardImage src={card.image} order={card.order} />
+        <CardStyled className="Card" direction={props.direction}>
+          <CardImage
+            className="CardImage"
+            src={card.image}
+            order={card.order}
+          />
           <CardContent
             align={card.alignEnd ? 'end' : 'start'}
             className="CardContent"
           >
-            <CardTitle>{card.title}</CardTitle>
-            <CardSubtitle>{card.subtitle}</CardSubtitle>
-            {card.text && <CardText>{card.text}</CardText>}
+            <CardTitle className="CardTitle">{card.title}</CardTitle>
+            <CardSubtitle className="CardSubtitle">
+              {card.subtitle}
+            </CardSubtitle>
+            {card.text && <CardText className="CardText">{card.text}</CardText>}
           </CardContent>
         </CardStyled>
       ))}

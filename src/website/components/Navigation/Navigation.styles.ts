@@ -6,12 +6,11 @@ export const List = styled('ul')(
     margin: 0;
     padding: 0;
     align-items: center;
-    display: none;
+    display: flex;
     width: 100%;
     margin-top: -45px;
 
     @media (max-width: ${theme.breakpoints.giga}px) {
-      display: flex;
       flex-direction: column;
       height: 110%;
       position: fixed;
@@ -80,7 +79,7 @@ export const NavigationStyled = styled('div')(
     label {
       height: 2px;
       width: 25px;
-      background-color: ${theme.colors.white};
+      background-color: ${theme.colors.black};
       display: block;
       position: relative;
       transition: all 0.2s linear;
@@ -91,7 +90,7 @@ export const NavigationStyled = styled('div')(
         content: '';
         height: 2px;
         width: 25px;
-        background-color: ${theme.colors.white};
+        background-color: ${theme.colors.black};
         display: block;
         position: absolute;
         bottom: -5px;
@@ -102,7 +101,7 @@ export const NavigationStyled = styled('div')(
         content: '';
         height: 2px;
         width: 25px;
-        background-color: ${theme.colors.white};
+        background-color: ${theme.colors.black};
         display: block;
         position: absolute;
         top: -5px;

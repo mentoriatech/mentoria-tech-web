@@ -40,9 +40,12 @@ const sizes = (theme) => ({
     font-size: ${theme.typography.text.giga.fontSize};
     font-weight: ${theme.fontWeight.bold};
     border-radius: ${theme.borderRadius.tera};
-
-  `,
+    
+    `,
   big: `
+    font-weight: ${theme.fontWeight.bold};
+    font-size: ${theme.typography.text.giga.fontSize};
+    border-radius: ${theme.borderRadius.tera};
     padding: ${theme.spacings.mega} ${theme.spacings.giga};
   `,
 })

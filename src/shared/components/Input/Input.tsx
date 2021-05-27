@@ -7,12 +7,14 @@ interface Input {
   onButtonClick?: string;
 }
 
-export default function Input(props : Input) {
+export default function Input(props: Input) {
   return (
     <InputWrapper>
       <InputStyled {...props} />
       {props.buttonInline && (
-        <InputButton variant="primary" size="normal" onClick={props.onButtonClick}>{props.buttonLabel}</InputButton>
+        <InputButton variant="primary" size="big" onClick={props.onButtonClick}>
+          {props.buttonLabel}
+        </InputButton>
       )}
     </InputWrapper>
   )
