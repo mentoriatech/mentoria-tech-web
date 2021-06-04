@@ -22,6 +22,7 @@ type ProviderType = {
 
 export interface LoginProps {
   content?: LoginContent;
+  domain: string;
   providers?: {
     credentials: ProviderType,
     github: ProviderType,
@@ -40,7 +41,7 @@ const providersDetails = {
   },
 }
 
-export const Login: FC<LoginProps> = ({ content, providers }) => {
+export const Login: FC<LoginProps> = ({ content, providers, domain }) => {
   const router = useRouter()
   const [session] = useSession()
 
@@ -56,7 +57,11 @@ export const Login: FC<LoginProps> = ({ content, providers }) => {
       <PageWrapper>
         <LoginBackground />
         <LoginWrapper className="LoginWrapper">
-          <SingIn providers={providers} content={providersDetails} />
+          <SingIn
+            providers={providers}
+            domain={domain}
+            content={providersDetails}
+          />
         </LoginWrapper>
       </PageWrapper>
     </>

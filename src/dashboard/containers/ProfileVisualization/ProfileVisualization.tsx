@@ -19,6 +19,7 @@ export const ProfileVisualization: FC<ProfileVisualizationProps> = ({
   user,
   title,
 }) => {
+  console.log('🚀 ~ file: ProfileVisualization.tsx ~ line 22 ~ user', user)
   return (
     <>
       {user && (

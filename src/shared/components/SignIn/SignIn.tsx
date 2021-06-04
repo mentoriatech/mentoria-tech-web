@@ -1,5 +1,5 @@
 import { signIn } from 'next-auth/client'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { LoginWrapper, LoginButton } from './SignIn.styles'
 import Form from 'shared/components/Form'
 import Link from 'next/link'
@@ -25,18 +25,18 @@ interface SignInProps {
       label: string,
     },
   };
+  domain: string;
 }
-// criar botão de login com email e senha que só aparece no ambiente te teste do cypress
 
-export const SignIn: FC<SignInProps> = ({ providers, content }) => {
-  const callbackURL = `${process.env.NEXT_CURRENT_URL}/dashboard`
+export const SignIn: FC<SignInProps> = ({ providers, content, domain }) => {
+  const callbackURL = `${domain}/dashboard`
   return (
     <LoginWrapper className="LoginWrapper">
       {Object.keys(providers).map((prop) => (
         <>
           {content[prop]?.icon && (
             <LoginButton
-              data-testid={providers[prop].name}
+              data-testid={providers[prop]?.name}
               variant="primary"
               size="normal"
               key={prop}
@@ -45,7 +45,7 @@ export const SignIn: FC<SignInProps> = ({ providers, content }) => {
               }
             >
               <img src={content[prop].icon} />
-              Login com {providers[prop].name}
+              Login com {providers[prop]?.name}
             </LoginButton>
           )}
         </>

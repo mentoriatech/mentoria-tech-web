@@ -1,13 +1,13 @@
 import { css } from '@emotion/react'
 import styled from 'shared/styles/styled'
-import Card from 'dashboard/components/Card'
 import { PrimaryButton } from 'shared/components/Button'
+import Card from 'dashboard/components/Card'
 
-export const MentorshipContainer = styled('div')(
+export const MentorshipContainer = styled(Card)(
   () => css`
-    display: grid;
-    grid-template-columns: calc(50% - 16px) calc(50% - 16px);
-    grid-gap: 32px;
+    // display: grid;
+    // grid-template-columns: calc(50% - 16px) calc(50% - 16px);
+    // grid-gap: 32px;
   `,
 )
 
@@ -36,15 +36,6 @@ export const Description = styled('div')(
     width: 90%;
     display: block;
     margin-bottom: ${theme.spacings.giga};
-  `,
-)
-
-export const CustomCard = styled(Card)(
-  ({ theme }) => css`
-    flex-direction: column;
-    // min-height: 300px;
-    font-size: ${theme.typography.text.kilo.fontSize};
-    font-weight: ${theme.fontWeight.thin};
   `,
 )
 

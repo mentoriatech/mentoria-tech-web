@@ -24,8 +24,12 @@ interface CardsProps {
 export default function Card(props: CardsProps) {
   return (
     <>
-      {props.data.map((card: CardProps, index: number) => (
-        <CardStyled className="Card" direction={props.direction}>
+      {props.data.map((card: CardProps) => (
+        <CardStyled
+          key={card.title}
+          className="Card"
+          direction={props.direction}
+        >
           <CardImage
             className="CardImage"
             src={card.image}

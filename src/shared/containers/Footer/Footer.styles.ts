@@ -21,7 +21,7 @@ export const FooterContainer = styled(Container)(
 export const FooterContent = styled('footer')(
   ({ theme }) => css`
     width: 100%;
-    background-color: ${theme.colors.white};
+    background-color: ${theme.colors.black};
     padding: ${theme.spacings.mega} 0;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
@@ -33,7 +33,7 @@ export const FooterContent = styled('footer')(
 export const FooterBottom = styled('div')(
   ({ theme }) => css`
     width: 100%;
-    background-color: ${theme.colors.grey.light};
+    background-color: ${theme.colors.grey.dark};
     padding: ${theme.spacings.byte};
   `,
 )

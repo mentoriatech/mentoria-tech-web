@@ -73,6 +73,11 @@ export const Layout: FC<LayoutProps> = ({
       }
     }
 
+    console.log(
+      '🚀 ~ file: Layout.tsx ~ line 77 ~ useEffect ~ hasFullUser',
+      hasFullUser,
+    )
+
     if (!hasFullUser && session?.user?.email && !isLoading) {
       fetchUser()
     }

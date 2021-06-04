@@ -1,5 +1,4 @@
-import { FC, Dispatch, SyntheticEvent } from 'react'
-import { useForm } from 'react-hook-form'
+import { FC, Dispatch, useState, useEffect } from 'react'
 import { formFields, updateUser } from './ProfileService'
 import ProfileVisualization from 'dashboard/containers/ProfileVisualization'
 import Layout from 'dashboard/containers/Layout'
@@ -19,13 +18,9 @@ export interface ProfileProps {
 }
 
 export const Profile: FC<ProfileProps> = ({ content, user }) => {
-  const { getValues, watch } = useForm({
-    mode: 'onChange',
-  })
+  const [formRequestLoading, setFormRequestLoading] = useState(false)
 
-  const watchFields = watch()
-
-  const presentationFields: UserType = { ...user, ...watchFields }
+  const [presentationFields, setPresentationFields] = useState<UserType>({})
 
   const defaultValues = {
     name: user.name,
@@ -34,23 +29,41 @@ export const Profile: FC<ProfileProps> = ({ content, user }) => {
     description: user.description,
   }
 
-  const onSubmit = (event: SyntheticEvent) => {
-    event.preventDefault()
+  const onSubmit = async (values: UserType) => {
+    setFormRequestLoading(true)
 
-    const values = getValues()
+    try {
+      await updateUser(user.email, values)
 
-    return updateUser(user.email, values)
+      setTimeout(() => {
+        setFormRequestLoading(false)
+      }, 1000)
+    } catch (error) {
+      setFormRequestLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    setPresentationFields((prev) => ({ ...prev, ...user }))
+  }, [user])
+
+  const onChange = (name: string, value: string) => {
+    setPresentationFields((prev) => ({ ...prev, [name]: value }))
   }
 
   return (
     <Layout content={content}>
       <PageGrid>
-        <ProfileForm
-          user={user}
-          onSubmit={onSubmit}
-          fields={formFields}
-          defaultValues={defaultValues}
-        />
+        <div>
+          <ProfileForm
+            isLoading={formRequestLoading}
+            user={user}
+            onSubmit={onSubmit}
+            onChange={onChange}
+            fields={formFields}
+            defaultValues={defaultValues}
+          />
+        </div>
         <div>
           <ProfileVisualization
             user={presentationFields}

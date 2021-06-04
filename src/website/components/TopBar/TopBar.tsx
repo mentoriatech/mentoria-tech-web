@@ -7,12 +7,13 @@ const items = [
   {
     icon: '',
     label: 'slack',
-    destination: '/',
+    destination:
+      'https://join.slack.com/t/mentoriatech/shared_invite/zt-r05kwhua-jvUHSyJBn_LgCKmBanlOAQ',
   },
   {
     icon: '',
     label: 'blog',
-    destination: '/blog',
+    destination: 'https://blog.mentoria.tech',
   },
   {
     label: 'entrar',

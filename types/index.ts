@@ -20,7 +20,7 @@ export interface UserType {
   email_verified?: unknown;
   id?: number;
   image?: string;
-  mentor?: unknown;
+  mentor?: boolean;
   name?: string;
   occupation?: string;
   pronouns?: string;

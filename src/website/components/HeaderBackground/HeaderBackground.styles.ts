@@ -12,8 +12,8 @@ export const Background = styled('div')(
     z-index: -2;
 
     @media (min-width: ${theme.breakpoints.mega}px) {
-      background-size: 700px;
-      background-position: 100% 50%;
+      background-size: 850px;
+      background-position: calc(100% + 200px) 50%;
       width: 100%;
     }
   `,

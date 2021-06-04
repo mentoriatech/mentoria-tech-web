@@ -9,7 +9,6 @@ export const ContainerStyled = styled(Container)(
     width: 90%;
     justify-content: space-between;
     align-items: center;
-    background-color: ${theme.colors.white};
 
     @media (min-width: ${theme.breakpoints.mega}) {
       width: 1024px;

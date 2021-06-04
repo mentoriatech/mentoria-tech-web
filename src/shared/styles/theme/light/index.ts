@@ -136,6 +136,10 @@ export const colors: Colors = {
   white: '#fff',
   black: '#000',
   text: '#000',
+  status: {
+    error: '#c63535',
+    success: '#b0cc12',
+  },
   grey: {
     light: '#f2f2f2',
     normal: '#eee',

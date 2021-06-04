@@ -1,3 +1,4 @@
+import { NextPageContext } from 'next'
 import { providers } from 'next-auth/client'
 import { Login, LoginProps } from 'src/website/pages/Login'
 
@@ -8,16 +9,15 @@ interface GetStaticProps {
 }
 
 export async function getServerSideProps(
-  context: unknown,
+  context: NextPageContext,
 ): Promise<GetStaticProps> {
   const props = {
     content: {
       title: 'mentoria.tech | entrar',
     },
+    domain: context.req.headers.host,
     providers: await providers(context),
   }
-
-  console.log(props)
 
   return { props }
 }

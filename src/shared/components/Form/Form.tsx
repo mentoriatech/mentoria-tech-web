@@ -1,4 +1,4 @@
-import { FC, forwardRef, MouseEvent, SyntheticEvent } from 'react'
+import { FC, forwardRef, MouseEvent, BaseSyntheticEvent } from 'react'
 
 import {
   InputStyled,
@@ -34,7 +34,7 @@ type FieldProps = {
   label?: string,
   hint?: string,
   onHintHover?: (event: MouseEvent) => void,
-  onChange?: (event: SyntheticEvent) => void,
+  onChange?: (name: string, value: string) => void,
   options?: Array<OptionsProps>,
   characterLimit?: number,
   defaultValue?: string,
@@ -52,19 +52,24 @@ interface FormProps {
   defaultValues?: DefaultValuesProps;
   submitLabel: string;
   cancelLabel?: string;
-  onSubmit?: (event: SyntheticEvent) => void;
-  onCancel?: (event: SyntheticEvent) => void;
+  onSubmit?: (event: BaseSyntheticEvent) => void;
+  onCancel?: (event: BaseSyntheticEvent) => void;
+  onChange?: (name: string, value: string) => void;
   fields: Array<FieldProps>;
   submitDisabled?: boolean;
 }
 
 export const RadioButton: FC<FieldProps> = forwardRef(
-  ({ label, hint, onHintHover, ...props }, ref) => {
+  ({ label, hint, onHintHover, onChange, ...props }, ref) => {
     return (
       <Fieldset>
         {label && <Label>{label}</Label>}
         {props.options.map((option) => (
-          <RadioLabel>
+          <RadioLabel
+            onChange={(e: BaseSyntheticEvent) =>
+              onChange(props.name, e.target.value)
+            }
+          >
             <CustomRadio
               value={option.value}
               type="radio"
@@ -82,11 +87,17 @@ export const RadioButton: FC<FieldProps> = forwardRef(
 )
 
 export const Input: FC<FieldProps> = forwardRef(
-  ({ label, hint, onHintHover, ...props }, ref) => {
+  ({ label, hint, onHintHover, onChange, ...props }, ref) => {
     return (
       <Fieldset>
         {label && <Label>{label}</Label>}
-        <InputStyled ref={ref} {...props} />
+        <InputStyled
+          onChange={(e: BaseSyntheticEvent) =>
+            onChange(props.name, e.target.value)
+          }
+          ref={ref}
+          {...props}
+        />
         {hint && <Hint onHover={onHintHover}>{hint}</Hint>}
       </Fieldset>
     )
@@ -94,12 +105,15 @@ export const Input: FC<FieldProps> = forwardRef(
 )
 
 export const TextArea: FC<FieldProps> = forwardRef(
-  ({ label, defaultValue, ...props }, ref) => {
+  ({ label, defaultValue, onChange, ...props }, ref) => {
     return (
       <Fieldset>
         {label && <Label>{label}</Label>}
         <TextAreaStyled
           ref={ref}
+          onChange={(e: BaseSyntheticEvent) =>
+            onChange(props.name, e.target.value)
+          }
           defaultValue={defaultValue}
           {...props}
         ></TextAreaStyled>
@@ -109,11 +123,17 @@ export const TextArea: FC<FieldProps> = forwardRef(
 )
 
 export const Select: FC<FieldProps> = forwardRef(
-  ({ label, hint, options, onHintHover, ...props }, ref) => {
+  ({ label, hint, options, onHintHover, onChange, ...props }, ref) => {
     return (
       <Fieldset>
         {label && <Label>{label}</Label>}
-        <CustomSelect ref={ref} {...props}>
+        <CustomSelect
+          ref={ref}
+          {...props}
+          onChange={(e: BaseSyntheticEvent) =>
+            onChange(props.name, e.target.value)
+          }
+        >
           {options.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.label}
@@ -141,6 +161,7 @@ export const GeneratedForm: FC<FormProps> = ({
   cancelLabel,
   submitDisabled,
   onSubmit,
+  onChange,
   onCancel,
 }) => {
   return (
@@ -151,6 +172,7 @@ export const GeneratedForm: FC<FormProps> = ({
           const defaultValue = defaultValues ? defaultValues[field.name] : ''
           return (
             <FieldComponent
+              onChange={onChange}
               defaultValue={defaultValue}
               key={field.name}
               {...field}

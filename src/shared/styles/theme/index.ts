@@ -1,7 +1,7 @@
-import * as Types from './types';
-import * as defaultTheme from './light';
+import * as Types from './types'
+import * as defaultTheme from './light'
 
-const light: Types.Theme = { ...defaultTheme };
+const light: Types.Theme = { ...defaultTheme }
 
-export type Theme = Types.Theme;
-export { light };
+export type Theme = Types.Theme
+export { light }

@@ -12,10 +12,11 @@ const variants = (theme) => ({
   `,
   secondary: `
     background-color: ${theme.colors.grey.normal};
-    color: ${theme.colors.brandSecondary.dark};
+    color: ${theme.colors.black};
 
     &:hover {
-      background-color: ${theme.colors.grey.light};
+      background-color: ${theme.colors.brandPrimary.normal};
+      color: ${theme.colors.white};
     }
   `,
   tertiary: `

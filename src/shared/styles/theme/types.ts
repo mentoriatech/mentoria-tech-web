@@ -10,7 +10,11 @@ export type Colors = {
   background: {
     light: string;
     normal: string;
-  }
+  };
+  status: {
+    error: string,
+    success: string,
+  };
   brandPrimary: { 
     light: string,
     normal: string,

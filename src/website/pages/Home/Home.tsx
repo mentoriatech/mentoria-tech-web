@@ -29,9 +29,7 @@ export const Home: FC<HomeProps> = ({ content }) => {
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit et pellentesque orci sagittis eget. Sed tristique nibh lorem."
           buttonLabel="começar agora"
           buttonDestination="/cadastro"
-        >
-          <HomeBackground />
-        </Header>
+        />
         <HowItWorks />
         <Mentors />
         <PresentationVideo />

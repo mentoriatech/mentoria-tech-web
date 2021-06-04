@@ -15,8 +15,8 @@ export const SectionTitleStyled = styled(SectionTitle)(
   ({ theme, spaceBottom }) => css`
     font-family: ${theme.fontStack.brand};
     font-size: ${theme.typography.headings.mega.fontSize};
-    margin-bottom: ${spaceBottom ? theme.spacings.zetta : 0};
-    text-align: left;
+    margin-bottom: ${spaceBottom ? theme.spacings.giga : 0};
+    text-align: center;
 
     &:before {
       content: '_';

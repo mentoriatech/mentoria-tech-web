@@ -9,6 +9,7 @@ import {
   SubtitleWrapper,
   HeaderChildren,
   HeaderContainer,
+  HeaderBackground,
 } from './Header.style'
 
 interface HeaderProps {
@@ -29,24 +30,26 @@ export const Header: FC<HeaderProps> = ({
 }) => {
   return (
     <HeaderStyled className="Header">
-      <HeaderContainer className="HeaderContainer">
-        <HeaderContent className="Content" direction={direction}>
-          {title && <Title>{title}</Title>}
-          {subtitle && (
-            <SubtitleWrapper>
-              <Subtitle>{subtitle}</Subtitle>
-              {buttonLabel && buttonDestination && (
-                <Link href={buttonDestination}>
-                  <PrimaryButton variant="primary" size="normal">
-                    começar agora
-                  </PrimaryButton>
-                </Link>
-              )}
-            </SubtitleWrapper>
-          )}
-        </HeaderContent>
-        <HeaderChildren>{children}</HeaderChildren>
-      </HeaderContainer>
+      <HeaderBackground>
+        <HeaderContainer className="HeaderContainer">
+          <HeaderContent className="Content" direction={direction}>
+            {title && <Title>{title}</Title>}
+            {subtitle && (
+              <SubtitleWrapper>
+                <Subtitle>{subtitle}</Subtitle>
+                {buttonLabel && buttonDestination && (
+                  <Link href={buttonDestination}>
+                    <PrimaryButton variant="secondary" size="normal">
+                      começar agora
+                    </PrimaryButton>
+                  </Link>
+                )}
+              </SubtitleWrapper>
+            )}
+          </HeaderContent>
+          <HeaderChildren>{children}</HeaderChildren>
+        </HeaderContainer>
+      </HeaderBackground>
     </HeaderStyled>
   )
 }

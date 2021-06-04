@@ -4,13 +4,12 @@ import { removeEmptyFields } from 'utils/index'
 export const updateUser = async (
   email: string,
   body: UserTypeState,
-  isMentor: boolean,
 ): Promise<UpdateUserResponse> => {
   const cleanBody = removeEmptyFields(body)
 
   const options = {
     method: 'PUT',
-    body: JSON.stringify({ ...cleanBody, mentor: !!isMentor }),
+    body: JSON.stringify({ ...cleanBody }),
   }
 
   return fetch(`/api/server/user/${email}`, options).then((data) => data.json())

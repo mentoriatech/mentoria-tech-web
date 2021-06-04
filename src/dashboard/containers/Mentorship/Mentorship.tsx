@@ -1,17 +1,9 @@
-import { FC, useState, SyntheticEvent } from 'react'
+import { FC, SyntheticEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import Form from 'shared/components/Form'
-import { formFields, updateUser } from './MentorshipService'
+import { formFields } from './MentorshipService'
 import { UserType } from 'types'
-import Loading from 'shared/components/Loading'
-
-import {
-  MentorshipContainer,
-  MentorshipTitle,
-  CustomCard,
-  MentorshipDescription,
-  CustomButton,
-} from './Mentorship.styles'
+import { MentorshipContainer, CustomButton } from './Mentorship.styles'
 
 const { GeneratedForm } = Form
 
@@ -21,82 +13,42 @@ export interface MentorshipProps {
     description?: string,
   };
   user?: UserType;
+  mentor?: boolean;
+  onSubmit: (state: unknown) => void;
 }
 
-export const Mentorship: FC<MentorshipProps> = ({ content, user }) => {
-  const initialState = {
-    mentor: false,
-    mentored: false,
-  }
-  const [formRequestError, setFormRequestError] = useState(initialState)
-  const [formRequestSuccess, setFormRequestSuccess] = useState(initialState)
-  const [formRequestLoading, setFormRequestLoading] = useState(initialState)
-  const [mentor, setMentor] = useState(false)
-  const [mentored, setMentored] = useState(false)
-
+export const Mentorship: FC<MentorshipProps> = ({ mentor, onSubmit }) => {
   const { register, getValues, formState } = useForm({
     mode: 'onChange',
   })
 
-  const { isDirty } = formState
-
-  const onSubmit = async (event: SyntheticEvent, isMentor: boolean) => {
-    const userType = isMentor ? 'mentor' : 'mentored'
-    setFormRequestLoading((prev) => ({ ...prev, [userType]: true }))
+  const beforeSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-
     const values = getValues()
 
-    try {
-      const { successful, data } = await updateUser(
-        user.email,
-        values,
-        isMentor,
-      )
-      if (!status) {
-        setTimeout(() => {
-          setFormRequestLoading((prev) => ({ ...prev, [userType]: false }))
-          setFormRequestSuccess((prev) => ({ ...prev, [userType]: true }))
-        }, 1000)
-      }
-    } catch (error: unknown) {
-      setFormRequestLoading((prev) => ({ ...prev, [userType]: false }))
-      setFormRequestError((prev) => ({ ...prev, [userType]: true }))
-    }
+    onSubmit(values)
   }
 
-  const handleMentorClick = () => setMentor(true)
+  const { isDirty } = formState
 
   return (
     <MentorshipContainer>
-      <CustomCard>
-        {formRequestLoading.mentor && <Loading label="Salvando alterações" />}
-        <MentorshipTitle>Quero mentorar</MentorshipTitle>
-        {!mentor ? (
-          <>
-            <CustomButton
-              onClick={handleMentorClick}
-              variant="primary"
-              size="normal"
-            >
-              Começar a mentoriar
-            </CustomButton>
-          </>
-        ) : (
-          <GeneratedForm
-            onSubmit={(e) => onSubmit(e, true)}
-            register={register}
-            submitDisabled={!isDirty}
-            {...formFields}
-          />
-        )}
-      </CustomCard>
-      <CustomCard>
-        <MentorshipTitle>Quero mentoria</MentorshipTitle>
-        <CustomButton variant="primary" size="normal">
-          Pedir mentoria
-        </CustomButton>
-      </CustomCard>
+      {mentor && (
+        <GeneratedForm
+          onSubmit={beforeSubmit}
+          register={register}
+          submitDisabled={!isDirty}
+          {...formFields}
+        />
+      )}
+      {!mentor && (
+        <>
+          <img src="https://plchldr.co/i/500x400" />
+          <CustomButton variant="primary" size="normal">
+            Quero mentoria
+          </CustomButton>
+        </>
+      )}
     </MentorshipContainer>
   )
 }

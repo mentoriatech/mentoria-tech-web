@@ -16,6 +16,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_NEXTAUTH_URL: "https://mentoria.tech"
+        envkey_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        envkey_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        envkey_GH_APPLICATION_CLIENT_ID: ${{ secrets.GH_APPLICATION_CLIENT_ID }}
+        envkey_GH_APPLICATION_CLIENT_SECRET: ${{ secrets.GH_APPLICATION_CLIENT_SECRET }}
+        file_name: .env
     - name: Dependencies
       run: yarn && yarn add pg-native
     - name: Build

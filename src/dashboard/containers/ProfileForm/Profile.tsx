@@ -1,11 +1,10 @@
-import { FC, SyntheticEvent, Dispatch, useState } from 'react'
+import { FC, SyntheticEvent, Dispatch, useEffect, useMemo } from 'react'
+import Loading from 'shared/components/Loading'
 import { useForm } from 'react-hook-form'
 import Form from 'shared/components/Form'
-import Loading from 'shared/components/Loading'
 import Card from 'dashboard/components/Card'
-import { formFields, updateUser } from './ProfileService'
+import { formFields } from './ProfileService'
 import { actionType, UserType } from 'types'
-import { setUser } from 'store/userStore'
 
 const { GeneratedForm } = Form
 
@@ -18,15 +17,19 @@ export interface ProfileProps {
   content: ProfileContent;
   user?: UserType;
   dispatch?: Dispatch<actionType>;
-  beforeSubmit?: () => void;
+  onSubmit?: (values: unknown) => void;
+  onChange?: (values: unknown) => void;
+  hideTitle?: boolean;
+  isLoading?: boolean;
 }
 
-export const Profile: FC<ProfileProps> = ({ user, beforeSubmit, dispatch }) => {
-  console.log('🚀 ~ file: Profile.tsx ~ line 25 ~ user', user)
-  const [formRequestLoading, setFormRequestLoading] = useState(false)
-  const [formRequestError, setFormRequestError] = useState(false)
-  const [formRequestSuccess, setFormRequestSuccess] = useState(false)
-
+export const Profile: FC<ProfileProps> = ({
+  user,
+  onSubmit,
+  hideTitle,
+  onChange,
+  isLoading,
+}) => {
   const { register, getValues, formState } = useForm({
     mode: 'onChange',
   })
@@ -40,41 +43,24 @@ export const Profile: FC<ProfileProps> = ({ user, beforeSubmit, dispatch }) => {
     description: user.description,
   }
 
-  const onSubmit = async (event: SyntheticEvent) => {
-    if (beforeSubmit) {
-      beforeSubmit()
-    }
-
-    setFormRequestLoading(true)
+  const beforeSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-
     const values = getValues()
 
-    try {
-      const { successful } = await updateUser(user.email, values)
-      if (successful) {
-        setTimeout(() => {
-          setFormRequestLoading(false)
-          setFormRequestSuccess(true)
-        }, 1000)
-      }
-    } catch (error: unknown) {
-      setFormRequestError(true)
-    }
+    onSubmit(values)
   }
 
   return (
-    <Card title="Editar">
-      {formRequestLoading && <Loading label="Salvando alterações" />}
+    <Card title={!hideTitle && 'Editar'}>
+      {isLoading && <Loading label="Salvando alterações" />}
       <GeneratedForm
+        onChange={onChange}
         defaultValues={defaultValues}
-        onSubmit={onSubmit}
+        onSubmit={beforeSubmit}
         register={register}
         submitDisabled={!isDirty}
         {...formFields}
       />
-      {formRequestSuccess && 'Foi'}
-      {formRequestError && 'Nao foi'}
     </Card>
   )
 }
