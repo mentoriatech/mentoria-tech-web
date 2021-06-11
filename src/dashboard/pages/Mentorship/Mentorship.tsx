@@ -1,4 +1,4 @@
-import { FC, useState, SyntheticEvent } from 'react'
+import { FC, useState, BaseSyntheticEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import Form from 'shared/components/Form'
 import { formFields, updateUser } from './MentorshipService'
@@ -40,7 +40,7 @@ export const Mentorship: FC<MentorshipProps> = ({ content, user }) => {
 
   const { isDirty } = formState
 
-  const onSubmit = async (event: SyntheticEvent, isMentor: boolean) => {
+  const onSubmit = async (event: BaseSyntheticEvent, isMentor: boolean) => {
     const userType = isMentor ? 'mentor' : 'mentored'
     setFormRequestLoading((prev) => ({ ...prev, [userType]: true }))
     event.preventDefault()

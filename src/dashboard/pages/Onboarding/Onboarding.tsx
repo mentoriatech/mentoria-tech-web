@@ -6,6 +6,7 @@ import ProfileStep from './steps/Profile/'
 import MentorshipStep from './steps/MentorshipStep/'
 import MentorshipForm from './steps/MentorshipForm/'
 import Result from './steps/Result'
+import { DefaultHead } from 'shared/components/DefaultHead'
 import Loading from 'shared/components/Loading'
 import { setUser } from 'store/userStore'
 import { updateUser } from './OnboardingService'
@@ -13,7 +14,7 @@ import { updateUser } from './OnboardingService'
 import { OnboardingContainer, WizardNav, WizardStep } from './Onboarding.styles'
 
 export interface OnboardingProps {
-  dispatch: (action: actionType) => void;
+  dispatch?: (action: actionType) => void;
   content: {
     title: string,
     description?: string,
@@ -49,7 +50,11 @@ const WizardBar: FC<WizardProps> = ({ totalSteps, currentStep, goToStep }) => {
   )
 }
 
-export const Onboarding: FC<OnboardingProps> = ({ dispatch, user }) => {
+export const Onboarding: FC<OnboardingProps> = ({
+  content,
+  dispatch,
+  user,
+}) => {
   const [session] = useSession()
   const [userProfile, setUserProfile] = useState<UserType>({})
   const [isSuccessful, setSuccessful] = useState(false)
@@ -60,9 +65,12 @@ export const Onboarding: FC<OnboardingProps> = ({ dispatch, user }) => {
     setUserProfile((prev) => ({ ...prev, ...state }))
   }
 
-  const onSubmit = async () => {
+  const onSubmit = async (state) => {
     try {
-      const { successful } = await updateUser(user.email, userProfile)
+      const { successful } = await updateUser(user.email, {
+        ...userProfile,
+        ...state,
+      })
       setSuccessful(successful)
       setResult(true)
     } catch (error: unknown) {
@@ -81,17 +89,20 @@ export const Onboarding: FC<OnboardingProps> = ({ dispatch, user }) => {
   }, [session])
 
   return (
-    <OnboardingContainer>
-      {(!user || loading) && <Loading label="Carregando" />}
-      {result ? (
-        <Result successful={isSuccessful} />
-      ) : (
-        <StepWizard nav={<WizardBar />}>
-          <ProfileStep user={user} onNextStep={onNextStep} />
-          <MentorshipStep onNextStep={onNextStep} />
-          <MentorshipForm onNextStep={onSubmit} mentor={userProfile.mentor} />
-        </StepWizard>
-      )}
-    </OnboardingContainer>
+    <>
+      <DefaultHead title={content.title} description={content.description} />
+      <OnboardingContainer>
+        {(!user || loading) && <Loading label="Carregando" />}
+        {result ? (
+          <Result successful={isSuccessful} />
+        ) : (
+          <StepWizard nav={<WizardBar />}>
+            <ProfileStep user={user} onNextStep={onNextStep} />
+            <MentorshipStep onNextStep={onNextStep} />
+            <MentorshipForm onSubmit={onSubmit} mentor={userProfile.mentor} />
+          </StepWizard>
+        )}
+      </OnboardingContainer>
+    </>
   )
 }

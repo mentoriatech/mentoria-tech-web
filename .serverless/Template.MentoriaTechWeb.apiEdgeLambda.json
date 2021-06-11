@@ -1,6 +1,6 @@
 {
   "name": "e6n2tdb-er0plng",
-  "hash": "La1VE9is29Uhz8VoPaoqLocMwm5EEUr/DlywVTtk3d4=",
+  "hash": "0nltYe06HX8m/XPkNpu+80xd0tWsNtpRrVMgvxj1xcg=",
   "description": "API Lambda@Edge for Next CloudFront distribution",
   "memory": 512,
   "timeout": 10,

@@ -16,6 +16,7 @@
     "@svgr/webpack": "^5.5.0",
     "@testing-library/cypress": "^7.0.6",
     "@types/express": "^4.17.11",
+    "atob": "^2.1.2",
     "axios": "^0.21.1",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "^7.27.0",

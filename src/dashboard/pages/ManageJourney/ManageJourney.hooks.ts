@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BoardType } from './types'
-import { BOARD_COLUMNS_RAW } from 'dashboard/constants'
 
-import {
-  fetchBoardData,
-  mountManagementContent,
-  calculateProgress,
-  removeList,
-} from './ManageJourneyService'
+import { fetchBoardData } from './ManageJourneyService'
 
 interface BoardDataReturn {
   board: BoardType;

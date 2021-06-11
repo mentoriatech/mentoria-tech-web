@@ -10,6 +10,7 @@ export interface ManageJourneyProps {
     id?: number,
     name: string,
     email: string,
+    journey?: string,
     boards?: {
       id: number,
       url: string,

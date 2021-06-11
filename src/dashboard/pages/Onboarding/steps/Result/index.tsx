@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Link from 'next/link'
 import { PrimaryButton } from 'shared/components/Button'
 import {
   CustomErrorIcon,
@@ -20,9 +21,11 @@ const Result: FC<ResultProps> = ({ successful }) => {
           <CustomSuccessfulIcon successful={successful} />
           <ResultTitle>Perfil criado com sucesso!</ResultTitle>
           <ResultMessages>Agora é só começar a sua jornada :)</ResultMessages>
-          <PrimaryButton variant="primary" size="normal">
-            Ir para dashboard
-          </PrimaryButton>
+          <Link href="/dashboard">
+            <PrimaryButton variant="primary" size="normal">
+              Ir para dashboard
+            </PrimaryButton>
+          </Link>
         </>
       ) : (
         <>

@@ -59,6 +59,14 @@ interface FormProps {
   submitDisabled?: boolean;
 }
 
+type onChangeType = (name: string, value: string) => void
+
+const beforeChange = (name: string, value: string, onChange?: onChangeType) => {
+  if (onChange) {
+    onChange(name, value)
+  }
+}
+
 export const RadioButton: FC<FieldProps> = forwardRef(
   ({ label, hint, onHintHover, onChange, ...props }, ref) => {
     return (
@@ -67,7 +75,7 @@ export const RadioButton: FC<FieldProps> = forwardRef(
         {props.options.map((option) => (
           <RadioLabel
             onChange={(e: BaseSyntheticEvent) =>
-              onChange(props.name, e.target.value)
+              beforeChange(props.name, e.target.value, onChange)
             }
           >
             <CustomRadio
@@ -93,7 +101,7 @@ export const Input: FC<FieldProps> = forwardRef(
         {label && <Label>{label}</Label>}
         <InputStyled
           onChange={(e: BaseSyntheticEvent) =>
-            onChange(props.name, e.target.value)
+            beforeChange(props.name, e.target.value, onChange)
           }
           ref={ref}
           {...props}
@@ -112,7 +120,7 @@ export const TextArea: FC<FieldProps> = forwardRef(
         <TextAreaStyled
           ref={ref}
           onChange={(e: BaseSyntheticEvent) =>
-            onChange(props.name, e.target.value)
+            beforeChange(props.name, e.target.value, onChange)
           }
           defaultValue={defaultValue}
           {...props}
@@ -131,7 +139,7 @@ export const Select: FC<FieldProps> = forwardRef(
           ref={ref}
           {...props}
           onChange={(e: BaseSyntheticEvent) =>
-            onChange(props.name, e.target.value)
+            beforeChange(props.name, e.target.value, onChange)
           }
         >
           {options.map((option) => (

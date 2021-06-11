@@ -11,16 +11,17 @@ const MentorshipWrapper = styled('div')(
 )
 
 interface MentorshipFormStepProps {
-  onNextStep?: (state: unknown) => void;
+  onSubmit?: (state: unknown) => void;
   mentor?: boolean;
 }
 
 const MentorshipFormStep: FC<MentorshipFormStepProps> = ({
-  onNextStep,
+  onSubmit,
   mentor,
 }) => {
   const beforeSubmit = (state: unknown) => {
-    onNextStep(state)
+    console.log('🚀 ~ file: index.tsx ~ line 23 ~ beforeSubmit ~ state', state)
+    onSubmit(state)
   }
 
   return (

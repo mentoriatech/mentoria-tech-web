@@ -13,11 +13,15 @@ export const saveTrelloAuthorization = (email: string): void => {
   fetch(`api/server/user/${encodedEmail}`, options).then((data) => data.json())
 }
 
-export const createBoard = async (userId: number) => {
+export const createBoard = async (
+  userId: number,
+  journey: string,
+): Promise<unknown> => {
   const options = {
     method: 'POST',
-    body: JSON.stringify({ userId }),
+    body: JSON.stringify({ userId, journey }),
   }
+  console.log('🚀 ~ file: ManageJourneyService.ts ~ line 24 ~ options', options)
 
   return fetch(`/api/server/board`, options).then((data) => data.json())
 }
@@ -35,15 +39,6 @@ export const calculateProgress = (lists = []): number => {
   )
 
   return (done.cards.length * 100) / total
-}
-
-export const removeList = (
-  board: BoardDataType,
-  listName: string | null,
-): BoardDataType[] => {
-  const lists = board?.lists?.filter((item) => item.name !== listName)
-
-  return { ...board, lists }
 }
 
 interface ManagementContentProps {

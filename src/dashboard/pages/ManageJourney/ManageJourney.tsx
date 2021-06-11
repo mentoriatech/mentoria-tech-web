@@ -26,13 +26,13 @@ export const ManageJourney: FC<ManageJourneyProps> = ({
     () =>
       (async () => {
         try {
-          const boards = await createBoard(user.id)
+          const boards = await createBoard(user.id, user.journey)
           dispatch(setUser({ user: { ...user, boards } }))
         } catch (error: unknown) {
           // setBoard(error)
         }
       })(),
-    [user.email],
+    [user],
   )
 
   const layoutProps = {

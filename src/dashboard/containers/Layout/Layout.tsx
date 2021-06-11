@@ -38,7 +38,6 @@ export const Layout: FC<LayoutProps> = ({
   icon,
   ...props
 }) => {
-  const [hasFullUser, setFullUser] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const { dispatch, user } = props
   const [session] = useSession()
@@ -60,9 +59,9 @@ export const Layout: FC<LayoutProps> = ({
       setLoading(true)
       try {
         const { data } = await getUser(session?.user?.email)
+        console.log('🚀 ~ file: Layout.tsx ~ line 62 ~ fetchUser ~ data', data)
 
         dispatch(setUser({ user: { ...user, ...data, ready: false } }))
-        setFullUser(true)
         setLoading(false)
       } catch (error) {
         setLoading(false)
@@ -73,12 +72,7 @@ export const Layout: FC<LayoutProps> = ({
       }
     }
 
-    console.log(
-      '🚀 ~ file: Layout.tsx ~ line 77 ~ useEffect ~ hasFullUser',
-      hasFullUser,
-    )
-
-    if (!hasFullUser && session?.user?.email && !isLoading) {
+    if (session?.user?.email && !isLoading) {
       fetchUser()
     }
   }, [user?.ready, session?.user?.email])

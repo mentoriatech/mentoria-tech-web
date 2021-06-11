@@ -28,12 +28,12 @@ export interface UserType {
   updated_at?: string;
   ready?: boolean;
   boards?: {
-    id: number,
-    url: string,
-    user_id: string,
+    id?: number,
+    url?: string,
+    user_id?: string,
     board_id?: string,
-    created_at: string,
-    updated_at: string,
+    created_at?: string,
+    updated_at?: string,
   };
 }
 

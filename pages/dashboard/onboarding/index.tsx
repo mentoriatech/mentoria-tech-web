@@ -6,7 +6,7 @@ export default Onboarding
 export const getStaticProps: GetStaticProps = async () => {
   const props: OnboardingProps = {
     content: {
-      title: 'mentoria.tech | jornadas',
+      title: 'mentoria.tech | onboarding',
     },
   }
 
