@@ -17,12 +17,8 @@ export const ContainerStyled = styled(Container)(
 )
 
 export const TopBarStyled = styled('div')(
-  ({ background }) => css`
-    ${background &&
-    `
-    background: rgb(61,5,123);
-    background: linear-gradient(140deg, rgb(62, 8, 116) 0%, rgb(125, 9, 50) 100%);
-  `}
+  ({ theme }) => css`
+    background-color: ${theme.colors.white};
     position: absolute;
     top: 0;
     width: 100%;

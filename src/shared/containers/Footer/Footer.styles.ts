@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
 import styled from 'shared/styles/styled'
 import Container from 'shared/components/Container'
 

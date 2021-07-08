@@ -42,7 +42,6 @@ const providersDetails = {
 }
 
 export const Login: FC<LoginProps> = ({ content, providers, domain }) => {
-  console.log('🚀 ~ file: Login.tsx ~ line 45 ~ providers', providers)
   const router = useRouter()
   const [session] = useSession()
 

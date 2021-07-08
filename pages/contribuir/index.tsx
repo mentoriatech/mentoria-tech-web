@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
-import Journeys, { JourneysProps } from 'dashboard/pages/Journeys'
+import { ContributeProps, Contribute } from 'website/pages/Contribute'
 
-export default Journeys
+export default Contribute
 
 export const getStaticProps: GetStaticProps = async () => {
-  const props: JourneysProps = {
+  const props: ContributeProps = {
     content: {
       title: 'mentoria.tech | jornadas',
     },

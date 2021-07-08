@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Link from 'next/link'
 import Logo from 'shared/components/Logo/'
 import Navigation from 'website/components/Navigation'
 import { TopBarStyled, ContainerStyled } from './TopBar.styles'
@@ -31,7 +32,9 @@ const TopBar: FC<TopBarProps> = ({ background, darkNav }) => {
   return (
     <TopBarStyled background={background}>
       <ContainerStyled>
-        <Logo size="medium" />
+        <Link href="/">
+          <Logo size="medium" />
+        </Link>
         <Navigation dark={darkNav} items={items} />
       </ContainerStyled>
     </TopBarStyled>
